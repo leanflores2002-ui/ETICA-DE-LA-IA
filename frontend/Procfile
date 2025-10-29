@@ -1,0 +1,2 @@
+web: yarn build && npx --yes serve -s build -l ${PORT:-3000}
+
