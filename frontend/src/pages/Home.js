@@ -40,17 +40,25 @@ const Home = () => {
     >
       <section className="presentation-slide">
         <Header />
-        <HeroSection />
+        <div className="slide-content glass-strong">
+          <HeroSection />
+        </div>
       </section>
       <section className="presentation-slide">
-        <KeyTopicsSection />
+        <div className="slide-content glass-strong">
+          <KeyTopicsSection />
+        </div>
       </section>
       <section className="presentation-slide">
-        <CaseStudiesSection />
+        <div className="slide-content glass-strong">
+          <CaseStudiesSection />
+        </div>
       </section>
       <section className="presentation-slide">
-        <ResourcesSection />
-        <Footer />
+        <div className="slide-content glass-strong">
+          <ResourcesSection />
+          <Footer />
+        </div>
       </section>
     </div>
   );
