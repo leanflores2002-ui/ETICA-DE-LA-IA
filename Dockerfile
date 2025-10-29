@@ -2,9 +2,7 @@
 FROM node:18-bookworm-slim AS frontend-builder
 WORKDIR /frontend
 
-# Install Yarn classic explicitly to match repo packageManager
-RUN npm i -g yarn@1.22.22
-
+# Use Yarn preinstalled in the Node image
 # Copy entire frontend (no lockfile in repo)
 COPY frontend/ .
 RUN yarn install --non-interactive \
