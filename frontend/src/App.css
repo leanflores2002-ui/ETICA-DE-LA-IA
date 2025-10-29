@@ -117,10 +117,12 @@ body.theme-ethics {
 
 /* Stronger readable surface for text-heavy sections */
 .glass-strong {
-  background: rgba(8, 12, 20, 0.82);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(6, 10, 18, 0.92);
+  border: 1px solid rgba(255,255,255,0.10);
   border-radius: 18px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+  -webkit-backdrop-filter: blur(12px) saturate(1.05);
+  backdrop-filter: blur(12px) saturate(1.05);
 }
 
 /* Slide inner container */
@@ -144,7 +146,7 @@ body.theme-ethics {
 
 .presentation-container p,
 .presentation-container li {
-  color: #e8edff;
+  color: #f2f6ff;
   line-height: 1.85;
   text-shadow: 0 1px 1px rgba(0,0,0,0.35);
 }
@@ -164,9 +166,10 @@ body.theme-ethics .text-slate-600 { color: #dfe6ff !important; }
 body.theme-ethics .bg-white,
 body.theme-ethics .bg-slate-50,
 body.theme-ethics .bg-slate-100 { 
-  background-color: rgba(13,17,23,0.55) !important; 
-  border-color: rgba(255,255,255,0.08) !important;
-  backdrop-filter: blur(6px);
+  background-color: rgba(10,14,22,0.72) !important; 
+  border-color: rgba(255,255,255,0.10) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+  backdrop-filter: blur(10px) saturate(1.05);
 }
 
 /* Header glass look on dark theme */

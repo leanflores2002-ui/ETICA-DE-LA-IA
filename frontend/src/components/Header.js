@@ -32,7 +32,7 @@ const Header = () => {
             className="text-xl font-serif font-bold text-slate-900 hover:text-slate-700 transition-colors"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Etica de IA
+            Ética de IA
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
@@ -77,4 +77,3 @@ const Header = () => {
 };
 
 export default Header;
-
