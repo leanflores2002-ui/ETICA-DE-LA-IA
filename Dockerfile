@@ -2,9 +2,7 @@
 FROM node:20-bookworm-slim AS frontend-builder
 WORKDIR /frontend
 
-# Install Yarn classic explicitly to match repo packageManager and avoid Corepack issues
-RUN npm i -g yarn@1.22.22
-
+# Use Yarn available in the Node image (Corepack-managed)
 # Copy entire frontend (no lockfile in repo)
 COPY frontend/ .
 RUN yarn install --non-interactive \
