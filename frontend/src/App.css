@@ -184,3 +184,26 @@ body.theme-ethics .w-10.h-10 {
   border: 1px solid rgba(255,255,255,0.08) !important;
   border-radius: 10px !important;
 }
+
+/* -------- Page transitions (for multipage routes) -------- */
+.page {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 1rem 3rem;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 420ms ease, transform 500ms cubic-bezier(.2,.65,.2,1);
+}
+.page.page-in { opacity: 1; transform: translateY(0); }
+
+/* Active nav underline */
+.nav-link { position: relative; }
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -6px; height: 2px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #22d3ee);
+  border-radius: 2px;
+}
