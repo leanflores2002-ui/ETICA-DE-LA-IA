@@ -1,4 +1,5 @@
 from fastapi import FastAPI, APIRouter
+from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -87,3 +88,14 @@ logger = logging.getLogger(__name__)
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
+
+# Serve static frontend if build exists (single-service deploy)
+FRONTEND_BUILD_DIR = ROOT_DIR.parent / "frontend" / "build"
+if FRONTEND_BUILD_DIR.exists() and (FRONTEND_BUILD_DIR / "index.html").exists():
+    try:
+        app.mount("/", StaticFiles(directory=str(FRONTEND_BUILD_DIR), html=True), name="static")
+        logger.info(f"Mounted frontend build at {FRONTEND_BUILD_DIR}")
+    except Exception as e:
+        logger.warning(f"Could not mount static frontend: {e}")
+else:
+    logger.info("Frontend build not found; API-only mode.")

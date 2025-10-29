@@ -6,6 +6,23 @@ Este repositorio tiene dos partes: `backend` (FastAPI + MongoDB) y `frontend` (R
 - Cuenta en Railway y el repositorio conectado a Railway.
 - Base de datos MongoDB (puedes usar el addon de Railway). Guarda el `connection string`.
 
+## Opción 1 (recomendada): Un solo servicio (FastAPI sirve el frontend)
+
+Se añadió un `Dockerfile` en la raíz que:
+- Construye el frontend (`frontend/`) con Node + Yarn.
+- Copia el build estático dentro de la imagen Python.
+- Inicia FastAPI con Uvicorn sirviendo `/api/*` y los archivos estáticos en `/`.
+
+Pasos en Railway:
+- Create Service → Deploy from Repo → selecciona este repo.
+- No uses Monorepo Root para subcarpetas (deja la raíz `.`) para que tome el `Dockerfile`.
+- En Variables, añade: `MONGO_URL`, `DB_NAME`, `CORS_ORIGINS` (opcional, si sirves el frontend desde el mismo dominio puedes omitirla o dejar `*`).
+- Railway detectará el Dockerfile y construirá la imagen. El servicio expondrá en `PORT`.
+
+Notas:
+- Health API: `GET /api/` → `{ "message": "Hello World" }`.
+- El frontend queda montado en `/` y hace fallback a `index.html` para rutas de SPA.
+
 ## Backend (FastAPI)
 - Directorio raíz del servicio: `backend`.
 - Build/Entrypoint: se usa `Procfile` incluido.
