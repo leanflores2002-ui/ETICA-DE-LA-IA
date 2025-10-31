@@ -39,8 +39,8 @@
   --motion-scale: 1; /* reducido = 0 */
 }
 
-/* Dark mode tokens (usa data-theme="dark" o media query) */
-[data-theme="dark"]:root, @media (prefers-color-scheme: dark) {
+/* Dark mode tokens (soporte por media query y atributo) */
+@media (prefers-color-scheme: dark) {
   :root {
     --bg-from: #0b1220;
     --bg-to: #0f172a;
@@ -48,6 +48,15 @@
     --accent: #38bdf8;
     --accent-2: #818cf8;
   }
+}
+
+/* Override explícito si el root (o cualquier contenedor) define data-theme="dark" */
+:root[data-theme="dark"], [data-theme="dark"] {
+  --bg-from: #0b1220;
+  --bg-to: #0f172a;
+  --brand: #e2e8f0;
+  --accent: #38bdf8;
+  --accent-2: #818cf8;
 }
 
 /* Reduced motion */
@@ -73,7 +82,6 @@
   filter: blur(40px) saturate(1.05);
   background-size: 200% 200%, 200% 200%, 100% 100%;
   animation: gradient-move var(--dur-bg) linear infinite;
-  animation-play-state: calc(var(--motion-scale) * 1) == 0 ? paused : running;
   will-change: background-position;
 }
 
@@ -219,4 +227,3 @@
     transition: none !important;
   }
 }
-
