@@ -1,0 +1,222 @@
+/*
+  animations.css — Kit de animaciones modernas
+  - Tokens centralizados en :root (durations, easing, colores)
+  - Utilidades reutilizables (.anim-fade-in, .anim-slide-up, .anim-scale-in, .anim-tilt, .anim-underline)
+  - Gradiente animado sutil para héroes (lava/blur) con fallback estático
+  - Respeta prefers-reduced-motion
+  - Comentarios indicando dónde aplicar
+*/
+
+:root {
+  /* Colores base (ajusta según tu paleta) */
+  --bg-from: #eef2ff; /* slate-50/indigo-50 */
+  --bg-to: #e0f2fe;   /* sky-100 */
+  --bg-angle: 120deg;
+
+  /* Theme tokens */
+  --brand: #0f172a; /* slate-900 */
+  --accent: #2563eb; /* blue-600 */
+  --accent-2: #06b6d4; /* cyan-500 */
+
+  /* Durations */
+  --dur-micro: 160ms;
+  --dur-ui: 240ms;
+  --dur-reveal: 520ms;
+  --dur-bg: 32s;
+
+  /* Easing */
+  --ease-spring: cubic-bezier(.22,.61,.36,1);
+  --ease-smooth: cubic-bezier(.25,.46,.45,.94);
+
+  /* Radii y sombras */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --shadow-soft: 0 8px 30px rgba(2, 6, 23, 0.08);
+  --shadow-strong: 0 16px 50px rgba(2, 6, 23, 0.16);
+
+  /* Motion control */
+  --motion-scale: 1; /* reducido = 0 */
+}
+
+/* Dark mode tokens (usa data-theme="dark" o media query) */
+[data-theme="dark"]:root, @media (prefers-color-scheme: dark) {
+  :root {
+    --bg-from: #0b1220;
+    --bg-to: #0f172a;
+    --brand: #e2e8f0;
+    --accent: #38bdf8;
+    --accent-2: #818cf8;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-scale: 0; }
+}
+
+/* ---------- Gradiente animado (hero) ---------- */
+/* Fallback estático */
+.anim-gradient {
+  background: linear-gradient(var(--bg-angle), var(--bg-from), var(--bg-to));
+}
+
+/* Capa animada sutil con blur via ::before para aspecto "lava" */
+.hero--animated { position: relative; isolation: isolate; overflow: hidden; }
+.hero--animated::before {
+  content: "";
+  position: absolute; inset: -20% -10% -10% -20%;
+  z-index: -1;
+  background: radial-gradient(60% 80% at 20% 30%, rgba(129, 140, 248, .25), transparent 70%),
+              radial-gradient(70% 60% at 80% 40%, rgba(56, 189, 248, .20), transparent 65%),
+              linear-gradient(var(--bg-angle), var(--bg-from), var(--bg-to));
+  filter: blur(40px) saturate(1.05);
+  background-size: 200% 200%, 200% 200%, 100% 100%;
+  animation: gradient-move var(--dur-bg) linear infinite;
+  animation-play-state: calc(var(--motion-scale) * 1) == 0 ? paused : running;
+  will-change: background-position;
+}
+
+@keyframes gradient-move {
+  0%   { background-position: 0% 50%, 100% 50%, 50% 50%; }
+  50%  { background-position: 100% 50%, 0% 50%, 50% 50%; }
+  100% { background-position: 0% 50%, 100% 50%, 50% 50%; }
+}
+
+/* ---------- Utilidades de reveal (scroll) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y, 24px), 0) scale(var(--reveal-scale, 1));
+  transition: opacity var(--dur-reveal) var(--ease-spring),
+              transform var(--dur-reveal) var(--ease-spring);
+  will-change: opacity, transform;
+}
+.reveal.is-inview {
+  opacity: 1;
+  transform: translate3d(0,0,0) scale(1);
+}
+.reveal-up { --reveal-y: 24px; }
+.reveal-fade { --reveal-y: 0px; --reveal-scale: 1; }
+.reveal-scale { --reveal-y: 10px; --reveal-scale: .98; }
+
+/* Stagger automático: aplica en contenedor y afecta a sus hijos directos */
+[data-stagger] > * {
+  --_i: var(--index, 0);
+  transition-delay: calc((var(--_i) * var(--stagger, 40ms)));
+}
+
+/* ---------- Tilt 3D y Flip ---------- */
+.tilt-3d {
+  perspective: 800px;
+}
+.tilt-3d__inner {
+  transform-style: preserve-3d;
+  transition: transform var(--dur-ui) var(--ease-spring), filter var(--dur-ui) var(--ease-spring), box-shadow var(--dur-ui) var(--ease-spring);
+  will-change: transform;
+}
+/* CSS-only leve cuando no hay JS de tilt */
+.tilt-3d__inner:hover {
+  transform: rotateX(6deg) rotateY(-6deg) translateZ(0);
+  filter: saturate(1.02);
+  box-shadow: var(--shadow-soft);
+}
+/* JS setea --rx / --ry para un tilt adaptativo */
+.tilt-3d[data-tilt-active="true"] .tilt-3d__inner {
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+
+.flip-3d { perspective: 1000px; }
+.flip-3d__card { position: relative; transform-style: preserve-3d; transition: transform var(--dur-ui) var(--ease-spring); }
+.flip-3d__face, .flip-3d__back { backface-visibility: hidden; }
+.flip-3d__back { transform: rotateY(180deg); }
+.flip-3d.is-flipped .flip-3d__card { transform: rotateY(180deg); }
+
+/* ---------- Microinteracciones ---------- */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size var(--dur-ui) var(--ease-spring), color var(--dur-micro) ease-out;
+}
+.link-underline:hover { background-size: 100% 2px; }
+
+.btn-anim {
+  transform: translateZ(0);
+  transition: transform var(--dur-ui) var(--ease-spring), box-shadow var(--dur-ui) var(--ease-spring), filter var(--dur-ui) var(--ease-spring);
+}
+.btn-anim:hover { transform: scale(1.03); box-shadow: var(--shadow-soft); filter: brightness(1.02); }
+
+/* Borde brillante (gradient) */
+.border-gradient {
+  position: relative; border: 1px solid transparent; border-radius: var(--r-md);
+}
+.border-gradient::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-mask:
+    linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+
+/* Burger → X (estructura: .burger > span*3; toggle .is-open en contenedor) */
+.burger { width: 24px; height: 20px; position: relative; cursor: pointer; }
+.burger span { position: absolute; left: 0; width: 100%; height: 2px; background: currentColor; transition: transform var(--dur-ui) var(--ease-spring), opacity var(--dur-ui) var(--ease-spring); }
+.burger span:nth-child(1) { top: 2px; }
+.burger span:nth-child(2) { top: 9px; }
+.burger span:nth-child(3) { bottom: 2px; }
+.is-open .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.is-open .burger span:nth-child(2) { opacity: 0; }
+.is-open .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Tooltips simples (si no usas Radix) */
+.tooltip { position: relative; }
+.tooltip:hover::after {
+  content: attr(data-tip);
+  position: absolute; left: 50%; bottom: calc(100% + 8px);
+  transform: translateX(-50%) scale(.98);
+  background: var(--brand); color: white; padding: 6px 8px; font-size: 12px; border-radius: 6px;
+  filter: drop-shadow(0 6px 12px rgba(2,6,23,.25)); opacity: 0; pointer-events: none;
+  transition: opacity var(--dur-ui) var(--ease-spring), transform var(--dur-ui) var(--ease-spring);
+}
+.tooltip:hover::after { opacity: 1; transform: translateX(-50%) scale(1); }
+
+/* Loader minimalista */
+.loader { width: 20px; height: 20px; border: 2px solid rgba(0,0,0,.15); border-top-color: var(--accent); border-radius: 50%; animation: spin 700ms linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Transición de página (clip/fade+blur) */
+.page-transition {
+  view-transition-name: page; /* Chrome only, safe to ignore */
+}
+.page-enter { opacity: 0; filter: blur(8px); }
+.page-enter.page-enter-active { opacity: 1; filter: blur(0); transition: opacity 360ms var(--ease-spring), filter 360ms var(--ease-spring); }
+.page-exit { opacity: 1; filter: blur(0); }
+.page-exit.page-exit-active { opacity: 0; filter: blur(8px); transition: opacity 360ms var(--ease-spring), filter 360ms var(--ease-spring); }
+
+/* SVG draw */
+.svg-draw { stroke-dasharray: var(--dash, 1); stroke-dashoffset: var(--dash, 1); }
+.svg-draw.is-drawn { stroke-dashoffset: 0; transition: stroke-dashoffset var(--dur-ui) var(--ease-spring); }
+
+/* Sticky CTA */
+[data-sticky-cta] { position: fixed; left: 50%; bottom: 16px; transform: translate(-50%, 12px); opacity: 0; pointer-events: none; transition: transform var(--dur-ui) var(--ease-spring), opacity var(--dur-ui) var(--ease-spring); z-index: 40; }
+[data-sticky-cta].is-visible { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+
+/* Galería parallax interno */
+.gallery-card { transform-style: preserve-3d; overflow: hidden; border-radius: var(--r-md); }
+.gallery-card img { transition: transform 420ms var(--ease-spring); will-change: transform; }
+.gallery-card:hover img { transform: scale(1.05) translateZ(0); }
+
+/* Prefers-reduced-motion: desactiva animaciones intensas */
+@media (prefers-reduced-motion: reduce) {
+  .hero--animated::before,
+  .reveal,
+  .tilt-3d__inner,
+  .page-enter.page-enter-active,
+  .page-exit.page-exit-active,
+  .loader,
+  [data-sticky-cta] {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+

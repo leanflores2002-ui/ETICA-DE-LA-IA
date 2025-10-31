@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Animations kit */
+@import "./styles/animations.css";
+
 body {
     margin: 0;
     font-family:
