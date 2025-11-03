@@ -1,4 +1,5 @@
 import React from 'react';
+import SafeImage from './SafeImage';
 import { ArrowDown } from 'lucide-react';
 
 const HeroSection = () => {
@@ -31,10 +32,10 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="relative">
-            <img data-parallax data-parallax-speed="0.18"
+            <SafeImage data-parallax data-parallax-speed="0.18"
               src="https://images.unsplash.com/photo-1717501220725-83f151c447e7?auto=format&fit=crop&w=1280&q=80"
               alt="Visualización de Inteligencia Artificial"
-              className="w-full h-[400px] object-cover shadow-lg will-change-transform" loading="eager"
+              className="w-full h-[400px] object-cover shadow-lg will-change-transform" loading="eager" fetchpriority="high"
             />
           </div>
         </div>

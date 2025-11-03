@@ -245,7 +245,15 @@ const ResourcesSection = () => {
 
           <TabsContent value="papers" className="space-y-4" data-stagger>
             {resources.papers.map((paper, index) => (
-              <Card key={index} data-reveal className="reveal reveal-up border-slate-200">
+              <Card
+                key={index}
+                data-reveal
+                className="reveal reveal-up border-slate-200 cursor-pointer"
+                onClick={() => window.open(getPaperUrl(paper.title), '_blank', 'noopener,noreferrer')}
+                role="link"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getPaperUrl(paper.title), '_blank', 'noopener,noreferrer'); }}
+              >
                 <CardHeader>
                   <CardTitle className="text-xl font-serif text-slate-900">
                     {paper.title}
@@ -269,7 +277,15 @@ const ResourcesSection = () => {
 
           <TabsContent value="organizations" className="grid md:grid-cols-2 gap-4" data-stagger>
             {resources.organizations.map((org, index) => (
-              <Card key={index} data-reveal className="reveal reveal-up border-slate-200">
+              <Card
+                key={index}
+                data-reveal
+                className="reveal reveal-up border-slate-200 cursor-pointer"
+                onClick={() => window.open(getOrgUrl(org.name), '_blank', 'noopener,noreferrer')}
+                role="link"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getOrgUrl(org.name), '_blank', 'noopener,noreferrer'); }}
+              >
                 <CardHeader>
                   <CardTitle className="text-xl font-serif text-slate-900">
                     {org.name}
@@ -342,7 +358,15 @@ const ResourcesSection = () => {
 
           <TabsContent value="courses" className="grid md:grid-cols-2 gap-4" data-stagger>
             {resources.courses.map((course, index) => (
-              <Card key={index} data-reveal className="reveal reveal-up border-slate-200">
+              <Card
+                key={index}
+                data-reveal
+                className="reveal reveal-up border-slate-200 cursor-pointer"
+                onClick={() => window.open(getCourseUrl(course.title), '_blank', 'noopener,noreferrer')}
+                role="link"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getCourseUrl(course.title), '_blank', 'noopener,noreferrer'); }}
+              >
                 <CardHeader>
                   <CardTitle className="text-xl font-serif text-slate-900">
                     {course.title}

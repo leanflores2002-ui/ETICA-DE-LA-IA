@@ -103,7 +103,7 @@ const KeyTopicsSection = () => {
                       <p className="text-slate-700 leading-relaxed">{topic.content}</p>
                     </div>
                     <div className="md:col-span-1">
-                      <img
+                      <SafeImage
                         src={topic.image}
                         alt={topic.title}
                         loading="lazy"
@@ -150,7 +150,7 @@ const KeyTopicsSection = () => {
                         <p className="text-slate-700 leading-relaxed">{topic.content}</p>
                       </div>
                       <div className="md:col-span-1">
-                        <img
+                        <SafeImage
                           src={topic.image}
                           alt={topic.title}
                           loading="lazy"

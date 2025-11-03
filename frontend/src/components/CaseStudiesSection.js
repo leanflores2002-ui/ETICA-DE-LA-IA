@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { ChevronRight } from 'lucide-react';
+import SafeImage from './SafeImage';
 
 const CaseStudiesSection = () => {
   const [selectedCase, setSelectedCase] = useState(null);
@@ -155,7 +156,7 @@ const CaseStudiesSection = () => {
               className="reveal reveal-up cursor-pointer hover:shadow-lg transition-shadow border-slate-200"
               onClick={() => setSelectedCase(caseStudy)}
             >
-              <img
+              <SafeImage
                 src={caseStudy.image}
                 alt={caseStudy.title}
                 loading="lazy"
@@ -207,7 +208,7 @@ const CaseStudiesSection = () => {
               </div>
               
               <div className="p-6 space-y-6">
-                <img
+                <SafeImage
                   src={selectedCase.image}
                   alt={selectedCase.title}
                   loading="lazy"
