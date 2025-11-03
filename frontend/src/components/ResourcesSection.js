@@ -188,6 +188,25 @@ const ResourcesSection = () => {
     'Practical Data Ethics': 'https://ethics.fast.ai/',
     'Machine Learning Fairness': 'https://developers.google.com/machine-learning/fairness-overview'
   };
+  // Enlaces adicionales para herramientas y marcos
+  // Resuelve enlaces sin depender de acentos exactos
+  const getToolUrl = (name = '') => {
+    const n = String(name).toLowerCase();
+    if (n.includes('ai fairness 360')) return 'https://github.com/IBM/AIF360';
+    if (n.includes('what-if')) return 'https://pair-code.github.io/what-if-tool/';
+    if (n.includes('fairlearn')) return 'https://fairlearn.org/';
+    if (n.startsWith('lime')) return 'https://github.com/marcotcr/lime';
+    if (n.startsWith('shap')) return 'https://shap.readthedocs.io/';
+    return '#';
+  };
+  const getFrameworkUrl = (name = '') => {
+    const n = String(name).toLowerCase();
+    if (n.includes('gdpr')) return 'https://gdpr.eu/';
+    if (n.includes('ai act')) return 'https://artificialintelligenceact.eu/';
+    if (n.includes('oecd')) return 'https://oecd.ai/en/ai-principles';
+    if (n.includes('beijing')) return 'https://www.baai.ac.cn/';
+    return '#';
+  };
   const getPaperUrl = (title) => paperLinks[title] || '#';
   const getOrgUrl = (name) => orgLinks[name] || '#';
   const getCourseUrl = (title) => courseLinks[title] || '#';
@@ -207,7 +226,7 @@ const ResourcesSection = () => {
         <div data-reveal className="reveal reveal-up mb-10">
           <video
             controls
-            className="w-full rounded-lg shadow-lg"
+            className="w-full rounded-lg shadow-lg min-h-[240px] md:min-h-[360px]"
             poster="https://images.unsplash.com/photo-1717501220725-83f151c447e7?w=1200&q=60"
           >
             <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
@@ -332,6 +351,15 @@ const ResourcesSection = () => {
                         </li>
                       ))}
                     </ul>
+                    <div className="mt-3">
+                      <a
+                        href={getFrameworkUrl(framework.name)}
+                        target="_blank" rel="noopener noreferrer"
+                        className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
+                      >
+                        Más información →
+                      </a>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -340,7 +368,15 @@ const ResourcesSection = () => {
 
           <TabsContent value="tools" className="grid md:grid-cols-2 gap-4" data-stagger>
             {resources.tools.map((tool, index) => (
-              <Card key={index} data-reveal className="reveal reveal-up border-slate-200">
+              <Card
+                key={index}
+                data-reveal
+                className="reveal reveal-up border-slate-200 cursor-pointer"
+                onClick={() => window.open(getToolUrl(tool.name), '_blank', 'noopener,noreferrer')}
+                role="link"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getToolUrl(tool.name), '_blank', 'noopener,noreferrer'); }}
+              >
                 <CardHeader>
                   <CardTitle className="text-xl font-serif text-slate-900">
                     {tool.name}
@@ -350,7 +386,13 @@ const ResourcesSection = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-slate-700">{tool.description}</p>
+                  <p className="text-slate-700 mb-3">{tool.description}</p>
+                  <a
+                    href={getToolUrl(tool.name)} target="_blank" rel="noopener noreferrer"
+                    className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
+                  >
+                    Sitio oficial →
+                  </a>
                 </CardContent>
               </Card>
             ))}

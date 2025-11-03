@@ -2,6 +2,7 @@ import React from 'react';
 import { Scale, Shield, Eye, Users, Briefcase, Camera, AlertTriangle, Cpu } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
+import SafeImage from './SafeImage';
 
 const KeyTopicsSection = () => {
   const topics = [
