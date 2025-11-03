@@ -44,6 +44,9 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+# In-memory fallback storage when MongoDB is not configured
+IN_MEMORY_STATUS: List[StatusCheck] = []
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
@@ -51,22 +54,26 @@ async def root():
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
-    if db is None:
-        raise HTTPException(status_code=503, detail="Database not configured: set MONGO_URL and DB_NAME")
     status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
-    
+
+    # Fallback to in-memory list if DB not configured
+    if db is None:
+        IN_MEMORY_STATUS.append(status_obj)
+        return status_obj
+
     # Convert to dict and serialize datetime to ISO string for MongoDB
     doc = status_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
-    
+
     _ = await db.status_checks.insert_one(doc)
     return status_obj
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
+    # Fallback to in-memory list if DB not configured
     if db is None:
-        raise HTTPException(status_code=503, detail="Database not configured: set MONGO_URL and DB_NAME")
+        return IN_MEMORY_STATUS
     # Exclude MongoDB's _id field from the query results
     status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
     

@@ -55,3 +55,23 @@ Pasos en Railway:
 ## Endpoints útiles
 - Backend health: `GET /api/` → `{ "message": "Hello World" }`
 - Crear status: `POST /api/status` { "client_name": "..." }
+
+## Desarrollo local
+
+Para trabajar en local con el backend en Python y el frontend React manteniendo una buena separación y viendo los cambios al instante:
+
+1) Backend (FastAPI)
+- Crear y activar tu entorno: `python -m venv .venv && source .venv/bin/activate` (Windows: `.venv\\Scripts\\activate`)
+- Instalar dependencias: `pip install -r backend/requirements.txt`
+- Ejecutar en desarrollo: `uvicorn backend.server:app --reload --port 8000`
+- Nota: Si no configuras `MONGO_URL`/`DB_NAME`, los endpoints `/api/status` usarán un almacenamiento en memoria para desarrollo.
+
+2) Frontend (React + CRA/CRACO)
+- Ir a la carpeta: `cd frontend`
+- Instalar dependencias: `yarn`
+- Iniciar: `yarn start`
+- El archivo `frontend/package.json` incluye `"proxy": "http://localhost:8000"` para que las llamadas a `/api/*` se redirijan al backend.
+
+3) Probar integración
+- Abre `http://localhost:3000`
+- En la página de inicio verás un bloque de demostración “Estado de clientes” donde puedes crear registros y listarlos desde el backend.
