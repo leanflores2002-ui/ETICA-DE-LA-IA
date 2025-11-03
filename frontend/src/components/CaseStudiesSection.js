@@ -26,7 +26,7 @@ const CaseStudiesSection = () => {
         'Transparencia sobre limitaciones y tasas de error',
         'Consideración de impactos desproporcionados en comunidades marginadas'
       ],
-      image: 'https://images.unsplash.com/photo-1559137771-536eecb999ab'
+      image: 'https://images.unsplash.com/photo-1559137771-536eecb999ab?auto=format&fit=crop&w=1200&q=80'
     },
     {
       id: 2,
@@ -47,7 +47,7 @@ const CaseStudiesSection = () => {
         'Necesidad de transparencia en algoritmos de toma de decisiones',
         'Desarrollo de estándares internacionales para sistemas autónomos'
       ],
-      image: 'https://images.unsplash.com/photo-1694729101068-a2c621f877b4'
+      image: 'https://images.unsplash.com/photo-1694729101068-a2c621f877b4?auto=format&fit=crop&w=1200&q=80'
     },
     {
       id: 3,
@@ -89,7 +89,7 @@ const CaseStudiesSection = () => {
         'Importancia de consentimiento informado y transparencia',
         'Responsabilidad de plataformas en proteger datos de usuarios'
       ],
-      image: 'https://images.unsplash.com/photo-1633265486064-086b219458ec'
+      image: 'https://images.unsplash.com/photo-1633265486064-086b219458ec?auto=format&fit=crop&w=1200&q=80'
     },
     {
       id: 5,
@@ -131,7 +131,7 @@ const CaseStudiesSection = () => {
         'Marcos legales deben abordar creación y distribución maliciosa',
         'Plataformas tecnológicas deben implementar medidas de autenticación'
       ],
-      image: 'https://images.unsplash.com/photo-1595666944516-bbb485958fb5'
+      image: 'https://images.unsplash.com/photo-1595666944516-bbb485958fb5?auto=format&fit=crop&w=1200&q=80'
     }
   ];
 
@@ -158,6 +158,7 @@ const CaseStudiesSection = () => {
               <img
                 src={caseStudy.image}
                 alt={caseStudy.title}
+                loading="lazy"
                 className="w-full h-48 object-cover"
               />
               <CardHeader>
@@ -209,6 +210,7 @@ const CaseStudiesSection = () => {
                 <img
                   src={selectedCase.image}
                   alt={selectedCase.title}
+                  loading="lazy"
                   className="w-full h-64 object-cover"
                 />
                 

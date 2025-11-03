@@ -32,9 +32,9 @@ const HeroSection = () => {
           </div>
           <div className="relative">
             <img data-parallax data-parallax-speed="0.18"
-              src="https://images.unsplash.com/photo-1717501220725-83f151c447e7"
+              src="https://images.unsplash.com/photo-1717501220725-83f151c447e7?auto=format&fit=crop&w=1280&q=80"
               alt="Visualización de Inteligencia Artificial"
-              className="w-full h-[400px] object-cover shadow-lg will-change-transform"
+              className="w-full h-[400px] object-cover shadow-lg will-change-transform" loading="eager"
             />
           </div>
         </div>
