@@ -10,7 +10,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="pt-24 pb-16 hero--animated anim-gradient">
+    <section id="inicio" className="pt-24 pb-16 hero--animated anim-gradient">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">

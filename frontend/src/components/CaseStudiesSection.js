@@ -136,10 +136,10 @@ const CaseStudiesSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-slate-50">
+    <section id="casos-estudio" className="py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-4">
+          <h2 data-reveal className="reveal reveal-up text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-4">
             Casos de Estudio
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -147,11 +147,12 @@ const CaseStudiesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" data-stagger>
           {caseStudies.map((caseStudy) => (
             <Card
               key={caseStudy.id}
-              className="cursor-pointer hover:shadow-lg transition-shadow border-slate-200"
+              data-reveal
+              className="reveal reveal-up cursor-pointer hover:shadow-lg transition-shadow border-slate-200"
               onClick={() => setSelectedCase(caseStudy)}
             >
               <img

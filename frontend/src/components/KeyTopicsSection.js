@@ -64,10 +64,10 @@ const KeyTopicsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section id="temas-claves" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-4">
+          <h2 data-reveal className="reveal reveal-up text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-4">
             Temas Claves
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -75,11 +75,11 @@ const KeyTopicsSection = () => {
           </p>
         </div>
 
-        <div className="grid gap-8 mb-16">
+        <div className="grid gap-8 mb-16" data-stagger>
           {topics.slice(0, 4).map((topic, index) => {
             const Icon = topic.icon;
             return (
-              <Card key={index} className="border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+              <Card key={index} data-reveal className="reveal reveal-up border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                 <CardHeader>
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
@@ -120,14 +120,15 @@ const KeyTopicsSection = () => {
           <h3 className="text-2xl font-serif font-bold text-slate-900 mb-6">
             Temas Adicionales
           </h3>
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-4" data-stagger>
             {topics.slice(4).map((topic, index) => {
               const Icon = topic.icon;
               return (
                 <AccordionItem
                   key={index + 4}
                   value={`item-${index + 4}`}
-                  className="border border-slate-200 px-6"
+                  data-reveal
+                  className="reveal reveal-up border border-slate-200 px-6"
                 >
                   <AccordionTrigger className="hover:no-underline">
                     <div className="flex items-center space-x-4">

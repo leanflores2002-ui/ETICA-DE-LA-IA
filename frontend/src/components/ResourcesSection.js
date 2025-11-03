@@ -167,16 +167,52 @@ const ResourcesSection = () => {
     ]
   };
 
+  // Mapeo de enlaces externos para reemplazar placeholders
+  const paperLinks = {
+    'Attention Is All You Need': 'https://arxiv.org/abs/1706.03762',
+    'Ethics of Artificial Intelligence and Robotics': 'https://plato.stanford.edu/entries/ethics-ai/',
+    'Fairness and Machine Learning': 'https://fairmlbook.org/',
+    'The Social Dilemma: Social Media and Your Mental Health': 'https://www.jmir.org/'
+  };
+  const orgLinks = {
+    'Partnership on AI': 'https://www.partnershiponai.org/',
+    'AI Now Institute': 'https://ainowinstitute.org/',
+    'Future of Humanity Institute': 'https://www.fhi.ox.ac.uk/',
+    'IEEE Global Initiative on Ethics of Autonomous and Intelligent Systems': 'https://ethicsinaction.ieee.org/',
+    'Montreal AI Ethics Institute': 'https://montrealethics.ai/',
+    'Algorithm Watch': 'https://algorithmwatch.org/en/'
+  };
+  const courseLinks = {
+    'Ethics of AI': 'https://online.hbs.edu/courses/ethics-of-ai/',
+    'AI For Everyone': 'https://www.coursera.org/learn/ai-for-everyone',
+    'Practical Data Ethics': 'https://ethics.fast.ai/',
+    'Machine Learning Fairness': 'https://developers.google.com/machine-learning/fairness-overview'
+  };
+  const getPaperUrl = (title) => paperLinks[title] || '#';
+  const getOrgUrl = (name) => orgLinks[name] || '#';
+  const getCourseUrl = (title) => courseLinks[title] || '#';
+
   return (
-    <section className="py-20 bg-white">
+    <section id="recursos" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-4">
+          <h2 data-reveal className="reveal reveal-up text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-4">
             Recursos
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
             Herramientas, organizaciones y materiales para profundizar en la ética de la inteligencia artificial
           </p>
+        </div>
+
+        <div data-reveal className="reveal reveal-up mb-10">
+          <video
+            controls
+            className="w-full rounded-lg shadow-lg"
+            poster="https://images.unsplash.com/photo-1717501220725-83f151c447e7?w=1200&q=60"
+          >
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+            Tu navegador no soporta la reproducción de video.
+          </video>
         </div>
 
         <Tabs defaultValue="papers" className="w-full">
@@ -207,9 +243,9 @@ const ResourcesSection = () => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="papers" className="space-y-4">
+          <TabsContent value="papers" className="space-y-4" data-stagger>
             {resources.papers.map((paper, index) => (
-              <Card key={index} className="border-slate-200">
+              <Card key={index} data-reveal className="reveal reveal-up border-slate-200">
                 <CardHeader>
                   <CardTitle className="text-xl font-serif text-slate-900">
                     {paper.title}
@@ -221,7 +257,7 @@ const ResourcesSection = () => {
                 <CardContent>
                   <p className="text-slate-700 mb-3">{paper.description}</p>
                   <a
-                    href={paper.link}
+                    href={getPaperUrl(paper.title)} target="_blank" rel="noopener noreferrer"
                     className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
                   >
                     Leer artículo →
@@ -231,9 +267,9 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="organizations" className="grid md:grid-cols-2 gap-4">
+          <TabsContent value="organizations" className="grid md:grid-cols-2 gap-4" data-stagger>
             {resources.organizations.map((org, index) => (
-              <Card key={index} className="border-slate-200">
+              <Card key={index} data-reveal className="reveal reveal-up border-slate-200">
                 <CardHeader>
                   <CardTitle className="text-xl font-serif text-slate-900">
                     {org.name}
@@ -243,7 +279,7 @@ const ResourcesSection = () => {
                 <CardContent>
                   <p className="text-slate-700 mb-3">{org.description}</p>
                   <a
-                    href={org.link}
+                    href={getOrgUrl(org.name)} target="_blank" rel="noopener noreferrer"
                     className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
                   >
                     Visitar sitio web →
@@ -286,9 +322,9 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="tools" className="grid md:grid-cols-2 gap-4">
+          <TabsContent value="tools" className="grid md:grid-cols-2 gap-4" data-stagger>
             {resources.tools.map((tool, index) => (
-              <Card key={index} className="border-slate-200">
+              <Card key={index} data-reveal className="reveal reveal-up border-slate-200">
                 <CardHeader>
                   <CardTitle className="text-xl font-serif text-slate-900">
                     {tool.name}
@@ -304,9 +340,9 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="courses" className="grid md:grid-cols-2 gap-4">
+          <TabsContent value="courses" className="grid md:grid-cols-2 gap-4" data-stagger>
             {resources.courses.map((course, index) => (
-              <Card key={index} className="border-slate-200">
+              <Card key={index} data-reveal className="reveal reveal-up border-slate-200">
                 <CardHeader>
                   <CardTitle className="text-xl font-serif text-slate-900">
                     {course.title}
@@ -318,7 +354,7 @@ const ResourcesSection = () => {
                 <CardContent>
                   <p className="text-slate-700 mb-3">{course.description}</p>
                   <a
-                    href={course.link}
+                    href={getCourseUrl(course.title)} target="_blank" rel="noopener noreferrer"
                     className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
                   >
                     Ver curso →
@@ -329,7 +365,7 @@ const ResourcesSection = () => {
           </TabsContent>
 
           <TabsContent value="books">
-            <Card className="border-slate-200">
+            <Card className="border-slate-200" data-reveal>
               <CardHeader>
                 <CardTitle className="text-2xl font-serif text-slate-900">Libros Recomendados</CardTitle>
               </CardHeader>

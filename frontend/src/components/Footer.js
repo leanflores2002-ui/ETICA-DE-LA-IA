@@ -1,5 +1,6 @@
 import React from 'react';
 import { BookOpen, Mail, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,28 +9,28 @@ const Footer = () => {
     {
       title: 'Navegación',
       links: [
-        { label: 'Inicio', id: 'inicio' },
-        { label: 'Temas Claves', id: 'temas-claves' },
-        { label: 'Casos de Estudio', id: 'casos-estudio' },
-        { label: 'Recursos', id: 'recursos' }
+        { label: 'Inicio', to: '/' },
+        { label: 'Temas Claves', to: '/temas' },
+        { label: 'Casos de Estudio', to: '/casos' },
+        { label: 'Recursos', to: '/recursos' }
       ]
     },
     {
       title: 'Organizaciones Clave',
       links: [
-        { label: 'Partnership on AI', external: true },
-        { label: 'AI Now Institute', external: true },
-        { label: 'Future of Humanity Institute', external: true },
-        { label: 'Montreal AI Ethics Institute', external: true }
+        { label: 'Partnership on AI', external: true, url: 'https://www.partnershiponai.org/' },
+        { label: 'AI Now Institute', external: true, url: 'https://ainowinstitute.org/' },
+        { label: 'Future of Humanity Institute', external: true, url: 'https://www.fhi.ox.ac.uk/' },
+        { label: 'Montreal AI Ethics Institute', external: true, url: 'https://montrealethics.ai/' }
       ]
     },
     {
       title: 'Marcos Regulatorios',
       links: [
-        { label: 'GDPR (UE)', external: true },
-        { label: 'AI Act (UE)', external: true },
-        { label: 'OECD AI Principles', external: true },
-        { label: 'Beijing AI Principles', external: true }
+        { label: 'GDPR (UE)', external: true, url: 'https://gdpr.eu/' },
+        { label: 'AI Act (UE)', external: true, url: 'https://digital-strategy.ec.europa.eu/en/policies/european-approach-artificial-intelligence' },
+        { label: 'OECD AI Principles', external: true, url: 'https://oecd.ai/en/ai-principles' },
+        { label: 'Beijing AI Principles', external: true, url: 'https://www.baai.ac.cn/blog/beijing-ai-principles' }
       ]
     }
   ];
@@ -63,19 +64,21 @@ const Footer = () => {
                   <li key={linkIndex}>
                     {link.external ? (
                       <a
-                        href="#"
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-slate-400 hover:text-slate-100 transition-colors flex items-center space-x-1"
                       >
                         <span>{link.label}</span>
                         <ExternalLink size={14} />
                       </a>
                     ) : (
-                      <button
-                        onClick={() => scrollToSection(link.id)}
+                      <Link
+                        to={link.to}
                         className="text-slate-400 hover:text-slate-100 transition-colors"
                       >
                         {link.label}
-                      </button>
+                      </Link>
                     )}
                   </li>
                 ))}
@@ -91,7 +94,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center space-x-6">
               <a
-                href="#"
+                href="mailto:contacto@ejemplo.com"
                 className="text-slate-400 hover:text-slate-100 transition-colors flex items-center space-x-2"
               >
                 <Mail size={16} />
