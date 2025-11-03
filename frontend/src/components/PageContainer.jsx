@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { initAnimations } from '@/lib/animations/animations';
 
 export default function PageContainer({ children }) {
   const ref = useRef(null);
@@ -8,8 +9,11 @@ export default function PageContainer({ children }) {
     if (el) {
       requestAnimationFrame(() => el.classList.add('page-in'));
     }
+    // Re-inicializa animaciones de reveal/parallax al montar cada página
+    const cleanupAnimations = initAnimations({ once: true, stagger: 48 });
     return () => {
       document.body.classList.remove('theme-ethics');
+      if (typeof cleanupAnimations === 'function') cleanupAnimations();
     };
   }, []);
   return (
