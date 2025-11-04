@@ -1,14 +1,10 @@
 import React from 'react';
 import SafeImage from './SafeImage';
 import { ArrowDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
-  const scrollToTopics = () => {
-    const element = document.getElementById('temas-claves');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+  
 
   return (
     <section id="inicio" className="pt-24 pb-16 hero--animated anim-gradient">
@@ -22,13 +18,14 @@ const HeroSection = () => {
               Explorando los principios fundamentales, desafíos y responsabilidades en el desarrollo y aplicación de sistemas de inteligencia artificial en la sociedad moderna.
             </p>
             <div className="pt-4">
-              <button data-reveal
-                onClick={scrollToTopics}
+              <Link
+                data-reveal
+                to="/temas"
                 className="reveal reveal-up tilt-3d inline-flex items-center space-x-2 bg-slate-900 text-white px-8 py-3 hover:bg-slate-800 transition-colors font-medium btn-anim border-gradient"
               >
                 <span>Explorar Temas</span>
                 <ArrowDown size={20} />
-              </button>
+              </Link>
             </div>
           </div>
           <div className="relative">
