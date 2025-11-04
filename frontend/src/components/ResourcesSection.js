@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BookOpen, Users, FileText, Globe, Video, Award } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
@@ -212,6 +212,12 @@ const ResourcesSection = () => {
   const getPaperUrl = (title) => paperLinks[title] || '#';
   const getOrgUrl = (name) => orgLinks[name] || '#';
   const getCourseUrl = (title) => courseLinks[title] || '#';
+  
+  useEffect(() => {
+    try {
+      initAnimations({ once: false, stagger: 48 });
+    } catch {}
+  }, []);
 
   return (
     <section id="recursos" className="py-20 bg-white">
@@ -274,7 +280,7 @@ const ResourcesSection = () => {
           className="w-full"
           onValueChange={() => {
             try {
-              requestAnimationFrame(() => initAnimations({ once: true, stagger: 48 }));
+              requestAnimationFrame(() => initAnimations({ once: false, stagger: 48 }));
             } catch {}
           }}
         >
@@ -367,9 +373,9 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="frameworks" className="space-y-4">
+          <TabsContent value="frameworks" className="space-y-4" data-stagger forceMount>
             {resources.frameworks.map((framework, index) => (
-              <Card key={index} className="border-slate-200">
+              <Card key={index} data-reveal className="reveal reveal-up border-slate-200">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
@@ -473,8 +479,8 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="books">
-            <Card className="border-slate-200" data-reveal>
+          <TabsContent value="books" data-stagger forceMount>
+            <Card className="reveal reveal-up border-slate-200" data-reveal>
               <CardHeader>
                 <CardTitle className="text-2xl font-serif text-slate-900">Libros Recomendados</CardTitle>
               </CardHeader>
