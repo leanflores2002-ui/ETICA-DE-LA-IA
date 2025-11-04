@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BookOpen, Users, FileText, Globe, Video, Award } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
@@ -219,6 +219,8 @@ const ResourcesSection = () => {
     } catch {}
   }, []);
 
+  const [activeTab, setActiveTab] = useState('papers');
+
   return (
     <section id="recursos" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -276,9 +278,10 @@ const ResourcesSection = () => {
         </div>
 
         <Tabs
-          defaultValue="papers"
+          value={activeTab}
           className="w-full"
-          onValueChange={() => {
+          onValueChange={(v) => {
+            setActiveTab(v);
             try {
               requestAnimationFrame(() => initAnimations({ once: false, stagger: 48 }));
             } catch {}
@@ -312,7 +315,7 @@ const ResourcesSection = () => {
           </TabsList>
 
           <TabsContent value="papers" className="space-y-4" data-stagger>
-            {resources.papers.map((paper, index) => (
+            {activeTab === 'papers' && resources.papers.map((paper, index) => (
               <Card
                 key={index}
                 data-reveal
@@ -343,8 +346,8 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="organizations" className="grid md:grid-cols-2 gap-4" data-stagger forceMount>
-            {resources.organizations.map((org, index) => (
+          <TabsContent value="organizations" className="grid md:grid-cols-2 gap-4" data-stagger>
+            {activeTab === 'organizations' && resources.organizations.map((org, index) => (
               <Card
                 key={index}
                 data-reveal
@@ -373,8 +376,8 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="frameworks" className="space-y-4" data-stagger forceMount>
-            {resources.frameworks.map((framework, index) => (
+          <TabsContent value="frameworks" className="space-y-4" data-stagger>
+            {activeTab === 'frameworks' && resources.frameworks.map((framework, index) => (
               <Card key={index} data-reveal className="reveal reveal-up border-slate-200">
                 <CardHeader>
                   <div className="flex items-start justify-between">
@@ -415,8 +418,8 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="tools" className="grid md:grid-cols-2 gap-4" data-stagger forceMount>
-            {resources.tools.map((tool, index) => (
+          <TabsContent value="tools" className="grid md:grid-cols-2 gap-4" data-stagger>
+            {activeTab === 'tools' && resources.tools.map((tool, index) => (
               <Card
                 key={index}
                 data-reveal
@@ -447,8 +450,8 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="courses" className="grid md:grid-cols-2 gap-4" data-stagger forceMount>
-            {resources.courses.map((course, index) => (
+          <TabsContent value="courses" className="grid md:grid-cols-2 gap-4" data-stagger>
+            {activeTab === 'courses' && resources.courses.map((course, index) => (
               <Card
                 key={index}
                 data-reveal
@@ -479,7 +482,8 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="books" data-stagger forceMount>
+          <TabsContent value="books" data-stagger>
+            {activeTab === 'books' && (
             <Card className="reveal reveal-up border-slate-200" data-reveal>
               <CardHeader>
                 <CardTitle className="text-2xl font-serif text-slate-900">Libros Recomendados</CardTitle>
@@ -512,6 +516,7 @@ const ResourcesSection = () => {
                 </div>
               </CardContent>
             </Card>
+            )}
           </TabsContent>
         </Tabs>
       </div>
