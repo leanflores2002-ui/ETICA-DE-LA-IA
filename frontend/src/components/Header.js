@@ -17,8 +17,6 @@ const Header = () => {
     { to: '/temas', label: 'Temas Claves' },
     { to: '/casos', label: 'Casos de Estudio' },
     { to: '/recursos', label: 'Recursos' },
-    { to: '/herramientas', label: 'Herramientas' },
-    { to: '/cursos', label: 'Cursos' },
   ];
 
   return (
