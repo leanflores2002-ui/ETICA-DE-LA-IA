@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recursos — Ética de IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root { --bg1:#0b1020; --bg2:#0d1117; --bg3:#0a0f1a; }
+      body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+      .font-serif { font-family: "Crimson Text", Georgia, serif; }
+      body.theme-ethics {
+        color:#eef2ff;
+        background:
+          radial-gradient(1200px 800px at var(--mx,50%) var(--my,25%), rgba(99,102,241,.18), transparent 60%),
+          radial-gradient(900px 600px at 100% 120%, rgba(6,182,212,.16), transparent 55%),
+          radial-gradient(900px 600px at 0% -20%, rgba(139,92,246,.14), transparent 55%),
+          linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 35%, var(--bg3) 100%);
+        min-height:100vh;
+      }
+      /* Glass container */
+      .glass-strong { background: rgba(6,10,18,.92); border:1px solid rgba(255,255,255,.10); border-radius:18px; box-shadow:0 24px 70px rgba(0,0,0,.55); backdrop-filter: blur(12px) saturate(1.05); }
+      /* Reveal */
+      .reveal{ opacity:0; transform: translateY(16px); transition: opacity .5s ease, transform .5s cubic-bezier(.2,.65,.2,1); }
+      .reveal.is-inview{ opacity:1; transform: none; }
+      /* Tabs */
+      .tabs-trigger[data-active="true"]{ background-color: rgba(30,41,59,.85); color:#fff; }
+    </style>
+  </head>
+  <body class="theme-ethics">
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-black/30 backdrop-blur">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="/" class="text-xl font-serif font-bold text-white">Ética de IA</a>
+        <nav class="hidden md:flex items-center gap-6 text-slate-200">
+          <a href="/" class="hover:text-white">Inicio</a>
+          <a href="/temas" class="hover:text-white">Temas Claves</a>
+          <a href="/casos" class="hover:text-white">Casos de Estudio</a>
+          <span class="text-white/80">Recursos</span>
+        </nav>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-10">
+      <section class="glass-strong p-8 md:p-10">
+        <div class="text-center mb-10">
+          <h1 class="text-4xl md:text-5xl font-serif font-bold text-white mb-3">Recursos</h1>
+          <p class="text-slate-200 text-lg">Herramientas, organizaciones y materiales para profundizar en la ética de la IA</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 mb-10" data-stagger>
+          <a href="#tools" data-tab-target class="block reveal">
+            <div class="border border-white/15 rounded-xl p-6 bg-white/5 hover:bg-white/10 transition">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-white/10 rounded-lg grid place-items-center text-slate-100">🌐</div>
+                <div>
+                  <h3 class="text-2xl font-serif text-white">Herramientas</h3>
+                  <p class="text-slate-300 text-sm">Utilidades y kits para IA responsable</p>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a href="#courses" data-tab-target class="block reveal">
+            <div class="border border-white/15 rounded-xl p-6 bg-white/5 hover:bg-white/10 transition">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-white/10 rounded-lg grid place-items-center text-slate-100">🎓</div>
+                <div>
+                  <h3 class="text-2xl font-serif text-white">Cursos</h3>
+                  <p class="text-slate-300 text-sm">Formación y materiales recomendados</p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="reveal mb-8">
+          <video controls class="w-full rounded-xl shadow-lg min-h-[240px] md:min-h-[360px]" poster="https://images.unsplash.com/photo-1717501220725-83f151c447e7?w=1200&q=60">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        </div>
+
+        <div class="mb-6 grid grid-cols-3 md:grid-cols-6 gap-2" role="tablist">
+          <button class="tabs-trigger rounded-lg px-3 py-2 text-sm text-slate-300 bg-slate-700/30" data-tab="papers">Artículos</button>
+          <button class="tabs-trigger rounded-lg px-3 py-2 text-sm text-slate-300 bg-slate-700/30" data-tab="organizations">Organizaciones</button>
+          <button class="tabs-trigger rounded-lg px-3 py-2 text-sm text-slate-300 bg-slate-700/30" data-tab="frameworks">Marcos</button>
+          <button class="tabs-trigger rounded-lg px-3 py-2 text-sm text-slate-300 bg-slate-700/30" data-tab="tools">Herramientas</button>
+          <button class="tabs-trigger rounded-lg px-3 py-2 text-sm text-slate-300 bg-slate-700/30" data-tab="courses">Cursos</button>
+          <button class="tabs-trigger rounded-lg px-3 py-2 text-sm text-slate-300 bg-slate-700/30" data-tab="books">Libros</button>
+        </div>
+
+        <div id="tab-contents" class="space-y-6">
+          <section id="papers" class="tab-pane space-y-4" data-stagger>
+            <article class="reveal border border-white/15 rounded-xl bg-white/5">
+              <div class="p-6">
+                <h4 class="text-xl font-serif text-white">Attention Is All You Need</h4>
+                <p class="text-slate-300">Vaswani et al. (2017)</p>
+                <p class="text-slate-200 mt-2">Artículo que introduce la arquitectura Transformer.</p>
+                <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener" class="text-sky-300 hover:text-sky-200 font-medium inline-block mt-3">Leer artículo →</a>
+              </div>
+            </article>
+          </section>
+
+          <section id="organizations" class="tab-pane grid md:grid-cols-2 gap-4" data-stagger hidden>
+            <article class="reveal border border-white/15 rounded-xl bg-white/5 p-6">
+              <h4 class="text-xl font-serif text-white">Partnership on AI</h4>
+              <p class="text-slate-300">Colaboración multi‑stakeholder</p>
+              <p class="text-slate-200 mt-2">Mejores prácticas para tecnologías de IA.</p>
+              <a href="https://www.partnershiponai.org/" target="_blank" rel="noopener" class="text-sky-300 hover:text-sky-200 font-medium inline-block mt-3">Sitio oficial →</a>
+            </article>
+            <article class="reveal border border-white/15 rounded-xl bg-white/5 p-6">
+              <h4 class="text-xl font-serif text-white">AI Now Institute</h4>
+              <p class="text-slate-300">Investigación y política pública</p>
+              <p class="text-slate-200 mt-2">Implicaciones sociales de la IA.</p>
+              <a href="https://ainowinstitute.org/" target="_blank" rel="noopener" class="text-sky-300 hover:text-sky-200 font-medium inline-block mt-3">Sitio oficial →</a>
+            </article>
+          </section>
+
+          <section id="frameworks" class="tab-pane space-y-4" data-stagger hidden>
+            <article class="reveal border border-white/15 rounded-xl bg-white/5 p-6">
+              <h4 class="text-xl font-serif text-white">GDPR (UE) · 2018</h4>
+              <p class="text-slate-200">Marco de protección de datos personales y privacidad.</p>
+              <ul class="mt-3 text-slate-200 list-disc list-inside">
+                <li>Derecho al olvido</li>
+                <li>Consentimiento explícito</li>
+                <li>Portabilidad de datos</li>
+              </ul>
+              <a href="https://gdpr.eu/" target="_blank" rel="noopener" class="text-sky-300 hover:text-sky-200 font-medium inline-block mt-3">Más información →</a>
+            </article>
+            <article class="reveal border border-white/15 rounded-xl bg-white/5 p-6">
+              <h4 class="text-xl font-serif text-white">OECD AI Principles · 2019</h4>
+              <p class="text-slate-200">Principios para IA responsable.</p>
+              <a href="https://oecd.ai/en/ai-principles" target="_blank" rel="noopener" class="text-sky-300 hover:text-sky-200 font-medium inline-block mt-3">Más información →</a>
+            </article>
+          </section>
+
+          <section id="tools" class="tab-pane grid md:grid-cols-2 gap-4" data-stagger hidden>
+            <article class="reveal border border-white/15 rounded-xl bg-white/5 p-6">
+              <h4 class="text-xl font-serif text-white">AI Fairness 360</h4>
+              <p class="text-slate-300">IBM · Biblioteca para mitigar sesgo</p>
+              <a href="https://github.com/IBM/AIF360" target="_blank" rel="noopener" class="text-sky-300 hover:text-sky-200 font-medium inline-block mt-3">Sitio oficial →</a>
+            </article>
+            <article class="reveal border border-white/15 rounded-xl bg-white/5 p-6">
+              <h4 class="text-xl font-serif text-white">What‑If Tool</h4>
+              <p class="text-slate-300">Google · Exploración interactiva</p>
+              <a href="https://pair-code.github.io/what-if-tool/" target="_blank" rel="noopener" class="text-sky-300 hover:text-sky-200 font-medium inline-block mt-3">Sitio oficial →</a>
+            </article>
+          </section>
+
+          <section id="courses" class="tab-pane grid md:grid-cols-2 gap-4" data-stagger hidden>
+            <article class="reveal border border-white/15 rounded-xl bg-white/5 p-6">
+              <h4 class="text-xl font-serif text-white">Ethics of AI</h4>
+              <p class="text-slate-300">Harvard University · Universitario</p>
+              <a href="https://online.hbs.edu/courses/ethics-of-ai/" target="_blank" rel="noopener" class="text-sky-300 hover:text-sky-200 font-medium inline-block mt-3">Ver curso →</a>
+            </article>
+            <article class="reveal border border-white/15 rounded-xl bg-white/5 p-6">
+              <h4 class="text-xl font-serif text-white">AI For Everyone</h4>
+              <p class="text-slate-300">DeepLearning.AI (Coursera) · Introductorio</p>
+              <a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" rel="noopener" class="text-sky-300 hover:text-sky-200 font-medium inline-block mt-3">Ver curso →</a>
+            </article>
+          </section>
+
+          <section id="books" class="tab-pane space-y-4" data-stagger hidden>
+            <article class="reveal border border-white/15 rounded-xl bg-white/5 p-6">
+              <h4 class="text-xl font-serif text-white">Weapons of Math Destruction</h4>
+              <p class="text-slate-300">Cathy O’Neil (2016)</p>
+              <p class="text-slate-200 mt-2">Cómo los algoritmos pueden perpetuar desigualdad.</p>
+            </article>
+            <article class="reveal border border-white/15 rounded-xl bg-white/5 p-6">
+              <h4 class="text-xl font-serif text-white">Artificial Intelligence: A Guide for Thinking Humans</h4>
+              <p class="text-slate-300">Melanie Mitchell (2019)</p>
+              <p class="text-slate-200 mt-2">Introducción accesible a capacidades y límites de la IA.</p>
+            </article>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="/recursos.js" defer></script>
+  </body>
+  </html>
+

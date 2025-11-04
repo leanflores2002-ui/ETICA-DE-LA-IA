@@ -12,7 +12,7 @@ const Footer = () => {
         { label: 'Inicio', to: '/' },
         { label: 'Temas Claves', to: '/temas' },
         { label: 'Casos de Estudio', to: '/casos' },
-        { label: 'Recursos', to: '/recursos' }
+        { label: 'Recursos', external: true, url: '/recursos.html' }
       ]
     },
     {
