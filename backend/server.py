@@ -1,5 +1,6 @@
 from fastapi import FastAPI, APIRouter, HTTPException
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse, HTMLResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -107,13 +108,41 @@ async def shutdown_db_client():
     if client is not None:
         client.close()
 
-# Serve static frontend if build exists (single-service deploy)
+# Serve static frontend with SPA fallback (single-service deploy)
 FRONTEND_BUILD_DIR = ROOT_DIR.parent / "frontend" / "build"
-if FRONTEND_BUILD_DIR.exists() and (FRONTEND_BUILD_DIR / "index.html").exists():
+INDEX_FILE = FRONTEND_BUILD_DIR / "index.html"
+
+if FRONTEND_BUILD_DIR.exists() and INDEX_FILE.exists():
     try:
-        app.mount("/", StaticFiles(directory=str(FRONTEND_BUILD_DIR), html=True), name="static")
-        logger.info(f"Mounted frontend build at {FRONTEND_BUILD_DIR}")
+        static_dir = FRONTEND_BUILD_DIR / "static"
+        if static_dir.exists():
+            app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+        favicon = FRONTEND_BUILD_DIR / "favicon.ico"
+        manifest = FRONTEND_BUILD_DIR / "manifest.json"
+
+        if favicon.exists():
+            @app.get("/favicon.ico")
+            async def favicon_route():
+                return FileResponse(str(favicon))
+
+        if manifest.exists():
+            @app.get("/manifest.json")
+            async def manifest_route():
+                return FileResponse(str(manifest))
+
+        @app.get("/")
+        async def serve_root():
+            return FileResponse(str(INDEX_FILE))
+
+        @app.get("/{full_path:path}")
+        async def spa_fallback(full_path: str):
+            candidate = FRONTEND_BUILD_DIR / full_path
+            if candidate.exists() and candidate.is_file():
+                return FileResponse(str(candidate))
+            return FileResponse(str(INDEX_FILE))
+
+        logger.info(f"Serving frontend build with SPA fallback from {FRONTEND_BUILD_DIR}")
     except Exception as e:
-        logger.warning(f"Could not mount static frontend: {e}")
+        logger.warning(f"Could not configure static frontend: {e}")
 else:
     logger.info("Frontend build not found; API-only mode.")

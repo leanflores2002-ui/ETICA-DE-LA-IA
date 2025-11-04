@@ -5,6 +5,8 @@ import Inicio from './pages/Inicio';
 import Temas from './pages/Temas';
 import Casos from './pages/Casos';
 import RecursosPage from './pages/RecursosPage';
+import Herramientas from './pages/Herramientas';
+import Cursos from './pages/Cursos';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="/temas" element={<Temas />} />
           <Route path="/casos" element={<Casos />} />
           <Route path="/recursos" element={<RecursosPage />} />
+          <Route path="/herramientas" element={<Herramientas />} />
+          <Route path="/cursos" element={<Cursos />} />
         </Routes>
       </BrowserRouter>
     </div>
