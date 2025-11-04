@@ -3,6 +3,7 @@ import { BookOpen, Users, FileText, Globe, Video, Award } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Link } from 'react-router-dom';
+import { initAnimations } from '@/lib/animations/animations';
 
 const ResourcesSection = () => {
   const resources = {
@@ -268,7 +269,15 @@ const ResourcesSection = () => {
           </video>
         </div>
 
-        <Tabs defaultValue="papers" className="w-full">
+        <Tabs
+          defaultValue="papers"
+          className="w-full"
+          onValueChange={() => {
+            try {
+              requestAnimationFrame(() => initAnimations({ once: true, stagger: 48 }));
+            } catch {}
+          }}
+        >
           <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 mb-8">
             <TabsTrigger value="papers" className="flex items-center space-x-2">
               <FileText size={16} />
@@ -328,7 +337,7 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="organizations" className="grid md:grid-cols-2 gap-4" data-stagger>
+          <TabsContent value="organizations" className="grid md:grid-cols-2 gap-4" data-stagger forceMount>
             {resources.organizations.map((org, index) => (
               <Card
                 key={index}
@@ -400,7 +409,7 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="tools" className="grid md:grid-cols-2 gap-4" data-stagger>
+          <TabsContent value="tools" className="grid md:grid-cols-2 gap-4" data-stagger forceMount>
             {resources.tools.map((tool, index) => (
               <Card
                 key={index}
@@ -432,7 +441,7 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="courses" className="grid md:grid-cols-2 gap-4" data-stagger>
+          <TabsContent value="courses" className="grid md:grid-cols-2 gap-4" data-stagger forceMount>
             {resources.courses.map((course, index) => (
               <Card
                 key={index}
