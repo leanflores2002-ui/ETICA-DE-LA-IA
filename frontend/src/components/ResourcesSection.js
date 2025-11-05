@@ -164,14 +164,16 @@ const ResourcesSection = () => {
         </div>
 
         <div data-reveal className="reveal reveal-up mb-10">
-          <video
-            controls
-            className="w-full rounded-lg shadow-lg min-h-[240px] md:min-h-[360px]"
-            poster="https://images.unsplash.com/photo-1717501220725-83f151c447e7?w=1200&q=60"
-          >
-            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
-            Tu navegador no soporta la reproducción de video.
-          </video>
+          <div className="w-full rounded-lg shadow-lg overflow-hidden min-h-[240px] md:min-h-[360px]">
+            <iframe
+              title="Introducción a la Inteligencia Artificial"
+              className="w-full h-[240px] md:h-[360px]"
+              src="https://www.youtube.com/embed/2ePf9rue1Ao?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&controls=1"
+              frameBorder="0"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </div>
 
         <Tabs
