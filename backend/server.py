@@ -141,12 +141,6 @@ if FRONTEND_BUILD_DIR.exists() and INDEX_FILE.exists():
                 return FileResponse(str(candidate))
             return FileResponse(str(INDEX_FILE))
 
-        recursos_file = FRONTEND_BUILD_DIR / "recursos.html"
-        if recursos_file.exists():
-            @app.get("/recursos")
-            async def recursos_redirect():
-                return FileResponse(str(recursos_file))
-
         logger.info(f"Serving frontend build with SPA fallback from {FRONTEND_BUILD_DIR}")
     except Exception as e:
         logger.warning(f"Could not configure static frontend: {e}")
