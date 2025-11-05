@@ -6,13 +6,20 @@ WORKDIR /frontend
 
 # Copiamos solo manifiestos primero para maximizar caché
 COPY frontend/package.json ./
-# Si existe yarn.lock en el repo, también mejora la caché
-# (no falla si no existe, la copia se omite al no estar en el contexto)
-COPY frontend/yarn.lock ./
 
-# Usa caché de Yarn y amplia timeout de red en builders remotos
-RUN --mount=type=cache,target=/root/.cache/yarn \
-    yarn install --non-interactive --network-timeout 600000
+# Ajustes de red y caché para Yarn
+ENV YARN_CACHE_FOLDER=/root/.cache/yarn
+RUN yarn config set network-timeout 600000 -g && yarn config set network-concurrency 4 -g
+
+# Instala dependencias con reintentos para mitigar timeouts de red en builders remotos
+RUN --mount=type=cache,target=/root/.cache/yarn bash -lc ' \
+  for i in 1 2 3 4 5; do \
+    yarn install --non-interactive && exit 0; \
+    echo "yarn install falló (intento $i), reintentando en 10s..."; \
+    sleep 10; \
+  done; \
+  echo "yarn install no pudo completarse tras 5 intentos; probando npm install como fallback"; \
+  npm install --no-audit --no-fund'
 
 # Ahora copiamos el resto del código
 COPY frontend/ .
