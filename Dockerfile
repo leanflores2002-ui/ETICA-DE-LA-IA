@@ -1,5 +1,5 @@
 ## ---------- Stage 1: Build frontend (React) ----------
-# syntax=docker/dockerfile:1.4
+# syntax=docker/dockerfile:1
 
 FROM node:20-bookworm-slim AS frontend-builder
 WORKDIR /frontend
@@ -12,7 +12,7 @@ ENV YARN_CACHE_FOLDER=/root/.cache/yarn
 RUN yarn config set network-timeout 600000 -g && yarn config set network-concurrency 4 -g
 
 # Instala dependencias con reintentos para mitigar timeouts de red en builders remotos
-RUN --mount=type=cache,id=yarn-cache,target=/root/.cache/yarn bash -lc ' \
+RUN bash -lc ' \
   for i in 1 2 3 4 5; do \
     yarn install --non-interactive && exit 0; \
     echo "yarn install falló (intento $i), reintentando en 10s..."; \
@@ -41,8 +41,7 @@ RUN apt-get update \
 
 # Python deps
 COPY backend/requirements.txt backend/requirements.txt
-RUN --mount=type=cache,id=pip-cache,target=/root/.cache/pip \
-    pip install --no-cache-dir --root-user-action=ignore --upgrade pip \
+RUN pip install --no-cache-dir --root-user-action=ignore --upgrade pip \
     && pip install --no-cache-dir --root-user-action=ignore -r backend/requirements.txt
 
 # App code
