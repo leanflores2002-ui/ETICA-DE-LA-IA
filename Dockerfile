@@ -42,8 +42,8 @@ RUN apt-get update \
 # Python deps
 COPY backend/requirements.txt backend/requirements.txt
 RUN --mount=type=cache,id=pip-cache,target=/root/.cache/pip \
-    pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r backend/requirements.txt
+    pip install --no-cache-dir --root-user-action=ignore --upgrade pip \
+    && pip install --no-cache-dir --root-user-action=ignore -r backend/requirements.txt
 
 # App code
 COPY backend/ ./backend

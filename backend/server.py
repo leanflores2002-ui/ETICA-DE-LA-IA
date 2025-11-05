@@ -19,13 +19,19 @@ load_dotenv(ROOT_DIR / '.env')
 # MongoDB connection
 mongo_url = os.getenv('MONGO_URL')
 db_name = os.getenv('DB_NAME')
+# Si quieres forzar que Mongo sea obligatorio en despliegue, define REQUIRE_DB=true
+require_db = os.getenv('REQUIRE_DB', 'false').lower() in ('1', 'true', 'yes')
 client = None
 db = None
 if mongo_url and db_name:
     client = AsyncIOMotorClient(mongo_url)
     db = client[db_name]
 else:
-    logging.warning("MongoDB not configured. Set MONGO_URL and DB_NAME.")
+    if require_db:
+        # Falla temprano si se exige BD, útil para prod estricto
+        raise RuntimeError("MongoDB required but not configured. Set MONGO_URL and DB_NAME or disable REQUIRE_DB.")
+    # De lo contrario, sólo informamos (sin elevar a WARNING) y usamos almacenamiento en memoria
+    logging.info("MongoDB no configurado; usando almacenamiento en memoria para /api/status.")
 
 # Create the main app without a prefix
 app = FastAPI()
