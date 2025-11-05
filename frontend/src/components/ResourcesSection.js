@@ -166,11 +166,11 @@ const ResourcesSection = () => {
         <div data-reveal className="reveal reveal-up mb-10">
           <div className="w-full rounded-lg shadow-lg overflow-hidden min-h-[240px] md:min-h-[360px]">
             <iframe
-              title="¿Qué es una red neuronal?"
+              title="TED: La IA hace más importantes nuestras normas morales"
               className="w-full h-[240px] md:h-[360px]"
-              src="https://www.youtube.com/embed/1oPftvl6J8Y?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&controls=1"
+              src="https://embed.ted.com/talks/zeynep_tufekci_machine_intelligence_makes_human_morals_more_important?language=es&autoplay=1&muted=1"
               frameBorder="0"
-              allow="autoplay; encrypted-media; picture-in-picture"
+              allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
             />
           </div>
