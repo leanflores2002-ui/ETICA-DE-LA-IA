@@ -22,28 +22,29 @@
   }
 
   function initTabs() {
+    const allowed = ['papers', 'organizations', 'books'];
     const triggers = qsa('.tabs-trigger');
     const panes = qsa('.tab-pane');
+    // Oculta triggers y paneles no permitidos
+    triggers.forEach(t => {
+      const tab = t.getAttribute('data-tab');
+      if (!allowed.includes(tab)) t.style.display = 'none';
+    });
+    panes.forEach(p => { if (!allowed.includes(p.id)) p.remove(); });
+
     function showTab(id) {
-      panes.forEach(p => p.hidden = p.id !== id);
+      panes.forEach(p => { if (allowed.includes(p.id)) p.hidden = p.id !== id; });
       triggers.forEach(t => t.setAttribute('data-active', t.getAttribute('data-tab') === id ? 'true' : 'false'));
       requestAnimationFrame(() => initReveal({ once: false, stagger: 48 }));
     }
-    triggers.forEach(btn => btn.addEventListener('click', () => showTab(btn.getAttribute('data-tab'))));
+    triggers.forEach(btn => {
+      const tab = btn.getAttribute('data-tab');
+      if (allowed.includes(tab)) btn.addEventListener('click', () => showTab(tab));
+    });
     // hash navigation
     const hash = location.hash.replace('#','');
-    const initial = ['papers','organizations','frameworks','tools','courses','books'].includes(hash) ? hash : 'papers';
+    const initial = allowed.includes(hash) ? hash : 'papers';
     showTab(initial);
-    // click shortcuts in hero cards
-    qsa('[data-tab-target]').forEach(a => a.addEventListener('click', (e) => {
-      const target = a.getAttribute('href').replace('#','');
-      if (['tools','courses'].includes(target)) {
-        e.preventDefault();
-        showTab(target);
-        history.replaceState(null,'',`#${target}`);
-        window.scrollTo({ top: qs('#tab-contents').offsetTop - 24, behavior: 'smooth' });
-      }
-    }));
   }
 
   // Reactive background light
