@@ -1,15 +1,15 @@
 import React from 'react';
 import Header from '@/components/Header';
-import KeyTopicsSection from '@/components/KeyTopicsSection';
 import Footer from '@/components/Footer';
 import PageContainer from '@/components/PageContainer';
+import CTSInteractionsSection from '@/components/CTSInteractionsSection';
 
-export default function Temas() {
+export default function InteraccionesCTS() {
   return (
     <>
       <Header />
       <PageContainer>
-        <KeyTopicsSection />
+        <CTSInteractionsSection />
       </PageContainer>
       <Footer />
     </>

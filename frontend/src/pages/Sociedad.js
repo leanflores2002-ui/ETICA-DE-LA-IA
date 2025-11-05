@@ -1,15 +1,15 @@
 import React from 'react';
 import Header from '@/components/Header';
-import KeyTopicsSection from '@/components/KeyTopicsSection';
 import Footer from '@/components/Footer';
 import PageContainer from '@/components/PageContainer';
+import SociedadSection from '@/components/SociedadSection';
 
-export default function Temas() {
+export default function Sociedad() {
   return (
     <>
       <Header />
       <PageContainer>
-        <KeyTopicsSection />
+        <SociedadSection />
       </PageContainer>
       <Footer />
     </>

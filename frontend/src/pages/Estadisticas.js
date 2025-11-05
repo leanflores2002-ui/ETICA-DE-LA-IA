@@ -1,15 +1,15 @@
 import React from 'react';
 import Header from '@/components/Header';
-import KeyTopicsSection from '@/components/KeyTopicsSection';
 import Footer from '@/components/Footer';
 import PageContainer from '@/components/PageContainer';
+import AIStatsSection from '@/components/AIStatsSection';
 
-export default function Temas() {
+export default function Estadisticas() {
   return (
     <>
       <Header />
       <PageContainer>
-        <KeyTopicsSection />
+        <AIStatsSection />
       </PageContainer>
       <Footer />
     </>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -15,9 +15,10 @@ const Header = () => {
   const navItems = [
     { to: '/', label: 'Inicio' },
     { to: '/temas', label: 'Temas Claves' },
+    // Secciones nuevas como accesos directos con ancla
     { to: '/sociedad', label: 'Sociedad' },
     { to: '/interacciones-cts', label: 'Interacciones CTS' },
-    { to: '/estadisticas', label: 'Estadísticas' },
+    { to: '/temas#estadisticas', label: 'EstadÃ­sticas' },
     { to: '/casos', label: 'Casos de Estudio' },
     { to: '/recursos', label: 'Recursos' },
   ];
@@ -35,7 +36,7 @@ const Header = () => {
             className="text-xl font-serif font-bold text-slate-900 hover:text-slate-700 transition-colors"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Ética de IA
+            Ã‰tica de IA
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
@@ -54,7 +55,7 @@ const Header = () => {
           <button
             className="md:hidden p-2 text-slate-700 hover:text-slate-900"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Abrir menú"
+            aria-label="Abrir menÃº"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -80,4 +81,3 @@ const Header = () => {
 };
 
 export default Header;
-
