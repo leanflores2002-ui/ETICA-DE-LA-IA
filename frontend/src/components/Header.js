@@ -16,7 +16,7 @@ const Header = () => {
     { to: '/', label: 'Inicio' },
     { to: '/temas', label: 'Temas Claves' },
     { to: '/casos', label: 'Casos de Estudio' },
-    { href: '/recursos.html', label: 'Recursos' },
+    { to: '/recursos', label: 'Recursos' },
   ];
 
   return (
@@ -36,26 +36,15 @@ const Header = () => {
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, idx) => (
-              item.href ? (
-                <a
-                  key={`ext-${idx}`}
-                  href={item.href}
-                  className="nav-link text-slate-700 hover:text-slate-900 transition-colors font-medium"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) => `nav-link text-slate-700 hover:text-slate-900 transition-colors font-medium ${isActive ? 'active' : ''}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </NavLink>
-              )
+            {navItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) => `nav-link text-slate-700 hover:text-slate-900 transition-colors font-medium ${isActive ? 'active' : ''}`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </NavLink>
             ))}
           </nav>
 
@@ -70,26 +59,15 @@ const Header = () => {
 
         {isMobileMenuOpen && (
           <nav className="md:hidden mt-4 pb-4 space-y-3">
-            {navItems.map((item, idx) => (
-              item.href ? (
-                <a
-                  key={`m-ext-${idx}`}
-                  href={item.href}
-                  className={`block nav-link w-full text-left text-slate-700 hover:text-slate-900 transition-colors font-medium py-2`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) => `block nav-link ${isActive ? 'active' : ''} w-full text-left text-slate-700 hover:text-slate-900 transition-colors font-medium py-2`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </NavLink>
-              )
+            {navItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) => `block nav-link ${isActive ? 'active' : ''} w-full text-left text-slate-700 hover:text-slate-900 transition-colors font-medium py-2`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </NavLink>
             ))}
           </nav>
         )}
