@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BookOpen, Users, FileText, Globe, Video, Award } from 'lucide-react';
+import { BookOpen, Users, FileText, Globe, Video } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Link } from 'react-router-dom';
@@ -7,211 +7,108 @@ import { initAnimations } from '@/lib/animations/animations';
 
 const ResourcesSection = () => {
   const resources = {
+    // Recursos de información: PDFs/estudios en español o con versión en español
     papers: [
       {
-        title: 'Attention Is All You Need',
-        authors: 'Vaswani et al.',
-        year: '2017',
-        description: 'Artículo fundamental que introduce la arquitectura Transformer, base de modelos como GPT y BERT.',
-        link: '#'
-      },
-      {
-        title: 'Ethics of Artificial Intelligence and Robotics',
-        authors: 'Stanford Encyclopedia of Philosophy',
-        year: '2020',
-        description: 'Revisión exhaustiva de consideraciones éticas en IA y robótica desde perspectiva filosófica.',
-        link: '#'
-      },
-      {
-        title: 'Fairness and Machine Learning',
-        authors: 'Barocas, Hardt, Narayanan',
-        year: '2019',
-        description: 'Texto completo sobre limitaciones de predicciones automáticas, equidad y responsabilidad.',
-        link: '#'
-      },
-      {
-        title: 'The Social Dilemma: Social Media and Your Mental Health',
-        authors: 'Journal of Medical Internet Research',
+        title: 'Recomendación sobre la Ética de la IA',
+        authors: 'UNESCO',
         year: '2021',
-        description: 'Análisis del impacto de algoritmos de redes sociales en salud mental y comportamiento.',
-        link: '#'
+        description: 'Marco global de principios para el desarrollo y uso ético de la IA aprobado por 193 Estados Miembros.',
+        link: 'https://unesdoc.unesco.org/ark:/48223/pf0000381137_spa'
+      },
+      {
+        title: 'Reglamento (UE) sobre IA (AI Act)',
+        authors: 'Parlamento y Consejo de la UE',
+        year: '2024',
+        description: 'Texto legal del Reglamento de IA de la Unión Europea en español (EUR-Lex).',
+        link: 'https://eur-lex.europa.eu/legal-content/ES/TXT/PDF/?uri=CELEX:32024R1689'
+      },
+      {
+        title: 'RGPD — Reglamento General de Protección de Datos',
+        authors: 'Unión Europea',
+        year: '2016',
+        description: 'Reglamento europeo clave para el tratamiento de datos personales aplicado a sistemas de IA.',
+        link: 'https://eur-lex.europa.eu/legal-content/ES/TXT/PDF/?uri=CELEX:32016R0679'
+      },
+      {
+        title: 'Guía de Evaluación de Impacto (EIPD) RGPD',
+        authors: 'AEPD (España)',
+        year: '2019',
+        description: 'Guía práctica de la Agencia Española de Protección de Datos para realizar evaluaciones de impacto.',
+        link: 'https://www.aepd.es/sites/default/files/2019-09/guia-evaluacion-de-impacto-rgpd.pdf'
+      },
+      {
+        title: 'Guía de Anonimización de Datos Personales',
+        authors: 'AEPD (España)',
+        year: '2019',
+        description: 'Buenas prácticas para anonimizar conjuntos de datos utilizados por sistemas de IA.',
+        link: 'https://www.aepd.es/sites/default/files/2019-10/guia-anonimizacion-datos-personales.pdf'
+      },
+      {
+        title: 'Carta de Derechos Digitales (España)',
+        authors: 'Gobierno de España',
+        year: '2021',
+        description: 'Referente español sobre derechos y principios en el entorno digital, relevante para IA.',
+        link: 'https://www.lamoncloa.gob.es/presidente/actividades/Documents/2021/140721-Carta_Derechos_Digitales_RedEs.pdf'
+      },
+      {
+        title: 'Principios de la OCDE sobre IA',
+        authors: 'OCDE',
+        year: '2019',
+        description: 'Principios internacionales para una IA responsable. Página oficial con versiones en varios idiomas.',
+        link: 'https://oecd.ai/es/ai-principles'
+      },
+      {
+        title: 'Libro Blanco sobre la IA — Enfoque europeo',
+        authors: 'Comisión Europea',
+        year: '2020',
+        description: 'Propuestas para promover una IA confiable y centrada en el ser humano en Europa.',
+        link: 'https://ec.europa.eu/info/sites/default/files/commission-white-paper-artificial-intelligence-feb2020_es.pdf'
       }
     ],
     organizations: [
       {
+        name: 'AESIA — Agencia Española de Supervisión de la IA',
+        description: 'Entidad pública dedicada a la supervisión y promoción de una IA confiable en España.',
+        focus: 'Supervisión y gobernanza',
+        link: 'https://www.aesia.gob.es/'
+      },
+      {
+        name: 'UNESCO — Ética de la IA',
+        description: 'Iniciativa global para promover marcos éticos y capacidades en IA.',
+        focus: 'Ética y educación',
+        link: 'https://www.unesco.org/es/artificial-intelligence/ethics'
+      },
+      {
+        name: 'ODISEIA',
+        description: 'Observatorio del Impacto Social y Ético de la IA (España).',
+        focus: 'Impacto social y principios',
+        link: 'https://odiseia.org/'
+      },
+      {
+        name: 'Fundación Éticas',
+        description: 'Organización que impulsa auditorías algorítmicas y evaluaciones de impacto.',
+        focus: 'Transparencia y auditoría',
+        link: 'https://eticasfoundation.org/es/'
+      },
+      {
+        name: 'OECD.AI',
+        description: 'Observatorio de políticas de IA de la OCDE con métricas, políticas y principios.',
+        focus: 'Política pública y datos',
+        link: 'https://oecd.ai/es/'
+      },
+      {
         name: 'Partnership on AI',
-        description: 'Coalición de organizaciones trabajando en mejores prácticas para tecnologías de IA.',
-        focus: 'Colaboración multi-stakeholder',
-        link: '#'
-      },
-      {
-        name: 'AI Now Institute',
-        description: 'Instituto de investigación examinando implicaciones sociales de inteligencia artificial.',
-        focus: 'Investigación y política pública',
-        link: '#'
-      },
-      {
-        name: 'Future of Humanity Institute',
-        description: 'Centro de investigación en Universidad de Oxford enfocado en riesgos existenciales.',
-        focus: 'Seguridad de IA a largo plazo',
-        link: '#'
-      },
-      {
-        name: 'IEEE Global Initiative on Ethics of Autonomous and Intelligent Systems',
-        description: 'Desarrollando estándares técnicos para consideraciones éticas en diseño de sistemas autónomos.',
-        focus: 'Estándares técnicos',
-        link: '#'
-      },
-      {
-        name: 'Montreal AI Ethics Institute',
-        description: 'Instituto internacional democratizando educación en ética de IA.',
-        focus: 'Educación y divulgación',
-        link: '#'
-      },
-      {
-        name: 'Algorithm Watch',
-        description: 'Organización sin fines de lucro evaluando procesos de toma de decisiones algorítmicas.',
-        focus: 'Vigilancia y transparencia',
-        link: '#'
-      }
-    ],
-    frameworks: [
-      {
-        name: 'Reglamento General de Protección de Datos (GDPR)',
-        region: 'Unión Europea',
-        year: '2018',
-        description: 'Marco regulatorio estableciendo estándares de protección de datos personales y privacidad.',
-        keyPoints: ['Derecho al olvido', 'Consentimiento explícito', 'Portabilidad de datos']
-      },
-      {
-        name: 'AI Act (Ley de IA)',
-        region: 'Unión Europea',
-        year: '2024',
-        description: 'Primera legislación integral regulando inteligencia artificial basada en niveles de riesgo.',
-        keyPoints: ['Clasificación por riesgo', 'Prohibición de prácticas', 'Requisitos de transparencia']
-      },
-      {
-        name: 'OECD AI Principles',
-        region: 'Internacional',
-        year: '2019',
-        description: 'Principios para desarrollo responsable de IA confiable adoptados por países miembros.',
-        keyPoints: ['Crecimiento inclusivo', 'Valores centrados en humanos', 'Transparencia']
-      },
-      {
-        name: 'Beijing AI Principles',
-        region: 'China',
-        year: '2019',
-        description: 'Marco de principios éticos para desarrollo y gobernanza de IA en China.',
-        keyPoints: ['Bien común', 'Control humano', 'Responsabilidad']
-      }
-    ],
-    tools: [
-      {
-        name: 'AI Fairness 360',
-        developer: 'IBM',
-        description: 'Kit de herramientas open-source para detectar y mitigar sesgo en modelos de machine learning.',
-        type: 'Python Library'
-      },
-      {
-        name: 'What-If Tool',
-        developer: 'Google',
-        description: 'Herramienta interactiva para analizar modelos de ML sin necesidad de código.',
-        type: 'Visualización'
-      },
-      {
-        name: 'Fairlearn',
-        developer: 'Microsoft',
-        description: 'Paquete Python para evaluar y mejorar equidad de sistemas de machine learning.',
-        type: 'Python Library'
-      },
-      {
-        name: 'LIME (Local Interpretable Model-agnostic Explanations)',
-        developer: 'Community',
-        description: 'Técnica para explicar predicciones de cualquier clasificador de machine learning.',
-        type: 'Explicabilidad'
-      },
-      {
-        name: 'SHAP (SHapley Additive exPlanations)',
-        developer: 'Community',
-        description: 'Enfoque unificado para explicar salida de modelos de machine learning.',
-        type: 'Explicabilidad'
-      }
-    ],
-    courses: [
-      {
-        title: 'Ethics of AI',
-        provider: 'Harvard University',
-        level: 'Universitario',
-        description: 'Curso explorando dimensiones éticas, sociales y políticas de inteligencia artificial.',
-        link: '#'
-      },
-      {
-        title: 'AI For Everyone',
-        provider: 'DeepLearning.AI (Coursera)',
-        level: 'Introductorio',
-        description: 'Curso no técnico sobre qué es IA, qué puede y no puede hacer, y sus implicaciones.',
-        link: '#'
-      },
-      {
-        title: 'Practical Data Ethics',
-        provider: 'fast.ai',
-        level: 'Intermedio',
-        description: 'Curso práctico abordando temas como sesgo, privacidad y desinformación en datos y ML.',
-        link: '#'
-      },
-      {
-        title: 'Machine Learning Fairness',
-        provider: 'Google',
-        level: 'Técnico',
-        description: 'Curso técnico sobre identificación y mitigación de sesgos en sistemas de ML.',
-        link: '#'
+        description: 'Alianza multi-actor para desarrollar mejores prácticas en IA responsable.',
+        focus: 'Buenas prácticas y colaboración',
+        link: 'https://www.partnershiponai.org/'
       }
     ]
   };
 
-  // Mapeo de enlaces externos para reemplazar placeholders
-  const paperLinks = {
-    'Attention Is All You Need': 'https://arxiv.org/abs/1706.03762',
-    'Ethics of Artificial Intelligence and Robotics': 'https://plato.stanford.edu/entries/ethics-ai/',
-    'Fairness and Machine Learning': 'https://fairmlbook.org/',
-    'The Social Dilemma: Social Media and Your Mental Health': 'https://www.jmir.org/'
-  };
-  const orgLinks = {
-    'Partnership on AI': 'https://www.partnershiponai.org/',
-    'AI Now Institute': 'https://ainowinstitute.org/',
-    'Future of Humanity Institute': 'https://www.fhi.ox.ac.uk/',
-    'IEEE Global Initiative on Ethics of Autonomous and Intelligent Systems': 'https://ethicsinaction.ieee.org/',
-    'Montreal AI Ethics Institute': 'https://montrealethics.ai/',
-    'Algorithm Watch': 'https://algorithmwatch.org/en/'
-  };
-  const courseLinks = {
-    'Ethics of AI': 'https://online.hbs.edu/courses/ethics-of-ai/',
-    'AI For Everyone': 'https://www.coursera.org/learn/ai-for-everyone',
-    'Practical Data Ethics': 'https://ethics.fast.ai/',
-    'Machine Learning Fairness': 'https://developers.google.com/machine-learning/fairness-overview'
-  };
-  // Enlaces adicionales para herramientas y marcos
-  // Resuelve enlaces sin depender de acentos exactos
-  const getToolUrl = (name = '') => {
-    const n = String(name).toLowerCase();
-    if (n.includes('ai fairness 360')) return 'https://github.com/IBM/AIF360';
-    if (n.includes('what-if')) return 'https://pair-code.github.io/what-if-tool/';
-    if (n.includes('fairlearn')) return 'https://fairlearn.org/';
-    if (n.startsWith('lime')) return 'https://github.com/marcotcr/lime';
-    if (n.startsWith('shap')) return 'https://shap.readthedocs.io/';
-    return '#';
-  };
-  const getFrameworkUrl = (name = '') => {
-    const n = String(name).toLowerCase();
-    if (n.includes('gdpr')) return 'https://gdpr.eu/';
-    if (n.includes('ai act')) return 'https://artificialintelligenceact.eu/';
-    if (n.includes('oecd')) return 'https://oecd.ai/en/ai-principles';
-    if (n.includes('beijing')) return 'https://www.baai.ac.cn/';
-    return '#';
-  };
-  const getPaperUrl = (title) => paperLinks[title] || '#';
-  const getOrgUrl = (name) => orgLinks[name] || '#';
-  const getCourseUrl = (title) => courseLinks[title] || '#';
+  // En esta versión los enlaces ya vienen en cada item
+  const getPaperUrl = (paper) => paper?.link || '#';
+  const getOrgUrl = (org) => org?.link || '#';
   
   useEffect(() => {
     try {
@@ -287,26 +184,14 @@ const ResourcesSection = () => {
             } catch {}
           }}
         >
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 mb-8">
-            <TabsTrigger value="papers" className="flex items-center space-x-2">
-              <FileText size={16} />
-              <span className="hidden sm:inline">Artículos</span>
-            </TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-3 mb-8">
             <TabsTrigger value="organizations" className="flex items-center space-x-2">
               <Users size={16} />
               <span className="hidden sm:inline">Organizaciones</span>
             </TabsTrigger>
-            <TabsTrigger value="frameworks" className="flex items-center space-x-2">
-              <Award size={16} />
-              <span className="hidden sm:inline">Marcos</span>
-            </TabsTrigger>
-            <TabsTrigger value="tools" className="flex items-center space-x-2">
-              <Globe size={16} />
-              <span className="hidden sm:inline">Herramientas</span>
-            </TabsTrigger>
-            <TabsTrigger value="courses" className="flex items-center space-x-2">
-              <Video size={16} />
-              <span className="hidden sm:inline">Cursos</span>
+            <TabsTrigger value="papers" className="flex items-center space-x-2">
+              <FileText size={16} />
+              <span className="hidden sm:inline">Recursos de información</span>
             </TabsTrigger>
             <TabsTrigger value="books" className="flex items-center space-x-2">
               <BookOpen size={16} />
@@ -320,10 +205,10 @@ const ResourcesSection = () => {
                 key={index}
                 data-reveal
                 className="reveal reveal-up border-slate-200 cursor-pointer"
-                onClick={() => window.open(getPaperUrl(paper.title), '_blank', 'noopener,noreferrer')}
+                onClick={() => window.open(getPaperUrl(paper), '_blank', 'noopener,noreferrer')}
                 role="link"
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getPaperUrl(paper.title), '_blank', 'noopener,noreferrer'); }}
+                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getPaperUrl(paper), '_blank', 'noopener,noreferrer'); }}
               >
                 <CardHeader>
                   <CardTitle className="text-xl font-serif text-slate-900">
@@ -336,10 +221,10 @@ const ResourcesSection = () => {
                 <CardContent>
                   <p className="text-slate-700 mb-3">{paper.description}</p>
                   <a
-                    href={getPaperUrl(paper.title)} target="_blank" rel="noopener noreferrer"
+                    href={getPaperUrl(paper)} target="_blank" rel="noopener noreferrer"
                     className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
                   >
-                    Leer artículo →
+                    Abrir recurso →
                   </a>
                 </CardContent>
               </Card>
@@ -352,10 +237,10 @@ const ResourcesSection = () => {
                 key={index}
                 data-reveal
                 className="reveal reveal-up border-slate-200 cursor-pointer"
-                onClick={() => window.open(getOrgUrl(org.name), '_blank', 'noopener,noreferrer')}
+                onClick={() => window.open(getOrgUrl(org), '_blank', 'noopener,noreferrer')}
                 role="link"
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getOrgUrl(org.name), '_blank', 'noopener,noreferrer'); }}
+                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getOrgUrl(org), '_blank', 'noopener,noreferrer'); }}
               >
                 <CardHeader>
                   <CardTitle className="text-xl font-serif text-slate-900">
@@ -366,7 +251,7 @@ const ResourcesSection = () => {
                 <CardContent>
                   <p className="text-slate-700 mb-3">{org.description}</p>
                   <a
-                    href={getOrgUrl(org.name)} target="_blank" rel="noopener noreferrer"
+                    href={getOrgUrl(org)} target="_blank" rel="noopener noreferrer"
                     className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
                   >
                     Visitar sitio web →
@@ -376,146 +261,47 @@ const ResourcesSection = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="frameworks" className="space-y-4" data-stagger>
-            {activeTab === 'frameworks' && resources.frameworks.map((framework, index) => (
-              <Card key={index} data-reveal className="reveal reveal-up border-slate-200">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <CardTitle className="text-xl font-serif text-slate-900">
-                        {framework.name}
-                      </CardTitle>
-                      <CardDescription>
-                        {framework.region} • {framework.year}
-                      </CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-slate-700">{framework.description}</p>
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">Puntos Clave:</h4>
-                    <ul className="space-y-1">
-                      {framework.keyPoints.map((point, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="text-slate-700 mr-2">•</span>
-                          <span className="text-slate-700">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-3">
-                      <a
-                        href={getFrameworkUrl(framework.name)}
-                        target="_blank" rel="noopener noreferrer"
-                        className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
-                      >
-                        Más información →
-                      </a>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </TabsContent>
-
-          <TabsContent value="tools" className="grid md:grid-cols-2 gap-4" data-stagger>
-            {activeTab === 'tools' && resources.tools.map((tool, index) => (
-              <Card
-                key={index}
-                data-reveal
-                className="reveal reveal-up border-slate-200 cursor-pointer"
-                onClick={() => window.open(getToolUrl(tool.name), '_blank', 'noopener,noreferrer')}
-                role="link"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getToolUrl(tool.name), '_blank', 'noopener,noreferrer'); }}
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl font-serif text-slate-900">
-                    {tool.name}
-                  </CardTitle>
-                  <CardDescription>
-                    {tool.developer} • {tool.type}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-slate-700 mb-3">{tool.description}</p>
-                  <a
-                    href={getToolUrl(tool.name)} target="_blank" rel="noopener noreferrer"
-                    className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
-                  >
-                    Sitio oficial →
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
-          </TabsContent>
-
-          <TabsContent value="courses" className="grid md:grid-cols-2 gap-4" data-stagger>
-            {activeTab === 'courses' && resources.courses.map((course, index) => (
-              <Card
-                key={index}
-                data-reveal
-                className="reveal reveal-up border-slate-200 cursor-pointer"
-                onClick={() => window.open(getCourseUrl(course.title), '_blank', 'noopener,noreferrer')}
-                role="link"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getCourseUrl(course.title), '_blank', 'noopener,noreferrer'); }}
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl font-serif text-slate-900">
-                    {course.title}
-                  </CardTitle>
-                  <CardDescription>
-                    {course.provider} • {course.level}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-slate-700 mb-3">{course.description}</p>
-                  <a
-                    href={getCourseUrl(course.title)} target="_blank" rel="noopener noreferrer"
-                    className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
-                  >
-                    Ver curso →
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
-          </TabsContent>
+          {/* Se eliminan Marcos, Herramientas y Cursos para dejar solo las tres mini-pestañas solicitadas */}
 
           <TabsContent value="books" data-stagger>
             {activeTab === 'books' && (
-            <Card className="reveal reveal-up border-slate-200" data-reveal>
-              <CardHeader>
-                <CardTitle className="text-2xl font-serif text-slate-900">Libros Recomendados</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-bold text-lg text-slate-900">Weapons of Math Destruction</h4>
-                  <p className="text-slate-600 text-sm mb-2">Cathy O'Neil (2016)</p>
-                  <p className="text-slate-700">Examina cómo algoritmos pueden perpetuar desigualdad y amenazar democracia.</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg text-slate-900">Artificial Intelligence: A Guide for Thinking Humans</h4>
-                  <p className="text-slate-600 text-sm mb-2">Melanie Mitchell (2019)</p>
-                  <p className="text-slate-700">Introducción accesible a IA, sus capacidades, limitaciones y futuro.</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg text-slate-900">The Alignment Problem</h4>
-                  <p className="text-slate-600 text-sm mb-2">Brian Christian (2020)</p>
-                  <p className="text-slate-700">Explora desafío de alinear valores de IA con valores humanos.</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg text-slate-900">Atlas of AI</h4>
-                  <p className="text-slate-600 text-sm mb-2">Kate Crawford (2021)</p>
-                  <p className="text-slate-700">Análisis de costos políticos, sociales y ambientales de inteligencia artificial.</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg text-slate-900">Human Compatible: AI and the Problem of Control</h4>
-                  <p className="text-slate-600 text-sm mb-2">Stuart Russell (2019)</p>
-                  <p className="text-slate-700">Propone nuevo enfoque para crear IA que sea beneficiosa para humanidad.</p>
-                </div>
-              </CardContent>
-            </Card>
+              <Card className="reveal reveal-up border-slate-200" data-reveal>
+                <CardHeader>
+                  <CardTitle className="text-2xl font-serif text-slate-900">Libros recomendados</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <h4 className="font-bold text-lg text-slate-900">Armas de destrucción matemática</h4>
+                    <p className="text-slate-600 text-sm mb-2">Cathy O'Neil (ed. en español)</p>
+                    <p className="text-slate-700">Cómo los algoritmos amplifican la desigualdad y amenazan la democracia.</p>
+                    <a href="https://capitanswing.com/libros/armas-de-destruccion-matematica/" target="_blank" rel="noopener noreferrer" className="text-slate-900 hover:text-slate-700 font-medium">Más info →</a>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg text-slate-900">Atlas de la IA</h4>
+                    <p className="text-slate-600 text-sm mb-2">Kate Crawford</p>
+                    <p className="text-slate-700">Una mirada crítica a los costes sociales, políticos y ambientales de la IA.</p>
+                    <a href="https://capitanswing.com/libros/atlas-de-la-ia/" target="_blank" rel="noopener noreferrer" className="text-slate-900 hover:text-slate-700 font-medium">Más info →</a>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg text-slate-900">Ética para máquinas</h4>
+                    <p className="text-slate-600 text-sm mb-2">José Ignacio Latorre</p>
+                    <p className="text-slate-700">Reflexión sobre qué valores deben guiar a los sistemas inteligentes.</p>
+                    <a href="https://www.planetadelibros.com/libro-etica-para-maquinas/292706" target="_blank" rel="noopener noreferrer" className="text-slate-900 hover:text-slate-700 font-medium">Más info →</a>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg text-slate-900">Human Compatible (Compatibles con humanos)</h4>
+                    <p className="text-slate-600 text-sm mb-2">Stuart Russell</p>
+                    <p className="text-slate-700">Cómo alinear la IA con objetivos humanos y evitar riesgos.</p>
+                    <a href="https://www.alianzaeditorial.es/libro/libros-singulares-ls/human-compatible-stuart-russell-9788491816999/" target="_blank" rel="noopener noreferrer" className="text-slate-900 hover:text-slate-700 font-medium">Más info →</a>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg text-slate-900">Privacidad es poder</h4>
+                    <p className="text-slate-600 text-sm mb-2">Carissa Véliz</p>
+                    <p className="text-slate-700">La privacidad como valor democrático frente a la economía de datos.</p>
+                    <a href="https://www.penguinlibros.com/es/filosofia/287570-libro-privacidad-es-poder-9788418619347" target="_blank" rel="noopener noreferrer" className="text-slate-900 hover:text-slate-700 font-medium">Más info →</a>
+                  </div>
+                </CardContent>
+              </Card>
             )}
           </TabsContent>
         </Tabs>
