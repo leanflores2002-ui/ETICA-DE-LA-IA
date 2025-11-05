@@ -166,9 +166,9 @@ const ResourcesSection = () => {
         <div data-reveal className="reveal reveal-up mb-10">
           <div className="w-full rounded-lg shadow-lg overflow-hidden min-h-[240px] md:min-h-[360px]">
             <iframe
-              title="Introducción a la Inteligencia Artificial"
+              title="¿Qué es una red neuronal?"
               className="w-full h-[240px] md:h-[360px]"
-              src="https://www.youtube.com/embed/2ePf9rue1Ao?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&controls=1"
+              src="https://www.youtube.com/embed/1oPftvl6J8Y?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&controls=1"
               frameBorder="0"
               allow="autoplay; encrypted-media; picture-in-picture"
               allowFullScreen
