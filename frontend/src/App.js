@@ -10,6 +10,7 @@ import Cursos from './pages/Cursos';
 import Sociedad from './pages/Sociedad';
 import InteraccionesCTS from './pages/InteraccionesCTS';
 import Estadisticas from './pages/Estadisticas';
+import FloatingChatWidget from '@/components/FloatingChatWidget';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/cursos" element={<Cursos />} />
         </Routes>
       </BrowserRouter>
+      <FloatingChatWidget />
     </div>
   );
 }
