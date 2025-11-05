@@ -15,6 +15,10 @@ const Header = () => {
   const navItems = [
     { to: '/', label: 'Inicio' },
     { to: '/temas', label: 'Temas Claves' },
+    // Secciones nuevas como accesos directos con ancla
+    { to: '/temas#sociedad', label: 'Sociedad' },
+    { to: '/temas#cts', label: 'Interacciones CTS' },
+    { to: '/temas#estadisticas', label: 'Estadísticas' },
     { to: '/casos', label: 'Casos de Estudio' },
     { to: '/recursos', label: 'Recursos' },
   ];
