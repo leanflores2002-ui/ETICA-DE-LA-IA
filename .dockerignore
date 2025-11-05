@@ -1,13 +1,25 @@
+# Reduce build context y evita subir artefactos innecesarios
 .git
 .gitignore
+**/.DS_Store
+**/*.log
+**/.cache
+**/.next
+**/dist
+**/build
+**/coverage
+**/node_modules
+**/.venv
 **/__pycache__
 **/*.pyc
-**/.pytest_cache
-node_modules
-frontend/node_modules
-frontend/.cache
-frontend/build-ssr
-*.log
-.DS_Store
 **/.env
-**/.env.*
+**/.env.local
+**/.env.*.local
+*.tar
+*.tgz
+*.zip
+
+# Railway/CI temporales
+.railway
+.cache
+

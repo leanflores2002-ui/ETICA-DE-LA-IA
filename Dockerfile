@@ -1,12 +1,25 @@
 ## ---------- Stage 1: Build frontend (React) ----------
+# syntax=docker/dockerfile:1.4
+
 FROM node:20-bookworm-slim AS frontend-builder
 WORKDIR /frontend
 
-# Use Yarn available in the Node image (Corepack-managed)
-# Copy entire frontend (no lockfile in repo)
+# Copiamos solo manifiestos primero para maximizar caché
+COPY frontend/package.json ./
+# Si existe yarn.lock en el repo, también mejora la caché
+# (no falla si no existe, la copia se omite al no estar en el contexto)
+COPY frontend/yarn.lock ./
+
+# Usa caché de Yarn y amplia timeout de red en builders remotos
+RUN --mount=type=cache,target=/root/.cache/yarn \
+    yarn install --non-interactive --network-timeout 600000
+
+# Ahora copiamos el resto del código
 COPY frontend/ .
-RUN yarn install --non-interactive \
-    && yarn build
+
+# Deshabilita sourcemaps para acelerar el build
+ENV GENERATE_SOURCEMAP=false
+RUN yarn build
 
 ## ---------- Stage 2: Python backend (FastAPI) ----------
 FROM python:3.11-slim AS app
@@ -21,7 +34,8 @@ RUN apt-get update \
 
 # Python deps
 COPY backend/requirements.txt backend/requirements.txt
-RUN pip install --no-cache-dir --upgrade pip \
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r backend/requirements.txt
 
 # App code
