@@ -20,8 +20,8 @@ const Header = () => {
     { to: '/estadisticas', label: 'Estadísticas' },
     { to: '/casos', label: 'Casos de Estudio' },
     { to: '/recursos', label: 'Recursos' },
-    // Página estática servida desde /public
-    { href: '/opiniones.html', external: true, label: 'Opiniones y Reflexiones' },
+    // Sección integrada en la página de inicio
+    { href: '/#opiniones', external: true, label: 'Opiniones y Reflexiones' },
   ];
 
   return (

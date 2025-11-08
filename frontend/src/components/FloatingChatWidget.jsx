@@ -196,6 +196,26 @@ export default function FloatingChatWidget() {
     setSuggestions(ranked.slice(0, 4));
   }, [sections.length]);
 
+  // Mensaje inicial adicional más explícito
+  useEffect(() => {
+    setMsgs((prev) => {
+      if (!prev.some((m) => m._intro2)) {
+        return [
+          ...prev,
+          {
+            role: 'bot',
+            text:
+              'Puedo responder tus dudas sobre cualquiera de las secciones del sitio. Preguntame lo que quieras sobre la ética de la inteligencia artificial.',
+            _intro2: true,
+          },
+        ];
+      }
+      return prev;
+    });
+    // solo una vez al montar
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleQuick = (label) => {
     // registrar preferencia si corresponde
     const mMas = label.match(/^Más sobre\s+(.+)/i);
@@ -203,6 +223,33 @@ export default function FloatingChatWidget() {
     if (mMas) bump(prefsRef.current.headings, mMas[1], 2);
     if (mOtro) bump(prefsRef.current.headings, mOtro[1], 1);
     send(null, label);
+  };
+
+  const scrollToHeading = (heading) => {
+    if (!heading) return false;
+    const slug = heading
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/\p{Diacritic}+/gu, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+    const byId = document.getElementById(heading) || document.getElementById(slug) || document.getElementById('opiniones');
+    if (byId) {
+      byId.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return true;
+    }
+    const nodes = [
+      ...document.body.querySelectorAll('section, main, article, [role="main"]')
+    ];
+    for (const n of nodes) {
+      const h = n.querySelector('h1,h2,h3,h4');
+      const t = h?.innerText?.trim();
+      if (t && t === heading) {
+        n.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return true;
+      }
+    }
+    return false;
   };
 
   const send = (e, override) => {
@@ -250,7 +297,12 @@ export default function FloatingChatWidget() {
       // Búsqueda por solapamiento
       const b = bestAnswer(q, sections);
       if (!b) {
-        setMsgs((p) => [...p, { role: 'bot', text: buildFallback(sections) }]);
+        const heads = [...new Set(sections.map((s) => s.heading))];
+        const suggest = heads[0];
+        const txt = heads.length
+          ? `No encontré información precisa sobre eso. ¿Querés explorar la sección más relacionada? ${suggest}`
+          : buildFallback(sections);
+        setMsgs((p) => [...p, { role: 'bot', text: txt, jumpHeading: suggest }]);
         setIsTyping(false);
         return;
       }
@@ -265,7 +317,7 @@ export default function FloatingChatWidget() {
       const ans = pick(variants);
 
       ctxRef.current = { sidx: b.sidx, idx: b.idx };
-      setMsgs((p) => [...p, { role: 'bot', text: ans }]);
+      setMsgs((p) => [...p, { role: 'bot', text: ans, jumpHeading: b.heading }]);
       bump(prefsRef.current.headings, b.heading, 2);
       const heads = sections.map((s) => s.heading).filter(Boolean);
       setSuggestions(personalize(b.heading, heads));
@@ -315,11 +367,24 @@ export default function FloatingChatWidget() {
           <div ref={listRef} className="p-3 space-y-3 overflow-y-auto min-h-0">
             {msgs.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div
-                  className={`px-3 py-2 rounded-2xl text-sm leading-relaxed shadow ${m.role === 'user' ? 'bg-slate-700 text-white rounded-br-sm' : 'bg-slate-800 text-slate-100 rounded-bl-sm'}`}
-                  style={{ maxWidth: '85%' }}
-                >
-                  {m.text}
+                <div style={{ maxWidth: '85%' }}>
+                  <div
+                    className={`px-3 py-2 rounded-2xl text-sm leading-relaxed shadow ${m.role === 'user' ? 'bg-slate-700 text-white rounded-br-sm' : 'bg-slate-800 text-slate-100 rounded-bl-sm'}`}
+                  >
+                    {m.text}
+                  </div>
+                  {m.role === 'bot' && m.jumpHeading && (
+                    <div className="mt-2">
+                      <button
+                        type="button"
+                        onClick={() => scrollToHeading(m.jumpHeading)}
+                        className="text-xs px-2.5 py-1.5 rounded-full border border-slate-600 text-slate-200 hover:bg-slate-700/60"
+                        title={`Ir a ${m.jumpHeading}`}
+                      >
+                        Ir a “{m.jumpHeading}”
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
