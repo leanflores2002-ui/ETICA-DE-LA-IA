@@ -213,7 +213,6 @@ export default function FloatingChatWidget() {
       return prev;
     });
     // solo una vez al montar
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleQuick = (label) => {
