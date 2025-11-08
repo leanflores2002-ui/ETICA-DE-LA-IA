@@ -15,6 +15,7 @@ const fmtDate = (ts) => {
 export default function OpinionesSection() {
   const [name, setName] = useState('');
   const [text, setText] = useState('');
+  const [color, setColor] = useState('#e8edff');
   const [items, setItems] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -36,7 +37,7 @@ export default function OpinionesSection() {
     const n = name.trim();
     const t = text.trim();
     if (!n || !t) return;
-    const item = { id: Date.now(), name: n, text: t, ts: new Date().toISOString() };
+    const item = { id: Date.now(), name: n, text: t, ts: new Date().toISOString(), color };
     setItems((prev) => [...prev, item]);
     setText('');
   };
@@ -65,7 +66,7 @@ export default function OpinionesSection() {
                       <strong className="text-slate-900">{it.name}</strong>
                       <time className="text-xs text-slate-500" dateTime={it.ts}>{fmtDate(it.ts)}</time>
                     </div>
-                    <p className="whitespace-pre-wrap break-words text-slate-800">{it.text}</p>
+                    <p className="whitespace-pre-wrap break-words text-slate-800" style={{ color: it.color || undefined }}>{it.text}</p>
                   </article>
                 ))}
               </div>
@@ -84,7 +85,7 @@ export default function OpinionesSection() {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Tu nombre"
                 required
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-400"
+                className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-slate-900/60 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-300"
               />
             </div>
             <div className="grid gap-2">
@@ -95,8 +96,22 @@ export default function OpinionesSection() {
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Escribí tu comentario"
                 required
-                className="w-full min-h-[110px] px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-400 resize-vertical"
+                className="w-full min-h-[110px] px-3 py-2 rounded-lg border border-slate-300 bg-slate-900/60 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-300 resize-vertical"
               />
+            </div>
+            <div className="grid gap-2">
+              <label htmlFor="opiniones-color" className="font-medium text-slate-800">Color del texto del comentario</label>
+              <div className="flex items-center gap-3">
+                <input
+                  id="opiniones-color"
+                  type="color"
+                  value={color}
+                  onChange={(e) => setColor(e.target.value)}
+                  aria-label="Elegir color de texto"
+                  className="h-10 w-16 p-1 rounded-md bg-transparent border border-slate-300"
+                />
+                <span className="text-sm text-slate-600">Elegí un color claro para mejor contraste.</span>
+              </div>
             </div>
             <div className="flex justify-end">
               <button type="submit" className="inline-flex items-center px-4 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors">
@@ -109,4 +124,3 @@ export default function OpinionesSection() {
     </section>
   );
 }
-

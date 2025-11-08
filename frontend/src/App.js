@@ -11,6 +11,7 @@ import Sociedad from './pages/Sociedad';
 import InteraccionesCTS from './pages/InteraccionesCTS';
 import Estadisticas from './pages/Estadisticas';
 import FloatingChatWidget from '@/components/FloatingChatWidget';
+import Opiniones from './pages/Opiniones';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/recursos" element={<RecursosPage />} />
           <Route path="/herramientas" element={<Herramientas />} />
           <Route path="/cursos" element={<Cursos />} />
+          <Route path="/opiniones" element={<Opiniones />} />
         </Routes>
         <FloatingChatWidget />
       </BrowserRouter>

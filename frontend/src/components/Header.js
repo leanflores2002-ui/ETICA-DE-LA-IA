@@ -21,7 +21,7 @@ const Header = () => {
     { to: '/casos', label: 'Casos de Estudio' },
     { to: '/recursos', label: 'Recursos' },
     // Sección integrada en la página de inicio
-    { href: '/#opiniones', external: true, label: 'Opiniones y Reflexiones' },
+    { to: '/opiniones', label: 'Opiniones y Reflexiones' },
   ];
 
   return (
