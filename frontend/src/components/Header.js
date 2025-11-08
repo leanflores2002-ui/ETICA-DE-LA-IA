@@ -20,7 +20,8 @@ const Header = () => {
     { to: '/estadisticas', label: 'Estadísticas' },
     { to: '/casos', label: 'Casos de Estudio' },
     { to: '/recursos', label: 'Recursos' },
-    { to: '/opiniones', label: 'Opiniones y Reflexiones' },
+    // Página estática servida desde /public
+    { href: '/opiniones.html', external: true, label: 'Opiniones y Reflexiones' },
   ];
 
   return (
@@ -40,15 +41,25 @@ const Header = () => {
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) => `nav-link text-slate-700 hover:text-slate-900 transition-colors font-medium ${isActive ? 'active' : ''}`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.label}
-              </NavLink>
+            {navItems.map((item, idx) => (
+              item.external ? (
+                <a
+                  key={`ext-${idx}`}
+                  href={item.href}
+                  className="nav-link text-slate-700 hover:text-slate-900 transition-colors font-medium"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) => `nav-link text-slate-700 hover:text-slate-900 transition-colors font-medium ${isActive ? 'active' : ''}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </NavLink>
+              )
             ))}
           </nav>
 
@@ -63,15 +74,26 @@ const Header = () => {
 
         {isMobileMenuOpen && (
           <nav className="md:hidden mt-4 pb-4 space-y-3">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) => `block nav-link ${isActive ? 'active' : ''} w-full text-left text-slate-700 hover:text-slate-900 transition-colors font-medium py-2`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.label}
-              </NavLink>
+            {navItems.map((item, idx) => (
+              item.external ? (
+                <a
+                  key={`m-ext-${idx}`}
+                  href={item.href}
+                  className={`block nav-link w-full text-left text-slate-700 hover:text-slate-900 transition-colors font-medium py-2`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) => `block nav-link ${isActive ? 'active' : ''} w-full text-left text-slate-700 hover:text-slate-900 transition-colors font-medium py-2`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </NavLink>
+              )
             ))}
           </nav>
         )}

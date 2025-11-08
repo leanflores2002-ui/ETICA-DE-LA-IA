@@ -1,13 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
-// Secciones para indexación fuera de ruta
-import HeroSection from './HeroSection';
-import KeyTopicsSection from './KeyTopicsSection';
-import SociedadSection from './SociedadSection';
-import CTSInteractionsSection from './CTSInteractionsSection.jsx';
-import AIStatsSection from './AIStatsSection.jsx';
-import ResourcesSection from './ResourcesSection';
-import CaseStudiesSection from './CaseStudiesSection.js';
 
 // Stopwords en ES para evitar coincidencias triviales
 const SW = new Set([
@@ -57,25 +48,8 @@ function expandTerms(tokens) {
 function useDomIndex(exRef) {
   const [sections, setSections] = useState([]);
   const toRef = useRef();
-  const offscreenRef = useRef(null);
-  const [offscreenNode, setOffscreenNode] = useState(null);
 
   useEffect(() => {
-    // Monta un contenedor fuera de pantalla para portal (conserva el contexto del Router)
-    try {
-      const c = document.createElement('div');
-      c.setAttribute('data-chat-index-portal', '');
-      c.style.position = 'absolute';
-      c.style.left = '-10000px';
-      c.style.top = '-10000px';
-      c.style.width = '1200px';
-      c.style.opacity = '0';
-      c.style.pointerEvents = 'none';
-      document.body.appendChild(c);
-      offscreenRef.current = c;
-      setOffscreenNode(c);
-    } catch {}
-
     const build = () => {
       try {
         const ex = exRef?.current || null;
@@ -87,7 +61,7 @@ function useDomIndex(exRef) {
           if (!n || (ex && (ex === n || ex.contains(n)))) continue; // excluye el chat
           const h = n.querySelector('h1,h2,h3,h4');
           const heading = h?.innerText?.trim() || n.getAttribute('aria-label') || n.id || 'Contenido';
-          const text = (n.innerText || n.textContent || '').trim();
+          const text = (n.innerText || '').trim();
           if (!text) continue;
           const sentences = splitSentences(text).map((s) => ({ original: s, tokens: tokenize(s) }));
           secs.push({ heading, text, sen: sentences });
@@ -106,7 +80,6 @@ function useDomIndex(exRef) {
     return () => {
       if (toRef.current) clearTimeout(toRef.current);
       mo.disconnect();
-      try { if (offscreenRef.current?.parentNode) offscreenRef.current.parentNode.removeChild(offscreenRef.current); } catch {}
     };
   }, []);
   return sections;
@@ -306,25 +279,8 @@ export default function FloatingChatWidget() {
 
   const quickSuggestions = useMemo(() => suggestions.slice(0, 4), [suggestions]);
 
-  // Contenido extra para indexación del sitio (portal fuera de pantalla)
-  const offscreenIndex = offscreenNode ? (
-    createPortal(
-      <main aria-label="Índice oculto del sitio">
-        <HeroSection />
-        <KeyTopicsSection />
-        <SociedadSection />
-        <CTSInteractionsSection />
-        <AIStatsSection />
-        <ResourcesSection />
-        <CaseStudiesSection />
-      </main>,
-      offscreenNode,
-    )
-  ) : null;
-
   return (
     <div ref={rootRef} className="fixed z-[2000] bottom-4 right-4 select-none" aria-live="polite">
-      {offscreenIndex}
       {!open && (
         <button
           type="button"
