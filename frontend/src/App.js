@@ -29,8 +29,8 @@ function App() {
           <Route path="/cursos" element={<Cursos />} />
           <Route path="/opiniones" element={<Opiniones />} />
         </Routes>
+        <FloatingChatWidget />
       </BrowserRouter>
-      <FloatingChatWidget />
     </div>
   );
 }
