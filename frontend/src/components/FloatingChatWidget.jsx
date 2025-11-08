@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 // Stopwords en ES para evitar coincidencias triviales
 const SW = new Set([
@@ -119,13 +119,11 @@ function isMoreRequest(q) {
   return /\b(mas|más|amplia|ampl[ií]a|segu[ií]|sigue|detalle|detalles)\b/.test(n) || /^m[aá]s sobre /.test(n);
 }
 
-
-
-// Respuestas cortas afirmativas/continuaci�n de contexto
-function isAffirmative(q) {
+function isIndexRequest(q) {
   const n = normalize(q);
-  return /^(si|ok|okay|okey|dale|claro|vale|continuar|continua|sigue|segui|adelante)$/.test(n);
+  return /(temas|secciones|indice|contenido|contenido de la p[aá]gina)/.test(n);
 }
+
 function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
 function buildFallback(sections) {
@@ -160,17 +158,43 @@ export default function FloatingChatWidget() {
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
   const ctxRef = useRef(null); // { sidx, idx }
 
   const rootRef = useRef(null);
   const sections = useDomIndex(rootRef);
   const listRef = useRef(null);
-  
+  const prefsRef = useRef({ headings: Object.create(null) });
+
+  const bump = (obj, key, inc = 1) => {
+    if (!key) return;
+    obj[key] = (obj[key] || 0) + inc;
+  };
+
+  const personalize = (currentHeading, allHeads) => {
+    const uniqueHeads = [...new Set(allHeads)].filter(Boolean);
+    const otherHeads = uniqueHeads.filter((h) => h !== currentHeading);
+    const ranked = [...otherHeads].sort((a, b) => (prefsRef.current.headings[b] || 0) - (prefsRef.current.headings[a] || 0));
+    const next = ranked[0] || otherHeads[0];
+    const out = [];
+    if (currentHeading) out.push(`Más sobre ${currentHeading}`);
+    if (next) out.push(`Otro tema: ${next}`);
+    out.push('Mostrar secciones');
+    out.push('Buscar otra cosa');
+    return out.slice(0, 4);
+  };
 
   // Mantiene el scroll al final
   useEffect(() => {
     if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
-  }, [msgs, open, isTyping]);\n  // (barra de sugerencias removida)
+  }, [msgs, open, isTyping]);
+
+  // Sugerencias iniciales basadas en secciones y preferencias
+  useEffect(() => {
+    const headings = [...new Set(sections.map((s) => s.heading))].filter(Boolean);
+    const ranked = [...headings].sort((a, b) => (prefsRef.current.headings[b] || 0) - (prefsRef.current.headings[a] || 0));
+    setSuggestions(ranked.slice(0, 4));
+  }, [sections.length]);
 
   // Mensaje inicial adicional más explícito
   useEffect(() => {
@@ -189,7 +213,18 @@ export default function FloatingChatWidget() {
       return prev;
     });
     // solo una vez al montar
-  }, []);\n  const scrollToHeading = (heading) => {
+  }, []);
+
+  const handleQuick = (label) => {
+    // registrar preferencia si corresponde
+    const mMas = label.match(/^Más sobre\s+(.+)/i);
+    const mOtro = label.match(/^Otro tema:\s+(.+)/i);
+    if (mMas) bump(prefsRef.current.headings, mMas[1], 2);
+    if (mOtro) bump(prefsRef.current.headings, mOtro[1], 1);
+    send(null, label);
+  };
+
+  const scrollToHeading = (heading) => {
     if (!heading) return false;
     const slug = heading
       .toLowerCase()
@@ -246,7 +281,7 @@ export default function FloatingChatWidget() {
         return;
       }
 
-      if (isAffirmative(qn) || isMoreRequest(qn)) {
+      if (isMoreRequest(qn)) {
         const more = nextFromContext(ctxRef.current, sections, 2);
         if (more) {
           ctxRef.current = { sidx: ctxRef.current.sidx, idx: more.nextIdx };
@@ -282,13 +317,19 @@ export default function FloatingChatWidget() {
 
       ctxRef.current = { sidx: b.sidx, idx: b.idx };
       setMsgs((p) => [...p, { role: 'bot', text: ans, jumpHeading: b.heading }]);
+      bump(prefsRef.current.headings, b.heading, 2);
+      const heads = sections.map((s) => s.heading).filter(Boolean);
+      setSuggestions(personalize(b.heading, heads));
       setIsTyping(false);
     }, 90);
   };
 
   const onKey = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) send(e);
-  };\n
+  };
+
+  const quickSuggestions = useMemo(() => suggestions.slice(0, 4), [suggestions]);
+
   return (
     <div ref={rootRef} className="fixed z-[2000] bottom-4 right-4 select-none" aria-live="polite">
       {!open && (
@@ -392,14 +433,4 @@ export default function FloatingChatWidget() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
 
