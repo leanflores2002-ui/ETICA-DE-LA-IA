@@ -190,7 +190,8 @@ export default function FloatingChatWidget() {
       return prev;
     });
     // solo una vez al montar
-  }, []);\n  const scrollToHeading = (heading) => {
+  }, [] );
+  const scrollToHeading = (heading) => {
     if (!heading) return false;
     const slug = heading
       .toLowerCase()
@@ -393,6 +394,7 @@ export default function FloatingChatWidget() {
     </div>
   );
 }
+
 
 
 
