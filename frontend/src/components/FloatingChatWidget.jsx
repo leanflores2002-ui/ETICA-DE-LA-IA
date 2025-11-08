@@ -170,7 +170,8 @@ export default function FloatingChatWidget() {
   // Mantiene el scroll al final
   useEffect(() => {
     if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
-  }, [msgs, open, isTyping]);\n  // (barra de sugerencias removida)
+  }, [msgs, open, isTyping]);
+  // (barra de sugerencias removida)
 
   // Mensaje inicial adicional más explícito
   useEffect(() => {
@@ -288,7 +289,7 @@ export default function FloatingChatWidget() {
 
   const onKey = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) send(e);
-  };\n
+  };
   return (
     <div ref={rootRef} className="fixed z-[2000] bottom-4 right-4 select-none" aria-live="polite">
       {!open && (
@@ -392,6 +393,7 @@ export default function FloatingChatWidget() {
     </div>
   );
 }
+
 
 
 
