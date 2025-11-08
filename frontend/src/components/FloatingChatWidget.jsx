@@ -164,19 +164,44 @@ export default function FloatingChatWidget() {
   const rootRef = useRef(null);
   const sections = useDomIndex(rootRef);
   const listRef = useRef(null);
+  const prefsRef = useRef({ headings: Object.create(null) });
+
+  const bump = (obj, key, inc = 1) => {
+    if (!key) return;
+    obj[key] = (obj[key] || 0) + inc;
+  };
+
+  const personalize = (currentHeading, allHeads) => {
+    const uniqueHeads = [...new Set(allHeads)].filter(Boolean);
+    const otherHeads = uniqueHeads.filter((h) => h !== currentHeading);
+    const ranked = [...otherHeads].sort((a, b) => (prefsRef.current.headings[b] || 0) - (prefsRef.current.headings[a] || 0));
+    const next = ranked[0] || otherHeads[0];
+    const out = [];
+    if (currentHeading) out.push(`Más sobre ${currentHeading}`);
+    if (next) out.push(`Otro tema: ${next}`);
+    out.push('Mostrar secciones');
+    out.push('Buscar otra cosa');
+    return out.slice(0, 4);
+  };
 
   // Mantiene el scroll al final
   useEffect(() => {
     if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
   }, [msgs, open, isTyping]);
 
-  // Sugerencias iniciales basadas en secciones
+  // Sugerencias iniciales basadas en secciones y preferencias
   useEffect(() => {
     const headings = [...new Set(sections.map((s) => s.heading))].filter(Boolean);
-    setSuggestions(headings.slice(0, 4));
+    const ranked = [...headings].sort((a, b) => (prefsRef.current.headings[b] || 0) - (prefsRef.current.headings[a] || 0));
+    setSuggestions(ranked.slice(0, 4));
   }, [sections.length]);
 
   const handleQuick = (label) => {
+    // registrar preferencia si corresponde
+    const mMas = label.match(/^Más sobre\s+(.+)/i);
+    const mOtro = label.match(/^Otro tema:\s+(.+)/i);
+    if (mMas) bump(prefsRef.current.headings, mMas[1], 2);
+    if (mOtro) bump(prefsRef.current.headings, mOtro[1], 1);
     send(null, label);
   };
 
@@ -241,11 +266,9 @@ export default function FloatingChatWidget() {
 
       ctxRef.current = { sidx: b.sidx, idx: b.idx };
       setMsgs((p) => [...p, { role: 'bot', text: ans }]);
-      setSuggestions([
-        `Más sobre ${b.heading}`,
-        'Mostrar secciones',
-        'Buscar otra cosa'
-      ]);
+      bump(prefsRef.current.headings, b.heading, 2);
+      const heads = sections.map((s) => s.heading).filter(Boolean);
+      setSuggestions(personalize(b.heading, heads));
       setIsTyping(false);
     }, 90);
   };
@@ -271,7 +294,7 @@ export default function FloatingChatWidget() {
 
       {open && (
         <div
-          className="w-[86vw] max-w-[380px] md:max-w-[420px] max-h-[75vh] bg-slate-900/95 backdrop-blur rounded-2xl shadow-2xl border border-slate-700 overflow-hidden"
+          className="w-[86vw] max-w-[380px] md:max-w-[420px] max-h-[75vh] bg-slate-900/95 backdrop-blur rounded-2xl shadow-2xl border border-slate-700 overflow-hidden grid grid-rows-[auto,1fr,auto,auto]"
           style={{ boxShadow: '0 10px 30px rgba(2,6,23,0.45)' }}
         >
           <div className="bg-slate-800/95 text-white px-4 py-3 flex items-center justify-between">
@@ -289,7 +312,7 @@ export default function FloatingChatWidget() {
             </button>
           </div>
 
-          <div ref={listRef} className="p-3 space-y-3 overflow-y-auto" style={{ maxHeight: '55vh' }}>
+          <div ref={listRef} className="p-3 space-y-3 overflow-y-auto min-h-0">
             {msgs.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div
@@ -310,7 +333,7 @@ export default function FloatingChatWidget() {
           </div>
 
           {quickSuggestions.length > 0 && (
-            <div className="px-3 pb-1 flex flex-wrap gap-2">
+            <div className="px-3 pb-1 flex gap-2 overflow-x-auto whitespace-nowrap flex-shrink-0">
               {quickSuggestions.map((s, i) => (
                 <button
                   key={`${s}-${i}`}
@@ -324,14 +347,14 @@ export default function FloatingChatWidget() {
             </div>
           )}
 
-          <form onSubmit={send} className="border-t border-slate-700 bg-slate-900/80 p-2 flex items-center gap-2">
+          <form onSubmit={send} className="border-t border-slate-700 bg-slate-900/80 p-2 flex items-center gap-2 flex-shrink-0">
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKey}
               placeholder="Escribí tu pregunta…"
-              className="flex-1 bg-slate-800 text-slate-100 placeholder-slate-400 text-sm px-3 py-2 rounded-xl outline-none focus:ring-2 focus:ring-slate-600 focus:bg-slate-800/90 border border-slate-700"
+              className="flex-1 bg-slate-800 text-slate-100 placeholder-slate-400 text-sm px-3 py-2 rounded-xl outline-none focus:ring-2 focus:ring-slate-600 focus:bg-slate-800/90 border border-slate-700 min-h-[42px]"
               aria-label="Ingresar pregunta"
             />
             <button
