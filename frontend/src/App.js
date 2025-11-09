@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Inicio from './pages/Inicio';
 import Temas from './pages/Temas';
 import Casos from './pages/Casos';
@@ -29,6 +29,8 @@ function App() {
           <Route path="/cursos" element={<Cursos />} />
           <Route path="/opiniones" element={<Opiniones />} />
           <Route path="/impactos" element={<Impactos />} />
+          <Route path="/sociedad" element={<Navigate to="/impactos" replace />} />
+          <Route path="/interacciones-cts" element={<Navigate to="/impactos" replace />} />
         </Routes>
         <FloatingChatWidget />
         <Toaster />
