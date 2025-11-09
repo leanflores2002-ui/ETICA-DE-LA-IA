@@ -196,8 +196,8 @@ const AIStatsSection = () => {
         </div>
 
         {/* Gráfico: crecimiento del mercado de IA generativa */}
-        <div className="mt-14" data-reveal>
-          <Card className="reveal reveal-up">
+        <div className="mt-14">
+          <Card data-reveal className="reveal reveal-up">
             <CardHeader className="pb-2">
               <CardTitle className="text-2xl font-serif">Crecimiento del mercado de IA generativa</CardTitle>
             </CardHeader>
