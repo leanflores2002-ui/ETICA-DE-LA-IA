@@ -15,11 +15,11 @@ export default function ImpactosSocialesSection() {
           </p>
         </div>
 
-        {/* Imagen representativa */}
+        {/* Imagen principal: Principios éticos de la IA */}
         <div className="mb-12 flex justify-center">
           <img
-            src="https://source.unsplash.com/1200x500/?artificial-intelligence,ethics,society"
-            alt="IA, sociedad y etica"
+            src="/img/principios-eticos-ia.png"
+            alt="Principios eticos de la IA"
             className="w-full md:w-4/5 rounded-xl shadow-xl opacity-95"
           />
         </div>
@@ -132,29 +132,7 @@ export default function ImpactosSocialesSection() {
           </Card>
         </div>
 
-        {/* Imagen de principios eticos de la IA */}
-        <div className="mt-8">
-          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl">
-            <CardHeader>
-              <CardTitle className="text-gray-100">Principios eticos de la IA</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <img
-                src="/img/principios-eticos-ia.png"
-                alt="Principios eticos de la IA"
-                className="w-full max-w-3xl mx-auto rounded-lg shadow-md"
-                onError={(e) => {
-                  e.currentTarget.onerror = null;
-                  // Si falla la carga local, mostramos un bloque de texto como respaldo
-                  e.currentTarget.replaceWith(Object.assign(document.createElement('div'), { className: 'text-gray-300 text-center py-4', innerText: 'Imagen no disponible. Principios: Responsable, Equitativa, Segura y protegida, Explicable y transparente, Centrada en las personas.' }));
-                }}
-              />
-              <p className="mt-3 text-sm text-gray-400 text-center">
-                Representacion visual de principios eticos: responsable, equitativa, segura y protegida, explicable y transparente, centrada en las personas.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+        
 
         {/* Reflexion final (CTS) */}
         <div className="mt-8 p-6 bg-gray-900/60 border border-gray-700 rounded-xl text-gray-200">
