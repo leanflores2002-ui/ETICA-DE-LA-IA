@@ -7,8 +7,7 @@ import Casos from './pages/Casos';
 import RecursosPage from './pages/RecursosPage';
 import Herramientas from './pages/Herramientas';
 import Cursos from './pages/Cursos';
-import Sociedad from './pages/Sociedad';
-import InteraccionesCTS from './pages/InteraccionesCTS';
+// Eliminadas: Sociedad e InteraccionesCTS
 import Estadisticas from './pages/Estadisticas';
 import FloatingChatWidget from '@/components/FloatingChatWidget';
 import { Toaster } from '@/components/ui/toaster';
@@ -22,8 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/temas" element={<Temas />} />
-          <Route path="/sociedad" element={<Sociedad />} />
-          <Route path="/interacciones-cts" element={<InteraccionesCTS />} />
+          {/* Rutas eliminadas: /sociedad y /interacciones-cts */}
           <Route path="/estadisticas" element={<Estadisticas />} />
           <Route path="/casos" element={<Casos />} />
           <Route path="/recursos" element={<RecursosPage />} />

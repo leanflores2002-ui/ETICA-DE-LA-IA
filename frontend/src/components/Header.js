@@ -15,8 +15,6 @@ const Header = () => {
   const navItems = [
     { to: '/', label: 'Inicio' },
     { to: '/temas', label: 'Temas Claves' },
-    { to: '/sociedad', label: 'Sociedad' },
-    { to: '/interacciones-cts', label: 'Interacciones CTS' },
     { to: '/estadisticas', label: 'Estadisticas' },
     { to: '/casos', label: 'Casos de Estudio' },
     { to: '/recursos', label: 'Recursos' },

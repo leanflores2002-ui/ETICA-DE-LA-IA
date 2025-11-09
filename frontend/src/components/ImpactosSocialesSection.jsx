@@ -128,6 +128,26 @@ export default function ImpactosSocialesSection() {
           </Card>
         </div>
 
+        {/* Imagen de principios eticos de la IA */}
+        <div className="mt-8">
+          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl">
+            <CardHeader>
+              <CardTitle className="text-gray-100">Principios eticos de la IA</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <img
+                src="/images/principios-eticos-ia.png"
+                alt="Principios eticos de la IA"
+                className="w-full max-w-3xl mx-auto rounded-lg shadow-md"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = 'https://source.unsplash.com/1200x700/?ai,ethics,principles';
+                }}
+              />
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Reflexion final (CTS) */}
         <div className="mt-8 p-6 bg-gray-900/60 border border-gray-700 rounded-xl text-gray-200">
           <p className="leading-relaxed">
