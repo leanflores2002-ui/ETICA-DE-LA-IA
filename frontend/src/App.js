@@ -11,6 +11,7 @@ import Sociedad from './pages/Sociedad';
 import InteraccionesCTS from './pages/InteraccionesCTS';
 import Estadisticas from './pages/Estadisticas';
 import FloatingChatWidget from '@/components/FloatingChatWidget';
+import { Toaster } from '@/components/ui/toaster';
 import Opiniones from './pages/Opiniones';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/opiniones" element={<Opiniones />} />
         </Routes>
         <FloatingChatWidget />
+        <Toaster />
       </BrowserRouter>
     </div>
   );

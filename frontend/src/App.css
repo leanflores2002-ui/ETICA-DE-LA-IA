@@ -214,3 +214,10 @@ body.theme-ethics .w-10.h-10 {
 /* Ensure navbar link visibility on dark theme */
 body.theme-ethics header .nav-link { color: #e8edff !important; }
 body.theme-ethics header .nav-link:hover { color: #ffffff !important; }
+
+/* Opiniones: entrada suave para nuevos comentarios */
+@keyframes opin-enter {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim-enter { animation: opin-enter 350ms ease forwards; }
