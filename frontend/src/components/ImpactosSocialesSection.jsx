@@ -31,71 +31,76 @@ export default function ImpactosSocialesSection() {
 
         {/* Seccion: Sociedad */}
         <h2 className="text-2xl font-semibold text-gray-200 mb-4">Sociedad: impactos y responsabilidades colectivas</h2>
-        {/* Grid principal: tarjetas de contenido */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Bloque: Transformaciones y brechas (Sociedad) */}
+        {/* Transformaciones y brechas */}
+        <h3 className="text-lg font-semibold text-gray-300 mt-6 mb-3">Transformaciones y brechas</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
             <CardHeader>
-              <CardTitle className="text-xl text-gray-100">Transformaciones y brechas</CardTitle>
+              <CardTitle className="text-gray-100">Trabajo y habilidades</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4 text-gray-300">
-              <div>
-                <p className="font-semibold text-gray-200">Trabajo y habilidades</p>
-                <p>
-                  La IA automatiza tareas rutinarias y reconfigura ocupaciones. La mayor exposicion se da en tareas administrativas; entre 2023 y 2027 se espera una recomposicion del empleo con desplazamientos y creacion de nuevos puestos, y cerca de 44% de habilidades en evolucion.
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-200">Educacion y comunicacion</p>
-                <p>
-                  La IA generativa facilita tutorias y apoyo a la escritura, pero exige politicas de uso responsable, transparencia y evaluacion justa.
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-200">Desinformacion y esfera publica</p>
-                <p>
-                  La proliferacion de contenidos sinteticos y deepfakes amplifica la desinformacion; es un riesgo critico a corto plazo y se requieren directrices para plataformas digitales.
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-200">Brecha digital</p>
-                <p>
-                  El acceso desigual a conectividad, datos y computo profundiza inequidades; millones de personas siguen sin conexion, lo que condiciona quien puede beneficiarse de la IA.
-                </p>
-              </div>
+            <CardContent className="text-gray-300">
+              La IA automatiza tareas rutinarias y reconfigura ocupaciones. La mayor exposicion se da en tareas administrativas; entre 2023 y 2027 se espera una recomposicion del empleo con desplazamientos y creacion de nuevos puestos, y cerca de 44% de habilidades en evolucion.
             </CardContent>
           </Card>
-
-          {/* Bloque: Derechos, alfabetizacion y etica social (Sociedad) */}
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
             <CardHeader>
-              <CardTitle className="text-xl text-gray-100">Derechos, alfabetizacion y etica social</CardTitle>
+              <CardTitle className="text-gray-100">Educacion y comunicacion</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4 text-gray-300">
-              <div>
-                <p className="font-semibold text-gray-200">Derechos fundamentales</p>
-                <p>
-                  En justicia, salud, credito o servicios publicos, la IA puede introducir sesgos o afectar privacidad si carece de evaluaciones de impacto y explicabilidad.
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-200">Alfabetizacion digital y etica</p>
-                <p>
-                  Toda la sociedad necesita competencias para comprender limites, sesgos y buenas practicas de IA. Se requieren formacion docente, politicas institucionales y proteccion de datos.
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-200">Etica participativa</p>
-                <p>
-                  La IA debe evaluarse con participacion de comunidades afectadas y equipos diversos, con rendicion de cuentas.
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-200">Ejemplo CTS</p>
-                <p>
-                  Automatizacion y desigualdad: sin politicas de transicion (formacion, movilidad laboral, proteccion social), la IA puede concentrar beneficios y ampliar brechas salariales.
-                </p>
-              </div>
+            <CardContent className="text-gray-300">
+              La IA generativa facilita tutorias y apoyo a la escritura, pero exige politicas de uso responsable, transparencia y evaluacion justa.
+            </CardContent>
+          </Card>
+          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-gray-100">Desinformacion y esfera publica</CardTitle>
+            </CardHeader>
+            <CardContent className="text-gray-300">
+              La proliferacion de contenidos sinteticos y deepfakes amplifica la desinformacion; es un riesgo critico a corto plazo y se requieren directrices para plataformas digitales.
+            </CardContent>
+          </Card>
+          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-gray-100">Brecha digital</CardTitle>
+            </CardHeader>
+            <CardContent className="text-gray-300">
+              El acceso desigual a conectividad, datos y computo profundiza inequidades; millones de personas siguen sin conexion, lo que condiciona quien puede beneficiarse de la IA.
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Derechos, alfabetizacion y etica social */}
+        <h3 className="text-lg font-semibold text-gray-300 mt-8 mb-3">Derechos, alfabetizacion y etica social</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-gray-100">Derechos fundamentales</CardTitle>
+            </CardHeader>
+            <CardContent className="text-gray-300">
+              En justicia, salud, credito o servicios publicos, la IA puede introducir sesgos o afectar privacidad si carece de evaluaciones de impacto y explicabilidad.
+            </CardContent>
+          </Card>
+          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-gray-100">Alfabetizacion digital y etica</CardTitle>
+            </CardHeader>
+            <CardContent className="text-gray-300">
+              Toda la sociedad necesita competencias para comprender limites, sesgos y buenas practicas de IA. Se requieren formacion docente, politicas institucionales y proteccion de datos.
+            </CardContent>
+          </Card>
+          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-gray-100">Etica participativa</CardTitle>
+            </CardHeader>
+            <CardContent className="text-gray-300">
+              La IA debe evaluarse con participacion de comunidades afectadas y equipos diversos, con rendicion de cuentas.
+            </CardContent>
+          </Card>
+          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-gray-100">Ejemplo CTS</CardTitle>
+            </CardHeader>
+            <CardContent className="text-gray-300">
+              Automatizacion y desigualdad: sin politicas de transicion (formacion, movilidad laboral, proteccion social), la IA puede concentrar beneficios y ampliar brechas salariales.
             </CardContent>
           </Card>
         </div>
@@ -150,4 +155,3 @@ export default function ImpactosSocialesSection() {
     </section>
   );
 }
-
