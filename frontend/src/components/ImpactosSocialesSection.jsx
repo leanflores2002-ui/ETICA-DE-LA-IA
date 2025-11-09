@@ -29,6 +29,8 @@ export default function ImpactosSocialesSection() {
           La IA no avanza sola: esta orientada por decisiones humanas, sociales y politicas. La etica requiere miradas interdisciplinarias y herramientas de gobernanza concretas.
         </div>
 
+        {/* Seccion: Sociedad */}
+        <h2 className="text-2xl font-semibold text-gray-200 mb-4">Sociedad: impactos y responsabilidades colectivas</h2>
         {/* Grid principal: tarjetas de contenido */}
         <div className="grid md:grid-cols-2 gap-8">
           {/* Bloque: Transformaciones y brechas (Sociedad) */}
@@ -98,6 +100,8 @@ export default function ImpactosSocialesSection() {
           </Card>
         </div>
 
+        {/* Seccion: Interacciones CTS */}
+        <h2 className="mt-10 text-2xl font-semibold text-gray-200 mb-4">Interacciones CTS (Ciencia–Tecnologia–Sociedad)</h2>
         {/* Segunda fila: Bloques CTS */}
         <div className="mt-8 grid md:grid-cols-3 gap-6">
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
@@ -136,14 +140,18 @@ export default function ImpactosSocialesSection() {
             </CardHeader>
             <CardContent>
               <img
-                src="/images/principios-eticos-ia.png"
+                src="/img/principios-eticos-ia.png"
                 alt="Principios eticos de la IA"
                 className="w-full max-w-3xl mx-auto rounded-lg shadow-md"
                 onError={(e) => {
                   e.currentTarget.onerror = null;
-                  e.currentTarget.src = 'https://source.unsplash.com/1200x700/?ai,ethics,principles';
+                  // Si falla la carga local, mostramos un bloque de texto como respaldo
+                  e.currentTarget.replaceWith(Object.assign(document.createElement('div'), { className: 'text-gray-300 text-center py-4', innerText: 'Imagen no disponible. Principios: Responsable, Equitativa, Segura y protegida, Explicable y transparente, Centrada en las personas.' }));
                 }}
               />
+              <p className="mt-3 text-sm text-gray-400 text-center">
+                Representacion visual de principios eticos: responsable, equitativa, segura y protegida, explicable y transparente, centrada en las personas.
+              </p>
             </CardContent>
           </Card>
         </div>
