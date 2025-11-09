@@ -13,6 +13,7 @@ import Estadisticas from './pages/Estadisticas';
 import FloatingChatWidget from '@/components/FloatingChatWidget';
 import { Toaster } from '@/components/ui/toaster';
 import Opiniones from './pages/Opiniones';
+import Impactos from './pages/Impactos';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/herramientas" element={<Herramientas />} />
           <Route path="/cursos" element={<Cursos />} />
           <Route path="/opiniones" element={<Opiniones />} />
+          <Route path="/impactos" element={<Impactos />} />
         </Routes>
         <FloatingChatWidget />
         <Toaster />

@@ -20,6 +20,7 @@ const Header = () => {
     { to: '/estadisticas', label: 'Estadisticas' },
     { to: '/casos', label: 'Casos de Estudio' },
     { to: '/recursos', label: 'Recursos' },
+    { to: '/impactos', label: 'Impactos Sociales' },
     { to: '/opiniones', label: 'Opiniones y Reflexiones' },
   ];
 
@@ -79,4 +80,3 @@ const Header = () => {
 };
 
 export default Header;
-
