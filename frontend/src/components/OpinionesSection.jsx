@@ -1,8 +1,8 @@
-﻿import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { toast } from '@/hooks/use-toast';
 
-// Clave compartida con la versiÃƒÂ³n estÃƒÂ¡tica para mantener comentarios existentes
+// Clave para persistir en localStorage
 const STORAGE_KEY = 'opiniones_v1';
 
 const fmtDate = (ts) => {
@@ -40,9 +40,9 @@ const fmtRelative = (ts) => {
 export default function OpinionesSection() {
   const [name, setName] = useState('');
   const [text, setText] = useState('');
-  const [sort, setSort] = useState('desc');
+  const [sort, setSort] = useState('desc'); // 'desc' = mas recientes
   const [lastAddedId, setLastAddedId] = useState(null);
-  
+
   const [items, setItems] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -54,9 +54,7 @@ export default function OpinionesSection() {
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    } catch {
-      // no-op
-    }
+    } catch {}
   }, [items]);
 
   const onSubmit = (e) => {
@@ -81,7 +79,7 @@ export default function OpinionesSection() {
   }, [items, sort]);
 
   const clearAll = () => {
-    const ok = window.confirm('Ã‚Â¿Borrar todos los comentarios locales? Esta acciÃƒÂ³n no se puede deshacer.');
+    const ok = window.confirm('Borrar todos los comentarios locales? Esta accion no se puede deshacer.');
     if (!ok) return;
     setItems([]);
     setLastAddedId(null);
@@ -96,26 +94,30 @@ export default function OpinionesSection() {
             Opiniones y Reflexiones
           </h2>
           <p className="text-slate-600 mt-2" data-reveal style={{ transitionDelay: '80ms' }}>
-            CompartÃƒÂ­ tus ideas sobre la ÃƒÂ©tica de la IA. Los comentarios se guardan localmente en tu navegador.
+            Comparte tus ideas sobre la etica de la IA. Los comentarios se guardan localmente en tu navegador.
           </p>
+          <div className="mt-3 text-slate-500" data-reveal style={{ transitionDelay: '120ms' }}>
+            Este espacio esta pensado para compartir ideas y reflexiones eticas sobre la inteligencia artificial. Se respetuoso y constructivo en tus aportes.
+          </div>
         </div>
 
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
           <div className="flex items-center justify-between px-4 pt-4 md:px-6">
-            <div className="text-slate-400 text-sm">Ã°Å¸â€™Â¬ {count} {count === 1 ? 'opiniÃƒÂ³n publicada' : 'opiniones publicadas'}</div>
+            <div className="text-slate-400 text-sm">Opiniones: {count} {count === 1 ? 'publicada' : 'publicadas'}</div>
             <div className="flex items-center gap-3">
               <label htmlFor="opiniones-sort" className="text-sm text-slate-400">Ordenar</label>
               <select id="opiniones-sort" value={sort} onChange={(e) => setSort(e.target.value)} className="text-sm bg-transparent border border-slate-300 rounded-md px-2 py-1 text-slate-200">
-                <option value="desc">MÃƒÂ¡s recientes</option>
-                <option value="asc">MÃƒÂ¡s antiguos</option>
+                <option value="desc">Mas recientes</option>
+                <option value="asc">Mas antiguos</option>
               </select>
               {hasItems && (
                 <button onClick={clearAll} className="text-sm px-2 py-1 rounded-md border border-slate-300 hover:bg-slate-800 text-slate-100">Borrar todo</button>
               )}
             </div>
           </div>
+
           <div className="p-4 md:p-6">
-              <div className="text-slate-300">Aun no hay comentarios. Se la primera persona en opinar!</div>
+            {hasItems ? (
               <div className="space-y-3">
                 {ordered.map((it) => (
                   <article key={it.id} className={`border border-slate-200 rounded-lg p-4 bg-white transition-all duration-300 ${it.id === lastAddedId ? 'opacity-0 translate-y-1 anim-enter' : ''}`}>
@@ -137,13 +139,10 @@ export default function OpinionesSection() {
                 ))}
               </div>
             ) : (
-              <div className="text-slate-500">AÃƒÂºn no hay comentarios. Ã‚Â¡SÃƒÂ© la primera persona en opinar!</div>
+              <div className="text-slate-300">Aun no hay comentarios. Se la primera persona en opinar!</div>
             )}
           </div>
 
-          <div className="px-4 md:px-6 text-slate-500">
-            Este espacio estÃ¡ pensado para compartir ideas y reflexiones Ã©ticas sobre la inteligencia artificial. Se respetuoso y constructivo en tus aportes.
-          </div>
           <form onSubmit={onSubmit} className="border-t border-slate-200 p-4 md:p-6 grid gap-3">
             <div className="grid gap-2">
               <label htmlFor="opiniones-name" className="font-medium text-slate-800">Nombre</label>
@@ -168,7 +167,6 @@ export default function OpinionesSection() {
                 className="w-full min-h-[110px] px-3 py-2 rounded-lg border border-slate-300 bg-slate-900/60 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-300 resize-vertical"
               />
             </div>
-            
             <div className="flex justify-end">
               <button type="submit" className="inline-flex items-center px-4 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors">
                 Publicar
@@ -180,9 +178,3 @@ export default function OpinionesSection() {
     </section>
   );
 }
-
-
-
-
-
-
