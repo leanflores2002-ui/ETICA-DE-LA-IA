@@ -48,7 +48,8 @@ Pasos en Railway:
 - Tras desplegar, obtendrás una URL pública del frontend.
 
 ## Adaptación para Netlify (frontend estático)
-Netlify puede servir solo el frontend como una aplicación CRA. El archivo `netlify.toml` ya define que el directorio base para el build es `frontend/`, que el comando es `yarn build` y que Netlify debe publicar `frontend/build`. Además, el redirect `/* /index.html 200` garantiza que las rutas de una SPA funcionen.
+Netlify puede servir solo el frontend como una aplicación CRA. El archivo `netlify.toml` ya define que el directorio base para el build es `frontend/`, que el comando es `yarn build`, que Netlify debe publicar el contenido de `build/` dentro de ese subdirectorio y que el redirect `/* /index.html 200` garantiza que las rutas de una SPA funcionen.
+También se fuerza la instalación de dependencias de desarrollo (`YARN_FLAGS=--production=false`) para que `@craco/craco` esté disponible.
 
 Pasos para desplegar en Netlify:
 
