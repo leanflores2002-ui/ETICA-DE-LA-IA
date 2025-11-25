@@ -47,6 +47,16 @@ Pasos en Railway:
 - No requiere variables.
 - Tras desplegar, obtendrás una URL pública del frontend.
 
+## Adaptación para Netlify (frontend estático)
+Netlify puede servir solo el frontend como una aplicación CRA. El archivo `netlify.toml` ya define que el directorio base para el build es `frontend/`, que el comando es `yarn build` y que Netlify debe publicar `frontend/build`. Además, el redirect `/* /index.html 200` garantiza que las rutas de una SPA funcionen.
+
+Pasos para desplegar en Netlify:
+
+1. Crea un nuevo sitio en Netlify y conéctalo a este repositorio. Netlify detectará `netlify.toml`, pero si ajustas los campos manualmente asegúrate de usar `Build command = yarn build` y `Publish directory = frontend/build`.
+2. En Settings > Build & deploy > Environment, define la variable `REACT_APP_API_BASE` con la URL pública de tu backend (por ejemplo `https://tu-backend.up.railway.app/api`). Así `src/lib/api.js` llamará al servicio correcto en producción.
+3. Guarda los cambios y deja que Netlify dispare un deploy; revisa el log para confirmar que `yarn build` termina sin errores.
+4. Cuando el sitio esté listo, visita la URL de Netlify y verifica que el frontend comunica con tu backend remoto; si usas un dominio personalizado, sigue el asistente de Netlify para apuntar DNS y SSL.
+
 ## Notas
 - Si usas el addon de MongoDB de Railway, copia su cadena de conexión en `MONGO_URL` y define `DB_NAME` según prefieras.
 - Asegúrate de que `CORS_ORIGINS` incluya la URL pública del frontend para evitar problemas de CORS.
