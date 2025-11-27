@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { BookOpen, Users, FileText, Globe, Video } from 'lucide-react';
+import { BookOpen, Users, FileText } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Link } from 'react-router-dom';
 import { initAnimations } from '@/lib/animations/animations';
 
 const ResourcesSection = () => {
@@ -127,39 +126,6 @@ const ResourcesSection = () => {
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
             Herramientas, organizaciones y materiales para profundizar en la ética de la inteligencia artificial
           </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-4 mb-10" data-stagger>
-          <Link to="/herramientas" className="block" data-reveal>
-            <Card className="reveal reveal-up border-slate-200 hover:shadow-md transition-shadow cursor-pointer">
-              <CardHeader>
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-slate-100 flex items-center justify-center">
-                    <Globe className="w-6 h-6 text-slate-700" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-2xl font-serif text-slate-900">Herramientas</CardTitle>
-                    <CardDescription className="text-slate-600">Utilidades y kits para IA responsable</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-          </Link>
-          <Link to="/cursos" className="block" data-reveal>
-            <Card className="reveal reveal-up border-slate-200 hover:shadow-md transition-shadow cursor-pointer">
-              <CardHeader>
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-slate-100 flex items-center justify-center">
-                    <Video className="w-6 h-6 text-slate-700" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-2xl font-serif text-slate-900">Cursos</CardTitle>
-                    <CardDescription className="text-slate-600">Formación y materiales recomendados</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-          </Link>
         </div>
 
         <div data-reveal className="reveal reveal-up mb-10">
