@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BookOpen, Users, FileText } from 'lucide-react';
+import { BookOpen, Users, FileText, Wrench } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { initAnimations } from '@/lib/animations/animations';
@@ -153,7 +153,7 @@ const ResourcesSection = () => {
             }
           }}
         >
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-3 mb-8">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8">
             <TabsTrigger value="organizations" className="flex items-center space-x-2">
               <Users size={16} />
               <span className="hidden sm:inline">Organizaciones</span>
@@ -165,6 +165,10 @@ const ResourcesSection = () => {
             <TabsTrigger value="books" className="flex items-center space-x-2">
               <BookOpen size={16} />
               <span className="hidden sm:inline">Libros</span>
+            </TabsTrigger>
+            <TabsTrigger value="tools" className="flex items-center space-x-2">
+              <Wrench size={16} />
+              <span className="hidden sm:inline">Herramientas</span>
             </TabsTrigger>
           </TabsList>
 
@@ -314,6 +318,48 @@ const ResourcesSection = () => {
               </Card>
             )}
           </TabsContent>
+
+          <TabsContent value="tools" data-stagger>
+            {activeTab === 'tools' && (
+              <Card className="reveal reveal-up border-slate-200" data-reveal>
+                <CardHeader className="space-y-2">
+                  <CardTitle className="text-2xl font-serif text-slate-900">Herramientas y prompts usados para disenar esta pagina</CardTitle>
+                  <CardDescription className="text-slate-700">
+                    Esta seccion documenta las herramientas y prompts que utilice para disenar y estructurar esta pagina web sobre etica de la inteligencia artificial.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-3">
+                    <h3 className="text-lg font-semibold text-slate-900">Prompts usados para disenar la pagina web:</h3>
+                    <ul className="list-disc list-inside space-y-2 text-slate-700">
+                      <li>"Diseña una hero section para la pagina de inicio que presente la mision del sitio, incluya un titulo fuerte, subtitulo y CTA para explorar mas."</li>
+                      <li>"Para la seccion de Temas Claves, enumera tres a cinco topicos principales con cards que expliquen cada tema, iconos y enlaces a articulos o subpaginas."</li>
+                      <li>"En Estadisticas, arma una grilla con metricas relevantes (p. ej. usuarios impactados, proyectos finalizados, porcentaje de adopcion) y agrega visualizaciones simples tipo contadores animados o barras."</li>
+                      <li>"La seccion de Casos de Estudio deberia mostrar dos o tres historias reales: incluye titulo, resumen del reto, solucion aplicada y resultados cuantificables, con enlaces para leer el informe completo."</li>
+                      <li>"Recursos: crea un listado filtrable de materiales (guias, podcasts, herramientas) con etiquetas, descripciones breves y botones para descargar o abrir cada recurso."</li>
+                      <li>"Impactos Sociales: muestra testimonios o indicadores de cambio social (educacion, empleo, equidad) con un mapa de calor o timeline que resalte logros recientes."</li>
+                      <li>"Opiniones y Reflexiones: disena un carrusel o lista de citas breves de expertos y usuarios, cada una con foto, nombre, cargo y link al comentario completo o video."</li>
+                    </ul>
+                  </div>
+
+                  <p className="text-slate-800">
+                    Esta pagina fue diseñada con la ayuda de ChatGPT (modelo tipo Codex) para la generacion de estructura, textos y organizacion de contenidos.
+                  </p>
+
+                  <div className="rounded-lg border border-slate-200 bg-slate-50 overflow-hidden">
+                    <img
+                      src="/assets/codex-preview.png"
+                      alt="Interfaz de trabajo con ChatGPT / Codex durante el diseno de la pagina"
+                      className="w-full h-64 object-cover bg-slate-100"
+                    />
+                    <div className="px-4 py-3 bg-white text-sm text-slate-600">
+                      Vista ilustrativa del entorno utilizado con ChatGPT / Codex para disenar esta pagina.
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
         </Tabs>
       </div>
     </section>
@@ -321,3 +367,4 @@ const ResourcesSection = () => {
 };
 
 export default ResourcesSection;
+
