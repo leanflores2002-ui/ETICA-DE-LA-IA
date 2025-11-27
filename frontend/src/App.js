@@ -47,7 +47,12 @@ function ScrollManager() {
 function LoadingOverlay({ exiting }) {
   return (
     <div className={`loading-overlay ${exiting ? 'is-exiting' : ''}`}>
-      <div className="loading-card">
+      <div className="loading-holo">
+        <div className="loading-robot" aria-hidden>
+          <div className="robot-eye left" />
+          <div className="robot-eye right" />
+          <div className="robot-mouth" />
+        </div>
         <div className="loading-title">Ética de la IA</div>
         <div className="loading-sub">Preparando la experiencia...</div>
         <div className="loading-bar">
