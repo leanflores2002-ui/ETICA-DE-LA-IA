@@ -18,15 +18,24 @@ function ScrollManager() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    if (hash) {
-      const targetId = hash.replace('#', '');
-      const target = document.getElementById(targetId);
-      if (target) {
-        requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }));
-        return;
-      }
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
     }
-    window.scrollTo({ top: 0, behavior: 'auto' });
+
+    const doScroll = () => {
+      if (hash) {
+        const targetId = hash.replace('#', '');
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'auto', block: 'start' });
+          return;
+        }
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    };
+
+    const t = setTimeout(doScroll, 50);
+    return () => clearTimeout(t);
   }, [pathname, hash]);
 
   return null;
