@@ -1,36 +1,41 @@
-﻿import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 // Stopwords en ES para evitar coincidencias triviales
 const SW = new Set([
-  'el','la','los','las','un','una','lo','de','del','al','y','o','en','con','por','para','a','que','como','se','es','son','no','si','ya','su','sus','mas','más','tambien','también','muy','esto','esta','estos','estas'
+  'el', 'la', 'los', 'las', 'un', 'una', 'lo', 'de', 'del', 'al', 'y', 'o', 'en', 'con', 'por', 'para', 'a', 'que', 'como', 'se', 'es', 'son', 'no', 'si', 'ya', 'su', 'sus', 'mas', 'más', 'tambien', 'también', 'muy', 'esto', 'esta', 'estos', 'estas'
 ]);
 
 // Pequeño diccionario de alias/sinónimos
 const ALIAS = {
-  empleo: ['empleos','trabajo','laboral'],
-  sociedad: ['social','comunidad'],
-  sesgo: ['equidad','justicia','discriminacion','discriminación','discriminar'],
-  privacidad: ['datos','personales','dato','privado'],
-  transparencia: ['explicabilidad','explicable','explicar'],
-  vigilancia: ['control','facial','camaras','cámaras'],
-  desinformacion: ['deepfakes','sintetico','sintético','falso','fake']
+  empleo: ['empleos', 'trabajo', 'laboral'],
+  sociedad: ['social', 'comunidad'],
+  sesgo: ['equidad', 'justicia', 'discriminacion', 'discriminación', 'discriminar'],
+  privacidad: ['datos', 'personales', 'dato', 'privado'],
+  transparencia: ['explicabilidad', 'explicable', 'explicar'],
+  vigilancia: ['control', 'facial', 'camaras', 'cámaras'],
+  desinformacion: ['deepfakes', 'sintetico', 'sintético', 'falso', 'fake']
 };
 
-const normalize = (t) => (t ? t
-  .toLowerCase()
-  .normalize('NFD')
-  .replace(/\p{Diacritic}+/gu, '')
-  .replace(/\s+/g, ' ')
-  .trim() : '');
+const normalize = (t) =>
+  (t
+    ? t
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/\p{Diacritic}+/gu, '')
+        .replace(/\s+/g, ' ')
+        .trim()
+    : '');
 
-const tokenize = (t) => normalize(t)
-  .split(/[^\p{L}\p{N}]+/u)
-  .filter((w) => w && w.length >= 3 && !SW.has(w));
+const tokenize = (t) =>
+  normalize(t)
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter((w) => w && w.length >= 3 && !SW.has(w));
 
-const splitSentences = (t) => t
-  .split(/(?<=[\.!\?])\s+|\n+/g)
-  .map((s) => s.trim())
-  .filter(Boolean);
+const splitSentences = (t) =>
+  t
+    .split(/(?<=[\.!\?])\s+|\n+/g)
+    .map((s) => s.trim())
+    .filter(Boolean);
 
 function expandTerms(tokens) {
   const e = new Set(tokens);
@@ -53,9 +58,7 @@ function useDomIndex(exRef) {
     const build = () => {
       try {
         const ex = exRef?.current || null;
-        const nodes = [
-          ...document.body.querySelectorAll('section, main, article, [role="main"]')
-        ];
+        const nodes = [...document.body.querySelectorAll('section, main, article, [role="main"]')];
         const secs = [];
         for (const n of nodes) {
           if (!n || (ex && (ex === n || ex.contains(n)))) continue; // excluye el chat
@@ -124,7 +127,9 @@ function isIndexRequest(q) {
   return /(temas|secciones|indice|contenido|contenido de la p[a\u00e1]gina)/.test(n);
 }
 
-function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
 function buildFallback(sections) {
   const headings = [...new Set(sections.map((s) => s.heading).filter(Boolean))].slice(0, 4);
@@ -133,7 +138,7 @@ function buildFallback(sections) {
     'Respondo usando el contenido visible aquí.',
     'Estoy enfocado en esta página para darte respuestas precisas.'
   ]);
-  const prompt = headings.length ? ` Decime una palabra clave o elegí una sección: ${headings.join(' • ')}.` : ' Decime una palabra clave o sección.';
+  const prompt = headings.length ? ` Decime una palabra clave o elegí una sección: ${headings.join(' · ')}.` : ' Decime una palabra clave o sección.';
   return base + prompt;
 }
 
@@ -154,7 +159,7 @@ export default function FloatingChatWidget() {
   const [msgs, setMsgs] = useState([
     {
       role: 'bot',
-      text: '¡Hola! Soy tu asistente de Ética de la IA. Puedo ayudarte a explorar lo que aparece en esta página. ¿Sobre qué tema querés saber?'
+      text: '¡Hola! Soy tu asistente sobre Ética de la IA inspirado en la Recomendación UNESCO (SHS/BIO/PI/2021/1). Te ayudo a navegar esta página con foco en derechos humanos, inclusión, transparencia y supervisión humana. ¿Sobre qué tema querés saber?'
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
@@ -204,8 +209,7 @@ export default function FloatingChatWidget() {
           ...prev,
           {
             role: 'bot',
-            text:
-              'Puedo responder tus dudas sobre cualquiera de las secciones del sitio. Preguntame lo que quieras sobre la ética de la inteligencia artificial.',
+            text: 'Respondo usando únicamente el contenido visible en esta página. Puedo guiarte por secciones y principios UNESCO: derechos, rendición de cuentas, gobernanza del riesgo y sostenibilidad. Preguntame lo que necesites.',
             _intro2: true,
           },
         ];
@@ -237,9 +241,7 @@ export default function FloatingChatWidget() {
       byId.scrollIntoView({ behavior: 'smooth', block: 'start' });
       return true;
     }
-    const nodes = [
-      ...document.body.querySelectorAll('section, main, article, [role="main"]')
-    ];
+    const nodes = [...document.body.querySelectorAll('section, main, article, [role="main"]')];
     for (const n of nodes) {
       const h = n.querySelector('h1,h2,h3,h4');
       const t = h?.innerText?.trim();
@@ -265,17 +267,14 @@ export default function FloatingChatWidget() {
       // Peticiones especiales
       if (isGreeting(qn)) {
         const heads = [...new Set(sections.map((s) => s.heading))].slice(0, 4);
-        setMsgs((p) => [
-          ...p,
-          { role: 'bot', text: `¡Hola! ¿Qué te interesa? Puedo contarte sobre: ${heads.join(' • ')}` }
-        ]);
+        setMsgs((p) => [...p, { role: 'bot', text: `¡Hola! ¿Qué te interesa? Puedo contarte sobre: ${heads.join(' · ')}` }]);
         setIsTyping(false);
         return;
       }
 
       if (isIndexRequest(qn)) {
         const heads = [...new Set(sections.map((s) => s.heading))];
-        const txt = heads.length ? `Secciones disponibles: ${heads.join(' • ')}` : 'No pude detectar secciones en esta página.';
+        const txt = heads.length ? `Secciones disponibles: ${heads.join(' · ')}` : 'No pude detectar secciones en esta página.';
         setMsgs((p) => [...p, { role: 'bot', text: txt }]);
         setIsTyping(false);
         return;
@@ -306,7 +305,7 @@ export default function FloatingChatWidget() {
         return;
       }
 
-      const sn = b.sent.length > 280 ? `${b.sent.slice(0, 277)}…` : b.sent;
+      const sn = b.sent.length > 280 ? `${b.sent.slice(0, 277)}.` : b.sent;
       const hl = b.heading && b.heading !== 'Contenido' ? `En la sección "${b.heading}" se menciona: ` : 'En esta página se menciona: ';
       const variants = [
         `${hl}${sn} ¿Querés que amplíe?`,
@@ -368,7 +367,9 @@ export default function FloatingChatWidget() {
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div style={{ maxWidth: '85%' }}>
                   <div
-                    className={`px-3 py-2 rounded-2xl text-sm leading-relaxed shadow ${m.role === 'user' ? 'bg-slate-700 text-white rounded-br-sm' : 'bg-slate-800 text-slate-100 rounded-bl-sm'}`}
+                    className={`px-3 py-2 rounded-2xl text-sm leading-relaxed shadow ${
+                      m.role === 'user' ? 'bg-slate-700 text-white rounded-br-sm' : 'bg-slate-800 text-slate-100 rounded-bl-sm'
+                    }`}
                   >
                     {m.text}
                   </div>
@@ -380,7 +381,7 @@ export default function FloatingChatWidget() {
                         className="text-xs px-2.5 py-1.5 rounded-full border border-slate-600 text-slate-200 hover:bg-slate-700/60"
                         title={`Ir a ${m.jumpHeading}`}
                       >
-                        Ir a “{m.jumpHeading}”
+                        Ir a "{m.jumpHeading}"
                       </button>
                     </div>
                   )}
@@ -417,7 +418,7 @@ export default function FloatingChatWidget() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKey}
-              placeholder="Escribí tu pregunta…"
+              placeholder="Escribí tu pregunta."
               className="flex-1 bg-slate-800 text-slate-100 placeholder-slate-400 text-sm px-3 py-2 rounded-xl outline-none focus:ring-2 focus:ring-slate-600 focus:bg-slate-800/90 border border-slate-700 min-h-[42px]"
               aria-label="Ingresar pregunta"
             />
@@ -433,5 +434,3 @@ export default function FloatingChatWidget() {
     </div>
   );
 }
-
-

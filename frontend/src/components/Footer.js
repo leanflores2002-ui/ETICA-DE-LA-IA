@@ -52,7 +52,7 @@ const Footer = () => {
               <h3 className="text-xl font-serif font-bold text-slate-100">Ética de IA</h3>
             </div>
             <p className="text-slate-400 leading-relaxed">
-              Un recurso educativo dedicado a explorar los principios fundamentales y desafíos éticos en el desarrollo de la inteligencia artificial.
+              Proyecto educativo inspirado en la “Recomendación sobre la Ética de la Inteligencia Artificial” de la UNESCO. Promueve diseños y usos de IA basados en derechos humanos, inclusión, transparencia, rendición de cuentas y sostenibilidad.
             </p>
           </div>
 
@@ -86,14 +86,14 @@ const Footer = () => {
 
         <div className="border-t border-slate-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-slate-400 text-sm">© {currentYear} Ética de IA. Recurso educativo sobre inteligencia artificial ética.</p>
+            <p className="text-slate-400 text-sm">© {currentYear} Ética de IA. Recurso educativo alineado con la Recomendación UNESCO (SHS/BIO/PI/2021/1).</p>
             <div className="flex items-center space-x-6">
               <a
                 href="mailto:contacto@ejemplo.com"
                 className="text-slate-400 hover:text-slate-100 transition-colors flex items-center space-x-2"
               >
                 <Mail size={16} />
-                <span className="text-sm">Contacto</span>
+                <span className="text-sm">Contacto institucional</span>
               </a>
             </div>
           </div>

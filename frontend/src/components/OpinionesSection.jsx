@@ -104,10 +104,10 @@ export default function OpinionesSection() {
             Opiniones y Reflexiones
           </h2>
           <p className="text-slate-600 mt-2" data-reveal style={{ transitionDelay: '80ms' }}>
-            Comparte tus ideas sobre la ética de la IA. Los comentarios se guardan localmente en tu navegador.
+            Comparte tus ideas sobre ética de la IA desde el marco UNESCO: derechos humanos, inclusión, transparencia, supervisión humana, sostenibilidad y gobernanza de riesgos.
           </p>
           <div className="mt-3 text-slate-500" data-reveal style={{ transitionDelay: '120ms' }}>
-            Este espacio está pensado para compartir ideas y reflexiones éticas sobre la inteligencia artificial. Sé respetuoso y constructivo en tus aportes.
+            Este espacio busca reflexiones responsables y académicas. Sé respetuoso, evita datos personales y conecta tus comentarios con los principios de la Recomendación UNESCO (SHS/BIO/PI/2021/1).
           </div>
         </div>
 

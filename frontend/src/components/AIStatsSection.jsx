@@ -125,10 +125,10 @@ const AIStatsSection = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 data-reveal className="reveal reveal-up text-3xl md:text-4xl font-serif font-bold text-slate-900">
-            Estadísticas sobre el uso de la IA (2023–2025)
+            Indicadores para implementar la Recomendación UNESCO (2023-2025)
           </h2>
           <p className="text-slate-600 mt-3 max-w-3xl mx-auto">
-            Panorama reciente de adopción, efectos en empleo y productividad, educación, salud, hogares y percepción social, con referencias institucionales.
+            Datos recientes que sirven para planificar políticas de derechos humanos, inclusión, transparencia, rendición de cuentas, sostenibilidad y gobernanza de riesgos en IA.
           </p>
         </div>
 
@@ -139,7 +139,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                El Stanford AI Index 2024 reporta una rápida expansión de la IA generativa en 2023–2024 y un aumento de adopción en áreas como servicio al cliente, marketing y desarrollo de software. La OCDE (2023) observa mayor adopción en grandes empresas que en pymes.
+                La Recomendación UNESCO pide evaluaciones de impacto en derechos, gobernanza de datos y trazabilidad. Informes 2023-2024 muestran mayor adopción de IA generativa en grandes empresas que en pymes; se recomienda incorporar comités de ética, registros de modelos y supervisión humana en dominios sensibles.
               </p>
               <p className="text-sm text-slate-500">Fuentes: Stanford AI Index 2024; OCDE 2023.</p>
             </CardContent>
@@ -151,7 +151,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                WEF (Future of Jobs 2023): ~83M puestos desplazados y ~69M creados a 2027; ~44% de habilidades afectadas. Evidencia experimental (MIT, 2023) muestra ~14% de mejora promedio en tareas de redacción con IA generativa, mayor para perfiles menos experimentados. OIT (2023): alta exposición en tareas administrativas.
+                Bajo el enfoque UNESCO, la automatización debe acompañarse de reconversión justa, protección social y participación laboral. Proyecciones 2023-2027 estiman recomposición de puestos y 44% de habilidades en evolución; la productividad mejora cuando se guía por principios de equidad y transparencia.
               </p>
               <p className="text-sm text-slate-500">Fuentes: WEF 2023; Noy & Zhang (MIT, 2023); OIT 2023.</p>
             </CardContent>
@@ -163,7 +163,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                UNESCO (2023) registra una adopción creciente de IA generativa en entornos educativos y recomienda marcos institucionales claros para integridad académica, evaluación y protección de datos.
+                La UNESCO advierte que la IA en educación requiere integridad académica, protección de datos y accesibilidad. La adopción de herramientas generativas crece; las instituciones deben definir usos permitidos, atribución clara y acompañamiento docente para no profundizar brechas.
               </p>
               <p className="text-sm text-slate-500">Fuente: UNESCO 2023.</p>
             </CardContent>
@@ -175,7 +175,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                La OMS (2023) recoge expansión de pilotos de IA en diagnóstico e imagen médica, con énfasis en validación clínica, calidad de datos y vigilancia posdespliegue.
+                OMS y UNESCO coinciden en validar clínicamente los sistemas, asegurar supervisión humana y explicabilidad antes y después del despliegue. La prioridad es proteger seguridad del paciente, calidad de datos y transparencia sobre límites y sesgos.
               </p>
               <p className="text-sm text-slate-500">Fuente: OMS 2023.</p>
             </CardContent>
@@ -187,7 +187,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                La UIT (2023) estima ~67% de la población mundial conectada y 2,6 mil millones de personas sin conexión, lo que limita la participación equitativa en los beneficios de la IA.
+                “No dejar a nadie atrás” guía la Recomendación. Con 67% de la población conectada y 2,6 mil millones sin acceso (UIT 2023), las políticas de IA deben contemplar conectividad, accesibilidad lingüística y protección de grupos vulnerables.
               </p>
               <p className="text-sm text-slate-500">Fuente: UIT 2023.</p>
             </CardContent>
@@ -199,9 +199,9 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                Encuestas de Pew Research (2023–2024) indican que, en EE. UU., predomina la preocupación sobre el entusiasmo por la IA, especialmente en usos de alto impacto como salud, vigilancia y trabajo.
+                La confianza pública depende de transparencia, control humano significativo y reparación cuando hay daño. Encuestas 2023-2024 muestran preocupación por usos de alto impacto; el marco UNESCO orienta a documentar riesgos, explicar decisiones y habilitar reclamos.
               </p>
-              <p className="text-sm text-slate-500">Fuente: Pew Research Center 2023–2024.</p>
+              <p className="text-sm text-slate-500">Fuente: Pew Research Center 2023-2024.</p>
             </CardContent>
           </Card>
         </div>
@@ -220,7 +220,7 @@ const AIStatsSection = () => {
 
         <div className="mt-14">
           <h3 className="text-2xl font-serif font-semibold text-slate-900 mb-6" data-reveal>
-            Cifras clave (tarjetas comparativas)
+            Cifras clave para gobernanza basada en riesgo
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" data-stagger>
             <Card data-reveal className="reveal reveal-up">
@@ -251,7 +251,7 @@ const AIStatsSection = () => {
 
             <Card data-reveal className="reveal reveal-up">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-500">Empleo (WEF 2023, 2023–2027)</CardTitle>
+                <CardTitle className="text-sm text-slate-500">Empleo (WEF 2023, 2023-2027)</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-baseline gap-4">
@@ -338,14 +338,14 @@ const AIStatsSection = () => {
                   </TableRow>
                   <TableRow>
                     <TableCell>Empleo</TableCell>
-                    <TableCell>Desplazados (2023–2027)</TableCell>
+                    <TableCell>Desplazados (2023-2027)</TableCell>
                     <TableCell>~ 83M</TableCell>
                     <TableCell>WEF</TableCell>
                     <TableCell>2023</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>Empleo</TableCell>
-                    <TableCell>Creados (2023–2027)</TableCell>
+                    <TableCell>Creados (2023-2027)</TableCell>
                     <TableCell>~ 69M</TableCell>
                     <TableCell>WEF</TableCell>
                     <TableCell>2023</TableCell>
@@ -366,7 +366,7 @@ const AIStatsSection = () => {
                   </TableRow>
                 </TableBody>
                 <TableCaption>
-                  Comparaciones ilustrativas; ver informes originales para detalles metodológicos y definiciones.
+                  Cifras ilustrativas para planificar gobernanza de riesgo y derechos; revisar fuentes para definiciones y métodos.
                 </TableCaption>
               </Table>
             </CardContent>
@@ -376,7 +376,7 @@ const AIStatsSection = () => {
         <div className="mt-10 text-sm text-slate-500">
           <p className="font-semibold">Nota metodológica</p>
           <p>
-            Las cifras varían por país y sector. Consultar informes originales (UNESCO, OCDE, NIST, OMS, Stanford, UIT, WEF, OIT, Pew) para definiciones, muestras y márgenes de error.
+            Las cifras varían por país y sector. Usar siempre las fuentes originales (UNESCO, OCDE, NIST, OMS, Stanford, UIT, WEF, OIT, Pew) para definir riesgos, mitigar sesgos y diseñar salvaguardas según la Recomendación UNESCO.
           </p>
         </div>
       </div>
