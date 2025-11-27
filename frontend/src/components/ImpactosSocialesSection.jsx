@@ -7,7 +7,7 @@ export default function ImpactosSocialesSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         {/* Encabezado */}
         <div className="text-center mb-10 md:mb-14">
-          <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-100">Impactos sociales y ejes UNESCO de ética de la IA</h1>
+          <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-100">Impactos sociales y ejes de ética de la IA</h1>
           <p className="mt-3 text-gray-300 max-w-3xl mx-auto">
             Cómo la IA transforma el trabajo, la educación, la ciencia y la vida social, aplicando los principios UNESCO: derechos humanos, inclusión y no discriminación, supervisión humana, transparencia y explicabilidad, rendición de cuentas, sostenibilidad y gobernanza del riesgo.
           </p>
