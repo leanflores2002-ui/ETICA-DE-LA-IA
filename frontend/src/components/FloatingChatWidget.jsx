@@ -6,18 +6,18 @@ const SECTION_DATA = [
     id: 'inicio',
     label: 'Inicio',
     path: '/',
-    description: 'Presentaci�n del sitio y acceso a los temas destacados.',
+    description: 'Presentación del sitio y acceso a los temas destacados.',
     topics: [
       {
         id: 'inicio-presentacion',
-        label: 'Presentaci�n del sitio',
+        label: 'Presentación del sitio',
         description:
-          'La hero de �%tica de la Inteligencia Artificial introduce el foco en derechos humanos, inclusi�n, transparencia y responsabilidad.',
+          'La hero de Ética de la Inteligencia Artificial introduce el foco en derechos humanos, inclusión, transparencia y responsabilidad.',
       },
       {
         id: 'inicio-cta',
         label: 'Explorar temas',
-        description: 'El bot�n principal te lleva a Temas Claves para recorrer principios, riesgos y responsabilidades.',
+        description: 'El botón principal te lleva a Temas Claves para recorrer principios, riesgos y responsabilidades.',
       },
     ],
   },
@@ -25,72 +25,72 @@ const SECTION_DATA = [
     id: 'temas',
     label: 'Temas Claves',
     path: '/temas',
-    description: 'Principales dilemas �ticos y principios para sistemas de IA.',
+    description: 'Principales dilemas éticos y principios para sistemas de IA.',
     topics: [
       {
         id: 'temas-sesgo-equidad',
         label: 'Sesgo y Equidad',
-        description: 'Identificaci�n y mitigaci�n de sesgos algor�tmicos para decisiones justas e imparciales.',
+        description: 'Identificación y mitigación de sesgos algorítmicos para decisiones justas e imparciales.',
       },
       {
         id: 'temas-privacidad',
-        label: 'Privacidad y Protecci�n de Datos',
-        description: 'Uso responsable de datos personales con t�cnicas como privacidad diferencial y cumplimiento de GDPR.',
+        label: 'Privacidad y Protección de Datos',
+        description: 'Uso responsable de datos personales con técnicas como privacidad diferencial y cumplimiento de GDPR.',
       },
       {
         id: 'temas-transparencia',
         label: 'Transparencia y Explicabilidad',
-        description: 'Abrir la "caja negra" de la IA para comprender c�mo se toman decisiones que afectan a las personas.',
+        description: 'Abrir la "caja negra" de la IA para comprender cómo se toman decisiones que afectan a las personas.',
       },
       {
         id: 'temas-responsabilidad',
-        label: 'Responsabilidad y Rendici�n de Cuentas',
-        description: 'Marcos que definen qui�n responde por da�os, auditor�as y supervisi�n continua de modelos.',
+        label: 'Responsabilidad y Rendición de Cuentas',
+        description: 'Marcos que definen quién responde por daños, auditorías y supervisión continua de modelos.',
       },
       {
         id: 'temas-impacto-laboral',
         label: 'Impacto Laboral y Social',
-        description: 'Efectos de la automatizaci�n en empleo, reentrenamiento y distribuci�n equitativa de beneficios.',
+        description: 'Efectos de la automatización en empleo, reentrenamiento y distribución equitativa de beneficios.',
       },
       {
         id: 'temas-vigilancia',
         label: 'Vigilancia y Control',
-        description: 'L�mites para tecnolog�as como reconocimiento facial equilibrando seguridad y derechos civiles.',
+        description: 'Límites para tecnologías como reconocimiento facial equilibrando seguridad y derechos civiles.',
       },
       {
         id: 'temas-deepfakes',
-        label: 'Deepfakes y Desinformaci�n',
-        description: 'Riesgos de contenido sint�tico y la necesidad de detecci�n, regulaci�n y alfabetizaci�n medi�tica.',
+        label: 'Deepfakes y Desinformación',
+        description: 'Riesgos de contenido sintético y la necesidad de detección, regulación y alfabetización mediática.',
       },
       {
         id: 'temas-sistemas-autonomos',
-        label: 'Sistemas Aut�nomos',
-        description: 'Dilemas sobre autonom�a, decisiones cr�ticas y supervisi�n humana en veh�culos o aplicaciones de riesgo.',
+        label: 'Sistemas Autónomos',
+        description: 'Dilemas sobre autonomía, decisiones críticas y supervisión humana en vehículos o aplicaciones de riesgo.',
       },
     ],
   },
   {
     id: 'estadisticas',
-    label: 'Estad�sticas',
+    label: 'Estadísticas',
     path: '/estadisticas',
     description: 'Indicadores, visualizaciones y tablas 2023-2025.',
     topics: [
       {
         id: 'estadisticas-indicadores',
-        label: 'Indicadores para una IA con derechos y rendici�n de cuentas',
+        label: 'Indicadores para una IA con derechos y rendición de cuentas',
         description:
-          'Panorama inicial sobre derechos humanos, inclusi�n, transparencia, sostenibilidad y gobernanza del riesgo.',
+          'Panorama inicial sobre derechos humanos, inclusión, transparencia, sostenibilidad y gobernanza del riesgo.',
       },
       {
         id: 'estadisticas-sector',
-        label: 'Empresas, empleo, educaci�n y salud',
+        label: 'Empresas, empleo, educación y salud',
         description:
-          'Tarjetas con hallazgos sobre adopci�n corporativa, reconversi�n laboral, integridad educativa y seguridad cl�nica.',
+          'Tarjetas con hallazgos sobre adopción corporativa, reconversión laboral, integridad educativa y seguridad clínica.',
       },
       {
         id: 'estadisticas-mercado',
         label: 'Crecimiento del mercado de IA generativa',
-        description: 'Gr�fico SVG con proyecciones 2020-2032 y tendencia de crecimiento compuesto.',
+        description: 'Gráfico SVG con proyecciones 2020-2032 y tendencia de crecimiento compuesto.',
       },
       {
         id: 'estadisticas-riesgo',
@@ -100,9 +100,9 @@ const SECTION_DATA = [
       },
       {
         id: 'estadisticas-tabla',
-        label: 'Tabla resumen y nota metodol�gica',
+        label: 'Tabla resumen y nota metodológica',
         description:
-          'Tabla con dominios, cifras y fuentes (UIT, WEF, MIT) m�s el recordatorio de usar siempre las fuentes originales.',
+          'Tabla con dominios, cifras y fuentes (UIT, WEF, MIT) más el recordatorio de usar siempre las fuentes originales.',
       },
     ],
   },
@@ -116,37 +116,37 @@ const SECTION_DATA = [
         id: 'casos-reconocimiento-facial',
         label: 'Reconocimiento facial y sesgo racial',
         description:
-          'Errores m�s altos en mujeres de piel oscura muestran la necesidad de datos representativos y auditor�as constantes.',
+          'Errores más altos en mujeres de piel oscura muestran la necesidad de datos representativos y auditorías constantes.',
       },
       {
         id: 'casos-autonomos',
-        label: 'Veh�culos aut�nomos: el dilema moral',
+        label: 'Vehículos autónomos: el dilema moral',
         description:
-          'Accidentes fatales abren preguntas sobre responsabilidad, supervisi�n y decisiones �ticas en situaciones cr�ticas.',
+          'Accidentes fatales abren preguntas sobre responsabilidad, supervisión y decisiones éticas en situaciones críticas.',
       },
       {
         id: 'casos-compas',
         label: 'COMPAS: sesgo en justicia predictiva',
         description:
-          'El algoritmo de reincidencia favoreci� falsos positivos en personas negras, cuestionando la supuesta objetividad.',
+          'El algoritmo de reincidencia favoreció falsos positivos en personas negras, cuestionando la supuesta objetividad.',
       },
       {
         id: 'casos-cambridge',
-        label: 'Cambridge Analytica y manipulaci�n electoral',
+        label: 'Cambridge Analytica y manipulación electoral',
         description:
-          'Uso no autorizado de datos de millones de usuarios para micro-segmentaci�n pol�tica y presi�n regulatoria posterior.',
+          'Uso no autorizado de datos de millones de usuarios para micro-segmentación política y presión regulatoria posterior.',
       },
       {
         id: 'casos-salud',
-        label: 'IA en diagn�stico m�dico: promesas y riesgos',
+        label: 'IA en diagnóstico médico: promesas y riesgos',
         description:
-          'Modelos precisos que pueden reproducir inequidades si no se validan en poblaciones diversas con supervisi�n cl�nica.',
+          'Modelos precisos que pueden reproducir inequidades si no se validan en poblaciones diversas con supervisión clínica.',
       },
       {
         id: 'casos-deepfakes',
         label: 'Deepfakes: de entretenimiento a amenaza',
         description:
-          'Contenido sint�tico genera fraudes, acoso y desinformaci�n, exigiendo detecci�n t�cnica y alfabetizaci�n medi�tica.',
+          'Contenido sintético genera fraudes, acoso y desinformación, exigiendo detección técnica y alfabetización mediática.',
       },
     ],
   },
@@ -159,24 +159,25 @@ const SECTION_DATA = [
       {
         id: 'recursos-organizaciones',
         label: 'Organizaciones',
-        description: 'AESIA, UNESCO, ODISEIA, Fundaci�n �%ticas, OECD.AI y otras iniciativas de supervisi�n y buenas pr�cticas.',
+        description:
+          'AESIA, UNESCO, ODISEIA, Fundación Éticas, OECD.AI y otras iniciativas de supervisión y buenas prácticas.',
       },
       {
         id: 'recursos-papers',
-        label: 'Recursos de informaci�n',
+        label: 'Recursos de información',
         description:
-          'P�ginas y documentos como la Recomendaci�n UNESCO 2021, AI Act, RGPD y gu�as AEPD disponibles desde las cards.',
+          'Páginas y documentos como la Recomendación UNESCO 2021, AI Act, RGPD y guías AEPD disponibles desde las cards.',
       },
       {
         id: 'recursos-libros',
         label: 'Libros recomendados',
         description:
-          'Selecci�n en espa�ol como "Armas de destrucci�n matem�tica", "Atlas de la IA", "�%tica para m�quinas" y m�s.',
+          'Selección en español como "Armas de destrucción matemática", "Atlas de la IA", "Ética para máquinas" y más.',
       },
       {
         id: 'recursos-herramientas',
         label: 'Herramientas y prompts usados',
-        description: 'Documenta los prompts y recursos utilizados para dise�ar la p�gina, con captura de referencia.',
+        description: 'Documenta los prompts y recursos utilizados para diseñar la página, con captura de referencia.',
       },
     ],
   },
@@ -184,37 +185,37 @@ const SECTION_DATA = [
     id: 'impactos',
     label: 'Impactos Sociales',
     path: '/impactos',
-    description: 'Ejes �ticos y cambios sociales vinculados a la IA.',
+    description: 'Ejes éticos y cambios sociales vinculados a la IA.',
     topics: [
       {
         id: 'impactos-sociedad',
         label: 'Sociedad: impactos y responsabilidades colectivas',
         description:
-          'Revisi�n de c�mo la IA afecta trabajo, educaci�n, desinformaci�n y brecha digital bajo principios UNESCO.',
+          'Revisión de cómo la IA afecta trabajo, educación, desinformación y brecha digital bajo principios UNESCO.',
       },
       {
         id: 'impactos-transformaciones',
         label: 'Transformaciones y brechas',
         description:
-          'Incluye trabajo y habilidades, educaci�n y comunicaci�n, desinformaci�n y esfera p�blica, y brecha digital.',
+          'Incluye trabajo y habilidades, educación y comunicación, desinformación y esfera pública, y brecha digital.',
       },
       {
         id: 'impactos-derechos',
-        label: 'Derechos, alfabetizaci�n y �tica social',
+        label: 'Derechos, alfabetización y ética social',
         description:
-          'Subraya derechos fundamentales, alfabetizaci�n digital, �tica participativa y un ejemplo CTS aplicado.',
+          'Subraya derechos fundamentales, alfabetización digital, ética participativa y un ejemplo CTS aplicado.',
       },
       {
         id: 'impactos-cts',
-        label: 'Interacciones CTS (Ciencia-Tecnolog�a-Sociedad)',
+        label: 'Interacciones CTS (Ciencia-Tecnología-Sociedad)',
         description:
-          'Bloques sobre orientaci�n humana y pol�tica, enfoque interdisciplinario e innovaci�n con responsabilidad.',
+          'Bloques sobre orientación humana y política, enfoque interdisciplinario e innovación con responsabilidad.',
       },
       {
         id: 'impactos-reflexion',
-        label: 'Reflexi�n final y fuentes clave',
+        label: 'Reflexión final y fuentes clave',
         description:
-          'Cierre que equilibra innovaci�n y responsabilidad, seguido de fuentes como UNESCO, OCDE, NIST, OMS, UIT, WEF y OIT.',
+          'Cierre que equilibra innovación y responsabilidad, seguido de fuentes como UNESCO, OCDE, NIST, OMS, UIT, WEF y OIT.',
       },
     ],
   },
@@ -226,13 +227,13 @@ const SECTION_DATA = [
     topics: [
       {
         id: 'opiniones-proposito',
-        label: 'Prop�sito del espacio',
+        label: 'Propósito del espacio',
         description:
-          'Invita a compartir ideas sobre �tica de la IA desde derechos humanos, inclusi�n, transparencia y gobernanza de riesgos.',
+          'Invita a compartir ideas sobre ética de la IA desde derechos humanos, inclusión, transparencia y gobernanza de riesgos.',
       },
       {
         id: 'opiniones-participacion',
-        label: 'C�mo participar',
+        label: 'Cómo participar',
         description:
           'Formulario sencillo con nombre y comentario; las opiniones se guardan en tu navegador y se muestran en tarjetas.',
       },
@@ -240,7 +241,7 @@ const SECTION_DATA = [
         id: 'opiniones-gestion',
         label: 'Ordenar y moderar aportes',
         description:
-          'Puedes ordenar por m�s recientes o antiguos y borrar los comentarios almacenados localmente si necesit�s empezar de nuevo.',
+          'Puedes ordenar por más recientes o antiguos y borrar los comentarios almacenados localmente si necesitás empezar de nuevo.',
       },
     ],
   },
@@ -293,7 +294,7 @@ export default function FloatingChatWidget() {
           aria-label="Abrir asistente"
         >
           <span className="text-xl" role="img" aria-label="ayuda">
-            �Y'�
+            💬
           </span>
         </button>
       )}
@@ -306,8 +307,8 @@ export default function FloatingChatWidget() {
                 <Sparkles size={14} className="text-amber-300" />
                 Asistente guiado
               </p>
-              <h3 className="font-serif font-semibold text-lg">Explor� tu sitio</h3>
-              <p className="text-xs text-slate-400">Eleg� secciones y temas sin escribir</p>
+              <h3 className="font-serif font-semibold text-lg">Explorá tu sitio</h3>
+              <p className="text-xs text-slate-400">Elegí secciones y temas sin escribir</p>
             </div>
             <button
               type="button"
@@ -315,7 +316,7 @@ export default function FloatingChatWidget() {
               className="px-2 py-1 text-slate-200 hover:text-white rounded-md hover:bg-slate-800 transition-colors"
               aria-label="Cerrar asistente"
             >
-              �-
+              ×
             </button>
           </div>
 
@@ -323,7 +324,7 @@ export default function FloatingChatWidget() {
             {stage === 'sections' && (
               <div className="space-y-4">
                 <p className="text-slate-100 text-sm leading-relaxed">
-                  Hola, soy el asistente del sitio. Eleg� una secci�n para saber m�s y luego un tema dentro de ella:
+                  Hola, soy el asistente del sitio. Elegí una sección para saber más y luego un tema dentro de ella:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {SECTION_DATA.map((section) => (
@@ -363,13 +364,13 @@ export default function FloatingChatWidget() {
                       href={activeSection.path}
                       className="inline-flex items-center gap-1 text-xs text-amber-200 px-2.5 py-1.5 rounded-full border border-amber-300/40 hover:border-amber-200"
                     >
-                      Ver secci�n en el sitio
+                      Ver sección en el sitio
                     </a>
                   )}
                 </div>
                 <div className="bg-slate-800/80 border border-slate-800 rounded-xl p-3">
                   <p className="text-[11px] uppercase tracking-[0.12em] text-slate-400">Paso 2</p>
-                  <p className="text-white font-semibold">Ahora eleg� un tema dentro de {activeSection.label}:</p>
+                  <p className="text-white font-semibold">Ahora elegí un tema dentro de {activeSection.label}:</p>
                 </div>
                 <div className="grid grid-cols-1 gap-3">
                   {activeSection.topics.map((topic) => (
@@ -401,7 +402,7 @@ export default function FloatingChatWidget() {
                     className="inline-flex items-center gap-1 text-xs text-slate-200 px-2.5 py-1.5 rounded-full border border-slate-700 hover:border-slate-500"
                   >
                     <ArrowLeft size={14} />
-                    Volver a los temas de esta secci�n
+                    Volver a los temas de esta sección
                   </button>
                   <button
                     type="button"
@@ -416,7 +417,7 @@ export default function FloatingChatWidget() {
                       href={activeSection.path}
                       className="inline-flex items-center gap-1 text-xs text-amber-200 px-2.5 py-1.5 rounded-full border border-amber-300/40 hover:border-amber-200"
                     >
-                      Ver secci�n en el sitio
+                      Ver sección en el sitio
                     </a>
                   )}
                 </div>
@@ -426,7 +427,7 @@ export default function FloatingChatWidget() {
                   <h4 className="text-xl font-semibold text-white leading-snug">{activeTopic.label}</h4>
                   <p className="text-slate-200 text-sm leading-relaxed">{activeTopic.description}</p>
                   <p className="text-xs text-slate-400">
-                    Us� los botones para cambiar de tema o volver a otra secci�n. Este asistente no recibe texto libre.
+                    Usá los botones para cambiar de tema o volver a otra sección. Este asistente no recibe texto libre.
                   </p>
                 </div>
               </div>
