@@ -104,10 +104,10 @@ export default function OpinionesSection() {
             Opiniones y Reflexiones
           </h2>
           <p className="text-slate-600 mt-2" data-reveal style={{ transitionDelay: '80ms' }}>
-            Comparte tus ideas sobre ética de la IA desde el marco UNESCO: derechos humanos, inclusión, transparencia, supervisión humana, sostenibilidad y gobernanza de riesgos.
+            Comparte tus ideas sobre ética de la IA desde un marco de derechos humanos, inclusión, transparencia, supervisión humana, sostenibilidad y gobernanza de riesgos.
           </p>
           <div className="mt-3 text-slate-500" data-reveal style={{ transitionDelay: '120ms' }}>
-            Este espacio busca reflexiones responsables y académicas. Sé respetuoso, evita datos personales y conecta tus comentarios con los principios de la Recomendación UNESCO (SHS/BIO/PI/2021/1).
+            Este espacio busca reflexiones responsables y académicas. Sé respetuoso, evita datos personales y conecta tus comentarios con los principios de rendición de cuentas y mitigación de sesgos.
           </div>
         </div>
 

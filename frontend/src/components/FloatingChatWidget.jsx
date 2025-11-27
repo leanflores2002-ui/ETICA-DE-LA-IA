@@ -209,7 +209,7 @@ export default function FloatingChatWidget() {
           ...prev,
           {
             role: 'bot',
-            text: 'Respondo usando únicamente el contenido visible en esta página. Puedo guiarte por secciones y principios UNESCO: derechos, rendición de cuentas, gobernanza del riesgo y sostenibilidad. Preguntame lo que necesites.',
+            text: 'Respondo usando únicamente el contenido visible en esta página. Puedo guiarte por secciones y principios de derechos humanos, rendición de cuentas, gobernanza del riesgo y sostenibilidad. Preguntame lo que necesites.',
             _intro2: true,
           },
         ];

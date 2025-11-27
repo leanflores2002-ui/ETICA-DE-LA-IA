@@ -125,10 +125,10 @@ const AIStatsSection = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 data-reveal className="reveal reveal-up text-3xl md:text-4xl font-serif font-bold text-slate-900">
-            Indicadores para implementar la Recomendación UNESCO (2023-2025)
+            Indicadores para una IA con derechos y rendición de cuentas (2023-2025)
           </h2>
           <p className="text-slate-600 mt-3 max-w-3xl mx-auto">
-            Datos recientes que sirven para planificar políticas de derechos humanos, inclusión, transparencia, rendición de cuentas, sostenibilidad y gobernanza de riesgos en IA.
+            Datos recientes que ayudan a planificar políticas de derechos humanos, inclusión, transparencia, sostenibilidad y gobernanza de riesgos, en línea con la Recomendación sobre Ética de la IA (SHS/BIO/PI/2021/1).
           </p>
         </div>
 
@@ -139,7 +139,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                La Recomendación UNESCO pide evaluaciones de impacto en derechos, gobernanza de datos y trazabilidad. Informes 2023-2024 muestran mayor adopción de IA generativa en grandes empresas que en pymes; se recomienda incorporar comités de ética, registros de modelos y supervisión humana en dominios sensibles.
+                El marco internacional de ética de IA exige evaluaciones de impacto en derechos, gobernanza de datos y trazabilidad. Informes 2023-2024 muestran mayor adopción de IA generativa en grandes empresas que en pymes; se recomiendan comités de ética, registros de modelos y supervisión humana en dominios sensibles.
               </p>
               <p className="text-sm text-slate-500">Fuentes: Stanford AI Index 2024; OCDE 2023.</p>
             </CardContent>
@@ -151,7 +151,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                Bajo el enfoque UNESCO, la automatización debe acompañarse de reconversión justa, protección social y participación laboral. Proyecciones 2023-2027 estiman recomposición de puestos y 44% de habilidades en evolución; la productividad mejora cuando se guía por principios de equidad y transparencia.
+                La automatización debe acompañarse de reconversión justa, protección social y participación laboral. Proyecciones 2023-2027 estiman recomposición de puestos y 44% de habilidades en evolución; la productividad mejora cuando se guía por principios de equidad y transparencia.
               </p>
               <p className="text-sm text-slate-500">Fuentes: WEF 2023; Noy & Zhang (MIT, 2023); OIT 2023.</p>
             </CardContent>
@@ -163,7 +163,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                La UNESCO advierte que la IA en educación requiere integridad académica, protección de datos y accesibilidad. La adopción de herramientas generativas crece; las instituciones deben definir usos permitidos, atribución clara y acompañamiento docente para no profundizar brechas.
+                La IA en educación requiere integridad académica, protección de datos y accesibilidad. La adopción de herramientas generativas crece; las instituciones deben definir usos permitidos, atribución clara y acompañamiento docente para no profundizar brechas.
               </p>
               <p className="text-sm text-slate-500">Fuente: UNESCO 2023.</p>
             </CardContent>
@@ -175,7 +175,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                OMS y UNESCO coinciden en validar clínicamente los sistemas, asegurar supervisión humana y explicabilidad antes y después del despliegue. La prioridad es proteger seguridad del paciente, calidad de datos y transparencia sobre límites y sesgos.
+                Los sistemas deben validarse clínicamente, con supervisión humana y explicabilidad antes y después del despliegue. La prioridad es proteger seguridad del paciente, calidad de datos y transparencia sobre límites y sesgos.
               </p>
               <p className="text-sm text-slate-500">Fuente: OMS 2023.</p>
             </CardContent>
@@ -187,7 +187,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                “No dejar a nadie atrás” guía la Recomendación. Con 67% de la población conectada y 2,6 mil millones sin acceso (UIT 2023), las políticas de IA deben contemplar conectividad, accesibilidad lingüística y protección de grupos vulnerables.
+                Con 67% de la población conectada y 2,6 mil millones sin acceso (UIT 2023), las políticas de IA deben contemplar conectividad, accesibilidad lingüística y protección de grupos vulnerables para no dejar a nadie atrás.
               </p>
               <p className="text-sm text-slate-500">Fuente: UIT 2023.</p>
             </CardContent>
@@ -199,7 +199,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                La confianza pública depende de transparencia, control humano significativo y reparación cuando hay daño. Encuestas 2023-2024 muestran preocupación por usos de alto impacto; el marco UNESCO orienta a documentar riesgos, explicar decisiones y habilitar reclamos.
+                La confianza pública depende de transparencia, control humano significativo y reparación cuando hay daño. Encuestas 2023-2024 muestran preocupación por usos de alto impacto; se recomienda documentar riesgos, explicar decisiones y habilitar reclamos.
               </p>
               <p className="text-sm text-slate-500">Fuente: Pew Research Center 2023-2024.</p>
             </CardContent>
@@ -376,7 +376,7 @@ const AIStatsSection = () => {
         <div className="mt-10 text-sm text-slate-500">
           <p className="font-semibold">Nota metodológica</p>
           <p>
-            Las cifras varían por país y sector. Usar siempre las fuentes originales (UNESCO, OCDE, NIST, OMS, Stanford, UIT, WEF, OIT, Pew) para definir riesgos, mitigar sesgos y diseñar salvaguardas según la Recomendación UNESCO.
+            Las cifras varían por país y sector. Usar siempre las fuentes originales (UNESCO, OCDE, NIST, OMS, Stanford, UIT, WEF, OIT, Pew) para definir riesgos, mitigar sesgos y diseñar salvaguardas con un enfoque de derechos humanos.
           </p>
         </div>
       </div>

@@ -9,7 +9,7 @@ export default function ImpactosSocialesSection() {
         <div className="text-center mb-10 md:mb-14">
           <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-100">Impactos sociales y ejes de ética de la IA</h1>
           <p className="mt-3 text-gray-300 max-w-3xl mx-auto">
-            Cómo la IA transforma el trabajo, la educación, la ciencia y la vida social, aplicando los principios UNESCO: derechos humanos, inclusión y no discriminación, supervisión humana, transparencia y explicabilidad, rendición de cuentas, sostenibilidad y gobernanza del riesgo.
+            Cómo la IA transforma el trabajo, la educación, la ciencia y la vida social a la luz de principios de derechos humanos: inclusión y no discriminación, supervisión humana, transparencia y explicabilidad, rendición de cuentas, sostenibilidad y gobernanza del riesgo.
           </p>
         </div>
 
@@ -20,7 +20,7 @@ export default function ImpactosSocialesSection() {
 
         {/* Contexto CTS */}
         <div className="mb-10 text-center text-gray-300 max-w-4xl mx-auto">
-          La Recomendación UNESCO (2021) destaca que la IA refleja decisiones humanas, sociales y políticas. La ética requiere enfoques interdisciplinarios, participación de las comunidades afectadas y mecanismos de gobernanza verificables.
+          El marco internacional de ética de la IA (2021) enfatiza que la tecnología refleja decisiones humanas, sociales y políticas. La ética requiere enfoques interdisciplinarios, participación de las comunidades afectadas y mecanismos de gobernanza verificables.
         </div>
 
         {/* Sección: Sociedad */}
@@ -49,7 +49,7 @@ export default function ImpactosSocialesSection() {
               <CardTitle className="text-gray-100">Desinformación y esfera pública</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              La UNESCO prioriza la integridad de la información. Los contenidos sintéticos y deepfakes exigen trazabilidad, etiquetado claro y responsabilidad de plataformas para proteger el debate democrático.
+              La integridad de la información es clave: los contenidos sintéticos y deepfakes exigen trazabilidad, etiquetado claro y responsabilidad de plataformas para proteger el debate democrático.
             </CardContent>
           </Card>
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
@@ -108,7 +108,7 @@ export default function ImpactosSocialesSection() {
               <CardTitle className="text-gray-100">Orientación humana y política</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              La Recomendación UNESCO actúa como norma de soft law que guía políticas y estándares técnicos hacia usos seguros y proporcionales al riesgo.
+              Este marco actúa como norma de soft law que guía políticas y estándares técnicos hacia usos seguros y proporcionales al riesgo.
             </CardContent>
           </Card>
 

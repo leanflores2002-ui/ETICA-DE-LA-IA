@@ -10,10 +10,10 @@ const HeroSection = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h1 data-reveal className="reveal reveal-up text-5xl md:text-6xl font-serif font-bold text-slate-900 leading-tight">
-              Ética de la Inteligencia Artificial
+              Ética de la Inteligencia Artificial con enfoque UNESCO
             </h1>
             <p data-reveal className="reveal reveal-up text-xl text-slate-600 leading-relaxed" style={{ transitionDelay: '80ms' }}>
-              Te invitamos a recorrer ideas clave sobre principios éticos, riesgos compartidos y responsabilidades en el desarrollo y uso de sistemas de inteligencia artificial en nuestras comunidades.
+              Inspirado en la “Recomendación sobre la Ética de la Inteligencia Artificial” (SHS/BIO/PI/2021/1), este espacio aplica derechos humanos, inclusión, supervisión humana y transparencia en todo el ciclo de vida de la IA, ofreciendo guías prácticas, casos y recursos para un uso responsable.
             </p>
             <div className="pt-4">
               <Link
