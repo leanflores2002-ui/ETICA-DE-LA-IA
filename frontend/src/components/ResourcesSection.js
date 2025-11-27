@@ -348,7 +348,7 @@ const ResourcesSection = () => {
 
                   <div className="rounded-lg border border-slate-200 bg-slate-50 overflow-hidden">
                     <img
-                      src="/assets/codex-preview.png"
+                      src="/img/codex-preview.png"
                       alt="Interfaz de trabajo con ChatGPT / Codex durante el diseno de la pagina"
                       className="w-full h-64 object-cover bg-slate-100"
                     />
@@ -367,4 +367,3 @@ const ResourcesSection = () => {
 };
 
 export default ResourcesSection;
-
