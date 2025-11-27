@@ -14,106 +14,107 @@ const ResourcesSection = () => {
         authors: 'UNESCO',
         year: '2021',
         description: 'Marco global de principios para el desarrollo y uso ético de la IA aprobado por 193 Estados Miembros.',
-        link: 'https://unesdoc.unesco.org/ark:/48223/pf0000381137_spa'
+        link: 'https://unesdoc.unesco.org/ark:/48223/pf0000381137_spa',
       },
       {
         title: 'Reglamento (UE) sobre IA (AI Act)',
         authors: 'Parlamento y Consejo de la UE',
         year: '2024',
         description: 'Texto legal del Reglamento de IA de la Unión Europea en español (EUR-Lex).',
-        link: 'https://eur-lex.europa.eu/legal-content/ES/TXT/PDF/?uri=CELEX:32024R1689'
+        link: 'https://eur-lex.europa.eu/legal-content/ES/TXT/PDF/?uri=CELEX:32024R1689',
       },
       {
-        title: 'RGPD — Reglamento General de Protección de Datos',
+        title: 'RGPD – Reglamento General de Protección de Datos',
         authors: 'Unión Europea',
         year: '2016',
         description: 'Reglamento europeo clave para el tratamiento de datos personales aplicado a sistemas de IA.',
-        link: 'https://eur-lex.europa.eu/legal-content/ES/TXT/PDF/?uri=CELEX:32016R0679'
+        link: 'https://eur-lex.europa.eu/legal-content/ES/TXT/PDF/?uri=CELEX:32016R0679',
       },
       {
         title: 'Guía de Evaluación de Impacto (EIPD) RGPD',
         authors: 'AEPD (España)',
         year: '2019',
         description: 'Guía práctica de la Agencia Española de Protección de Datos para realizar evaluaciones de impacto.',
-        link: 'https://www.aepd.es/sites/default/files/2019-09/guia-evaluacion-de-impacto-rgpd.pdf'
+        link: 'https://www.aepd.es/sites/default/files/2019-09/guia-evaluacion-de-impacto-rgpd.pdf',
       },
       {
         title: 'Guía de Anonimización de Datos Personales',
         authors: 'AEPD (España)',
         year: '2019',
         description: 'Buenas prácticas para anonimizar conjuntos de datos utilizados por sistemas de IA.',
-        link: 'https://www.aepd.es/sites/default/files/2019-10/guia-anonimizacion-datos-personales.pdf'
+        link: 'https://www.aepd.es/sites/default/files/2019-10/guia-anonimizacion-datos-personales.pdf',
       },
       {
         title: 'Carta de Derechos Digitales (España)',
         authors: 'Gobierno de España',
         year: '2021',
         description: 'Referente español sobre derechos y principios en el entorno digital, relevante para IA.',
-        link: 'https://www.lamoncloa.gob.es/presidente/actividades/Documents/2021/140721-Carta_Derechos_Digitales_RedEs.pdf'
+        link: 'https://www.lamoncloa.gob.es/presidente/actividades/Documents/2021/140721-Carta_Derechos_Digitales_RedEs.pdf',
       },
       {
         title: 'Principios de la OCDE sobre IA',
         authors: 'OCDE',
         year: '2019',
         description: 'Principios internacionales para una IA responsable. Página oficial con versiones en varios idiomas.',
-        link: 'https://oecd.ai/es/ai-principles'
+        link: 'https://oecd.ai/es/ai-principles',
       },
       {
-        title: 'Libro Blanco sobre la IA — Enfoque europeo',
+        title: 'Libro Blanco sobre la IA – Enfoque europeo',
         authors: 'Comisión Europea',
         year: '2020',
         description: 'Propuestas para promover una IA confiable y centrada en el ser humano en Europa.',
-        link: 'https://ec.europa.eu/info/sites/default/files/commission-white-paper-artificial-intelligence-feb2020_es.pdf'
-      }
+        link: 'https://ec.europa.eu/info/sites/default/files/commission-white-paper-artificial-intelligence-feb2020_es.pdf',
+      },
     ],
     organizations: [
       {
-        name: 'AESIA — Agencia Española de Supervisión de la IA',
+        name: 'AESIA – Agencia Española de Supervisión de la IA',
         description: 'Entidad pública dedicada a la supervisión y promoción de una IA confiable en España.',
         focus: 'Supervisión y gobernanza',
-        link: 'https://www.aesia.gob.es/'
+        link: 'https://www.aesia.gob.es/',
       },
       {
-        name: 'UNESCO — Ética de la IA',
+        name: 'UNESCO – Ética de la IA',
         description: 'Iniciativa global para promover marcos éticos y capacidades en IA.',
         focus: 'Ética y educación',
-        link: 'https://www.unesco.org/es/artificial-intelligence/ethics'
+        link: 'https://www.unesco.org/es/artificial-intelligence/ethics',
       },
       {
         name: 'ODISEIA',
         description: 'Observatorio del Impacto Social y Ético de la IA (España).',
         focus: 'Impacto social y principios',
-        link: 'https://odiseia.org/'
+        link: 'https://odiseia.org/',
       },
       {
         name: 'Fundación Éticas',
         description: 'Organización que impulsa auditorías algorítmicas y evaluaciones de impacto.',
         focus: 'Transparencia y auditoría',
-        link: 'https://eticasfoundation.org/es/'
+        link: 'https://eticasfoundation.org/es/',
       },
       {
         name: 'OECD.AI',
         description: 'Observatorio de políticas de IA de la OCDE con métricas, políticas y principios.',
         focus: 'Política pública y datos',
-        link: 'https://oecd.ai/es/'
+        link: 'https://oecd.ai/es/',
       },
       {
         name: 'Partnership on AI',
         description: 'Alianza multi-actor para desarrollar mejores prácticas en IA responsable.',
         focus: 'Buenas prácticas y colaboración',
-        link: 'https://www.partnershiponai.org/'
-      }
-    ]
+        link: 'https://www.partnershiponai.org/',
+      },
+    ],
   };
 
-  // En esta versión los enlaces ya vienen en cada item
   const getPaperUrl = (paper) => paper?.link || '#';
   const getOrgUrl = (org) => org?.link || '#';
-  
+
   useEffect(() => {
     try {
       initAnimations({ once: false, stagger: 48 });
-    } catch {}
+    } catch {
+      /* no-op */
+    }
   }, []);
 
   const [activeTab, setActiveTab] = useState('papers');
@@ -122,9 +123,7 @@ const ResourcesSection = () => {
     <section id="recursos" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 data-reveal className="reveal reveal-up text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-4">
-            Recursos
-          </h2>
+          <h2 data-reveal className="reveal reveal-up text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-4">Recursos</h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
             Herramientas, organizaciones y materiales para profundizar en la ética de la inteligencia artificial
           </p>
@@ -183,7 +182,9 @@ const ResourcesSection = () => {
             setActiveTab(v);
             try {
               requestAnimationFrame(() => initAnimations({ once: false, stagger: 48 }));
-            } catch {}
+            } catch {
+              /* no-op */
+            }
           }}
         >
           <TabsList className="grid w-full grid-cols-3 lg:grid-cols-3 mb-8">
@@ -202,65 +203,71 @@ const ResourcesSection = () => {
           </TabsList>
 
           <TabsContent value="papers" className="space-y-4" data-stagger>
-            {activeTab === 'papers' && resources.papers.map((paper, index) => (
-              <Card
-                key={index}
-                data-reveal
-                className="reveal reveal-up border-slate-200 cursor-pointer"
-                onClick={() => window.open(getPaperUrl(paper), '_blank', 'noopener,noreferrer')}
-                role="link"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getPaperUrl(paper), '_blank', 'noopener,noreferrer'); }}
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl font-serif text-slate-900">
-                    {paper.title}
-                  </CardTitle>
-                  <CardDescription>
-                    {paper.authors} ({paper.year})
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-slate-700 mb-3">{paper.description}</p>
-                  <a
-                    href={getPaperUrl(paper)} target="_blank" rel="noopener noreferrer"
-                    className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
-                  >
-                    Abrir recurso →
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
+            {activeTab === 'papers' &&
+              resources.papers.map((paper, index) => (
+                <Card
+                  key={index}
+                  data-reveal
+                  className="reveal reveal-up border-slate-200 cursor-pointer"
+                  onClick={() => window.open(getPaperUrl(paper), '_blank', 'noopener,noreferrer')}
+                  role="link"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') window.open(getPaperUrl(paper), '_blank', 'noopener,noreferrer');
+                  }}
+                >
+                  <CardHeader>
+                    <CardTitle className="text-xl font-serif text-slate-900">{paper.title}</CardTitle>
+                    <CardDescription>
+                      {paper.authors} ({paper.year})
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-700 mb-3">{paper.description}</p>
+                    <a
+                      href={getPaperUrl(paper)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
+                    >
+                      Abrir recurso →
+                    </a>
+                  </CardContent>
+                </Card>
+              ))}
           </TabsContent>
 
           <TabsContent value="organizations" className="grid md:grid-cols-2 gap-4" data-stagger>
-            {activeTab === 'organizations' && resources.organizations.map((org, index) => (
-              <Card
-                key={index}
-                data-reveal
-                className="reveal reveal-up border-slate-200 cursor-pointer"
-                onClick={() => window.open(getOrgUrl(org), '_blank', 'noopener,noreferrer')}
-                role="link"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter') window.open(getOrgUrl(org), '_blank', 'noopener,noreferrer'); }}
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl font-serif text-slate-900">
-                    {org.name}
-                  </CardTitle>
-                  <CardDescription>{org.focus}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-slate-700 mb-3">{org.description}</p>
-                  <a
-                    href={getOrgUrl(org)} target="_blank" rel="noopener noreferrer"
-                    className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
-                  >
-                    Visitar sitio web →
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
+            {activeTab === 'organizations' &&
+              resources.organizations.map((org, index) => (
+                <Card
+                  key={index}
+                  data-reveal
+                  className="reveal reveal-up border-slate-200 cursor-pointer"
+                  onClick={() => window.open(getOrgUrl(org), '_blank', 'noopener,noreferrer')}
+                  role="link"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') window.open(getOrgUrl(org), '_blank', 'noopener,noreferrer');
+                  }}
+                >
+                  <CardHeader>
+                    <CardTitle className="text-xl font-serif text-slate-900">{org.name}</CardTitle>
+                    <CardDescription>{org.focus}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-700 mb-3">{org.description}</p>
+                    <a
+                      href={getOrgUrl(org)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
+                    >
+                      Visitar sitio web →
+                    </a>
+                  </CardContent>
+                </Card>
+              ))}
           </TabsContent>
 
           {/* Se eliminan Marcos, Herramientas y Cursos para dejar solo las tres mini-pestañas solicitadas */}
@@ -276,31 +283,66 @@ const ResourcesSection = () => {
                     <h4 className="font-bold text-lg text-slate-900">Armas de destrucción matemática</h4>
                     <p className="text-slate-600 text-sm mb-2">Cathy O'Neil (ed. en español)</p>
                     <p className="text-slate-700">Cómo los algoritmos amplifican la desigualdad y amenazan la democracia.</p>
-                    <a href="https://capitanswing.com/libros/armas-de-destruccion-matematica/" target="_blank" rel="noopener noreferrer" className="text-slate-900 hover:text-slate-700 font-medium">Más info →</a>
+                    <a
+                      href="https://capitanswing.com/libros/armas-de-destruccion-matematica/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-900 hover:text-slate-700 font-medium"
+                    >
+                      Más info →
+                    </a>
                   </div>
                   <div>
                     <h4 className="font-bold text-lg text-slate-900">Atlas de la IA</h4>
                     <p className="text-slate-600 text-sm mb-2">Kate Crawford</p>
                     <p className="text-slate-700">Una mirada crítica a los costes sociales, políticos y ambientales de la IA.</p>
-                    <a href="https://capitanswing.com/libros/atlas-de-la-ia/" target="_blank" rel="noopener noreferrer" className="text-slate-900 hover:text-slate-700 font-medium">Más info →</a>
+                    <a
+                      href="https://capitanswing.com/libros/atlas-de-la-ia/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-900 hover:text-slate-700 font-medium"
+                    >
+                      Más info →
+                    </a>
                   </div>
                   <div>
                     <h4 className="font-bold text-lg text-slate-900">Ética para máquinas</h4>
                     <p className="text-slate-600 text-sm mb-2">José Ignacio Latorre</p>
                     <p className="text-slate-700">Reflexión sobre qué valores deben guiar a los sistemas inteligentes.</p>
-                    <a href="https://www.planetadelibros.com/libro-etica-para-maquinas/292706" target="_blank" rel="noopener noreferrer" className="text-slate-900 hover:text-slate-700 font-medium">Más info →</a>
+                    <a
+                      href="https://www.planetadelibros.com/libro-etica-para-maquinas/292706"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-900 hover:text-slate-700 font-medium"
+                    >
+                      Más info →
+                    </a>
                   </div>
                   <div>
                     <h4 className="font-bold text-lg text-slate-900">Human Compatible (Compatibles con humanos)</h4>
                     <p className="text-slate-600 text-sm mb-2">Stuart Russell</p>
                     <p className="text-slate-700">Cómo alinear la IA con objetivos humanos y evitar riesgos.</p>
-                    <a href="https://www.alianzaeditorial.es/libro/libros-singulares-ls/human-compatible-stuart-russell-9788491816999/" target="_blank" rel="noopener noreferrer" className="text-slate-900 hover:text-slate-700 font-medium">Más info →</a>
+                    <a
+                      href="https://www.alianzaeditorial.es/libro/libros-singulares-ls/human-compatible-stuart-russell-9788491816999/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-900 hover:text-slate-700 font-medium"
+                    >
+                      Más info →
+                    </a>
                   </div>
                   <div>
                     <h4 className="font-bold text-lg text-slate-900">Privacidad es poder</h4>
                     <p className="text-slate-600 text-sm mb-2">Carissa Véliz</p>
                     <p className="text-slate-700">La privacidad como valor democrático frente a la economía de datos.</p>
-                    <a href="https://www.penguinlibros.com/es/filosofia/287570-libro-privacidad-es-poder-9788418619347" target="_blank" rel="noopener noreferrer" className="text-slate-900 hover:text-slate-700 font-medium">Más info →</a>
+                    <a
+                      href="https://www.penguinlibros.com/es/filosofia/287570-libro-privacidad-es-poder-9788418619347"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-900 hover:text-slate-700 font-medium"
+                    >
+                      Más info →
+                    </a>
                   </div>
                 </CardContent>
               </Card>

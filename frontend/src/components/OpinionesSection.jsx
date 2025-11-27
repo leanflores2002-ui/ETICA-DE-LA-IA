@@ -40,7 +40,7 @@ const fmtRelative = (ts) => {
 export default function OpinionesSection() {
   const [name, setName] = useState('');
   const [text, setText] = useState('');
-  const [sort, setSort] = useState('desc'); // 'desc' = mas recientes
+  const [sort, setSort] = useState('desc'); // 'desc' = más recientes
   const [lastAddedId, setLastAddedId] = useState(null);
 
   const [items, setItems] = useState(() => {
@@ -54,7 +54,9 @@ export default function OpinionesSection() {
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    } catch {}
+    } catch {
+      /* no-op */
+    }
   }, [items]);
 
   const onSubmit = (e) => {
@@ -65,7 +67,11 @@ export default function OpinionesSection() {
     const item = { id: Date.now(), name: n, text: t, ts: new Date().toISOString() };
     setItems((prev) => [...prev, item]);
     setLastAddedId(item.id);
-    try { toast({ title: 'Comentario agregado con exito' }); } catch {}
+    try {
+      toast({ title: 'Comentario agregado con éxito' });
+    } catch {
+      /* no-op */
+    }
     setText('');
   };
 
@@ -79,11 +85,15 @@ export default function OpinionesSection() {
   }, [items, sort]);
 
   const clearAll = () => {
-    const ok = window.confirm('Borrar todos los comentarios locales? Esta accion no se puede deshacer.');
+    const ok = window.confirm('¿Borrar todos los comentarios locales? Esta acción no se puede deshacer.');
     if (!ok) return;
     setItems([]);
     setLastAddedId(null);
-    try { toast({ title: 'Comentarios eliminados' }); } catch {}
+    try {
+      toast({ title: 'Comentarios eliminados' });
+    } catch {
+      /* no-op */
+    }
   };
 
   return (
@@ -94,24 +104,38 @@ export default function OpinionesSection() {
             Opiniones y Reflexiones
           </h2>
           <p className="text-slate-600 mt-2" data-reveal style={{ transitionDelay: '80ms' }}>
-            Comparte tus ideas sobre la etica de la IA. Los comentarios se guardan localmente en tu navegador.
+            Comparte tus ideas sobre la ética de la IA. Los comentarios se guardan localmente en tu navegador.
           </p>
           <div className="mt-3 text-slate-500" data-reveal style={{ transitionDelay: '120ms' }}>
-            Este espacio esta pensado para compartir ideas y reflexiones eticas sobre la inteligencia artificial. Se respetuoso y constructivo en tus aportes.
+            Este espacio está pensado para compartir ideas y reflexiones éticas sobre la inteligencia artificial. Sé respetuoso y constructivo en tus aportes.
           </div>
         </div>
 
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
           <div className="flex items-center justify-between px-4 pt-4 md:px-6">
-            <div className="text-slate-400 text-sm">Opiniones: {count} {count === 1 ? 'publicada' : 'publicadas'}</div>
+            <div className="text-slate-500 text-sm">
+              Opiniones: {count} {count === 1 ? 'publicada' : 'publicadas'}
+            </div>
             <div className="flex items-center gap-3">
-              <label htmlFor="opiniones-sort" className="text-sm text-slate-400">Ordenar</label>
-              <select id="opiniones-sort" value={sort} onChange={(e) => setSort(e.target.value)} className="text-sm bg-transparent border border-slate-300 rounded-md px-2 py-1 text-slate-200">
-                <option value="desc">Mas recientes</option>
-                <option value="asc">Mas antiguos</option>
+              <label htmlFor="opiniones-sort" className="text-sm text-slate-500">
+                Ordenar
+              </label>
+              <select
+                id="opiniones-sort"
+                value={sort}
+                onChange={(e) => setSort(e.target.value)}
+                className="text-sm bg-white border border-slate-300 rounded-md px-2 py-1 text-slate-700"
+              >
+                <option value="desc">Más recientes</option>
+                <option value="asc">Más antiguos</option>
               </select>
               {hasItems && (
-                <button onClick={clearAll} className="text-sm px-2 py-1 rounded-md border border-slate-300 hover:bg-slate-800 text-slate-100">Borrar todo</button>
+                <button
+                  onClick={clearAll}
+                  className="text-sm px-2 py-1 rounded-md border border-slate-300 hover:bg-slate-100 text-slate-700"
+                >
+                  Borrar todo
+                </button>
               )}
             </div>
           </div>
@@ -120,32 +144,44 @@ export default function OpinionesSection() {
             {hasItems ? (
               <div className="space-y-3">
                 {ordered.map((it) => (
-                  <article key={it.id} className={`border border-slate-200 rounded-lg p-4 bg-white transition-all duration-300 ${it.id === lastAddedId ? 'opacity-0 translate-y-1 anim-enter' : ''}`}>
+                  <article
+                    key={it.id}
+                    className={`border border-slate-200 rounded-lg p-4 bg-slate-50 transition-all duration-300 ${
+                      it.id === lastAddedId ? 'opacity-0 translate-y-1 anim-enter' : ''
+                    }`}
+                  >
                     <div className="flex items-start gap-3 mb-1">
-                      <Avatar className="h-9 w-9 bg-slate-800/70">
-                        <AvatarFallback className="text-slate-200">{(it.name || '?').trim().charAt(0).toUpperCase()}</AvatarFallback>
+                      <Avatar className="h-9 w-9 bg-slate-200">
+                        <AvatarFallback className="text-slate-700">
+                          {(it.name || '?')
+                            .trim()
+                            .charAt(0)
+                            .toUpperCase()}
+                        </AvatarFallback>
                       </Avatar>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-baseline gap-2">
-                          <strong className="text-slate-100 truncate">{it.name}</strong>
-                          <time className="text-xs text-slate-400" dateTime={it.ts} title={fmtDate(it.ts)}>
+                          <strong className="text-slate-900 truncate">{it.name}</strong>
+                          <time className="text-xs text-slate-500" dateTime={it.ts} title={fmtDate(it.ts)}>
                             {fmtRelative(it.ts)}
                           </time>
                         </div>
-                        <p className="mt-1 whitespace-pre-wrap break-words text-slate-100">{it.text}</p>
+                        <p className="mt-1 whitespace-pre-wrap break-words text-slate-800">{it.text}</p>
                       </div>
                     </div>
                   </article>
                 ))}
               </div>
             ) : (
-              <div className="text-slate-300">Aun no hay comentarios. Se la primera persona en opinar!</div>
+              <div className="text-slate-600">Aún no hay comentarios. ¡Sé la primera persona en opinar!</div>
             )}
           </div>
 
           <form onSubmit={onSubmit} className="border-t border-slate-200 p-4 md:p-6 grid gap-3">
             <div className="grid gap-2">
-              <label htmlFor="opiniones-name" className="font-medium text-slate-800">Nombre</label>
+              <label htmlFor="opiniones-name" className="font-medium text-slate-800">
+                Nombre
+              </label>
               <input
                 id="opiniones-name"
                 type="text"
@@ -153,22 +189,27 @@ export default function OpinionesSection() {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Tu nombre"
                 required
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-slate-900/60 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-300"
               />
             </div>
             <div className="grid gap-2">
-              <label htmlFor="opiniones-text" className="font-medium text-slate-800">Comentario</label>
+              <label htmlFor="opiniones-text" className="font-medium text-slate-800">
+                Comentario
+              </label>
               <textarea
                 id="opiniones-text"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                placeholder="Escribi tu comentario"
+                placeholder="Escribí tu comentario"
                 required
-                className="w-full min-h-[110px] px-3 py-2 rounded-lg border border-slate-300 bg-slate-900/60 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-300 resize-vertical"
+                className="w-full min-h-[110px] px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-300 resize-vertical"
               />
             </div>
             <div className="flex justify-end">
-              <button type="submit" className="inline-flex items-center px-4 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors">
+              <button
+                type="submit"
+                className="inline-flex items-center px-4 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+              >
                 Publicar
               </button>
             </div>

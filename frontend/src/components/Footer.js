@@ -12,8 +12,8 @@ const Footer = () => {
         { label: 'Inicio', to: '/' },
         { label: 'Temas Claves', to: '/temas' },
         { label: 'Casos de Estudio', to: '/casos' },
-        { label: 'Recursos', to: '/recursos' }
-      ]
+        { label: 'Recursos', to: '/recursos' },
+      ],
     },
     {
       title: 'Organizaciones Clave',
@@ -21,8 +21,8 @@ const Footer = () => {
         { label: 'Partnership on AI', external: true, url: 'https://www.partnershiponai.org/' },
         { label: 'AI Now Institute', external: true, url: 'https://ainowinstitute.org/' },
         { label: 'Future of Humanity Institute', external: true, url: 'https://www.fhi.ox.ac.uk/' },
-        { label: 'Montreal AI Ethics Institute', external: true, url: 'https://montrealethics.ai/' }
-      ]
+        { label: 'Montreal AI Ethics Institute', external: true, url: 'https://montrealethics.ai/' },
+      ],
     },
     {
       title: 'Marcos Regulatorios',
@@ -30,9 +30,9 @@ const Footer = () => {
         { label: 'GDPR (UE)', external: true, url: 'https://gdpr.eu/' },
         { label: 'AI Act (UE)', external: true, url: 'https://digital-strategy.ec.europa.eu/en/policies/european-approach-artificial-intelligence' },
         { label: 'OECD AI Principles', external: true, url: 'https://oecd.ai/en/ai-principles' },
-        { label: 'Beijing AI Principles', external: true, url: 'https://www.baai.ac.cn/blog/beijing-ai-principles' }
-      ]
-    }
+        { label: 'Beijing AI Principles', external: true, url: 'https://www.baai.ac.cn/blog/beijing-ai-principles' },
+      ],
+    },
   ];
 
   const scrollToSection = (sectionId) => {
@@ -73,10 +73,7 @@ const Footer = () => {
                         <ExternalLink size={14} />
                       </a>
                     ) : (
-                      <Link
-                        to={link.to}
-                        className="text-slate-400 hover:text-slate-100 transition-colors"
-                      >
+                      <Link to={link.to} className="text-slate-400 hover:text-slate-100 transition-colors">
                         {link.label}
                       </Link>
                     )}
@@ -89,9 +86,7 @@ const Footer = () => {
 
         <div className="border-t border-slate-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-slate-400 text-sm">
-              © {currentYear} Ética de IA. Recurso educativo sobre inteligencia artificial ética.
-            </p>
+            <p className="text-slate-400 text-sm">© {currentYear} Ética de IA. Recurso educativo sobre inteligencia artificial ética.</p>
             <div className="flex items-center space-x-6">
               <a
                 href="mailto:contacto@ejemplo.com"

@@ -4,8 +4,6 @@ import { ArrowDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
-  
-
   return (
     <section id="inicio" className="pt-24 pb-16 hero--animated anim-gradient">
       <div className="max-w-7xl mx-auto px-6">

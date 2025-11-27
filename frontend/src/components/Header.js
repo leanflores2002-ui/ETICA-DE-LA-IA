@@ -15,7 +15,7 @@ const Header = () => {
   const navItems = [
     { to: '/', label: 'Inicio' },
     { to: '/temas', label: 'Temas Claves' },
-    { to: '/estadisticas', label: 'Estadisticas' },
+    { to: '/estadisticas', label: 'Estadísticas' },
     { to: '/casos', label: 'Casos de Estudio' },
     { to: '/recursos', label: 'Recursos' },
     { to: '/impactos', label: 'Impactos Sociales' },
@@ -33,7 +33,7 @@ const Header = () => {
             className="text-xl font-serif font-bold text-slate-900 hover:text-slate-700 transition-colors"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Etica de IA
+            Ética de IA
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
@@ -52,7 +52,7 @@ const Header = () => {
           <button
             className="md:hidden p-2 text-slate-700 hover:text-slate-900"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Abrir menu"
+            aria-label="Abrir menú"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

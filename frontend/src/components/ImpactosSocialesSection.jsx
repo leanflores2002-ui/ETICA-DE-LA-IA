@@ -7,29 +7,23 @@ export default function ImpactosSocialesSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         {/* Encabezado */}
         <div className="text-center mb-10 md:mb-14">
-          <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-100">
-            Impactos Sociales y Dimensiones Eticas de la IA
-          </h1>
+          <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-100">Impactos Sociales y Dimensiones Éticas de la IA</h1>
           <p className="mt-3 text-gray-300 max-w-3xl mx-auto">
-            Como la inteligencia artificial transforma el trabajo, la educacion, la ciencia y la vida social, y por que exige nuevas responsabilidades eticas, politicas y colectivas.
+            Cómo la inteligencia artificial transforma el trabajo, la educación, la ciencia y la vida social, y por qué exige nuevas responsabilidades éticas, políticas y colectivas.
           </p>
         </div>
 
-        {/* Imagen principal: Principios eticos de la IA */}
+        {/* Imagen principal: Principios éticos de la IA */}
         <div className="mb-12 flex justify-center">
-          <img
-            src="/img/principios-eticos-ia.png"
-            alt="Principios eticos de la IA"
-            className="w-full md:w-4/5 rounded-xl shadow-xl opacity-95"
-          />
+          <img src="/img/principios-eticos-ia.png" alt="Principios éticos de la IA" className="w-full md:w-4/5 rounded-xl shadow-xl opacity-95" />
         </div>
 
         {/* Contexto CTS */}
         <div className="mb-10 text-center text-gray-300 max-w-4xl mx-auto">
-          La IA no avanza sola: esta orientada por decisiones humanas, sociales y politicas. La etica requiere miradas interdisciplinarias y herramientas de gobernanza concretas.
+          La IA no avanza sola: está orientada por decisiones humanas, sociales y políticas. La ética requiere miradas interdisciplinarias y herramientas de gobernanza concretas.
         </div>
 
-        {/* Seccion: Sociedad */}
+        {/* Sección: Sociedad */}
         <h2 className="text-2xl font-semibold text-gray-200 mb-4">Sociedad: impactos y responsabilidades colectivas</h2>
         {/* Transformaciones y brechas */}
         <h3 className="text-lg font-semibold text-gray-300 mt-6 mb-3">Transformaciones y brechas</h3>
@@ -39,23 +33,23 @@ export default function ImpactosSocialesSection() {
               <CardTitle className="text-gray-100">Trabajo y habilidades</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              La IA automatiza tareas rutinarias y reconfigura ocupaciones. La mayor exposicion se da en tareas administrativas; entre 2023 y 2027 se espera una recomposicion del empleo con desplazamientos y creacion de nuevos puestos, y cerca de 44% de habilidades en evolucion.
+              La IA automatiza tareas rutinarias y reconfigura ocupaciones. La mayor exposición se da en tareas administrativas; entre 2023 y 2027 se espera una recomposición del empleo con desplazamientos y creación de nuevos puestos, y cerca de 44% de habilidades en evolución.
             </CardContent>
           </Card>
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
             <CardHeader>
-              <CardTitle className="text-gray-100">Educacion y comunicacion</CardTitle>
+              <CardTitle className="text-gray-100">Educación y comunicación</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              La IA generativa facilita tutorias y apoyo a la escritura, pero exige politicas de uso responsable, transparencia y evaluacion justa.
+              La IA generativa facilita tutorías y apoyo a la escritura, pero exige políticas de uso responsable, transparencia y evaluación justa.
             </CardContent>
           </Card>
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
             <CardHeader>
-              <CardTitle className="text-gray-100">Desinformacion y esfera publica</CardTitle>
+              <CardTitle className="text-gray-100">Desinformación y esfera pública</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              La proliferacion de contenidos sinteticos y deepfakes amplifica la desinformacion; es un riesgo critico a corto plazo y se requieren directrices para plataformas digitales.
+              La proliferación de contenidos sintéticos y deepfakes amplifica la desinformación; es un riesgo crítico a corto plazo y se requieren directrices para plataformas digitales.
             </CardContent>
           </Card>
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
@@ -63,36 +57,36 @@ export default function ImpactosSocialesSection() {
               <CardTitle className="text-gray-100">Brecha digital</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              El acceso desigual a conectividad, datos y computo profundiza inequidades; millones de personas siguen sin conexion, lo que condiciona quien puede beneficiarse de la IA.
+              El acceso desigual a conectividad, datos y cómputo profundiza inequidades; millones de personas siguen sin conexión, lo que condiciona quién puede beneficiarse de la IA.
             </CardContent>
           </Card>
         </div>
 
-        {/* Derechos, alfabetizacion y etica social */}
-        <h3 className="text-lg font-semibold text-gray-300 mt-8 mb-3">Derechos, alfabetizacion y etica social</h3>
+        {/* Derechos, alfabetización y ética social */}
+        <h3 className="text-lg font-semibold text-gray-300 mt-8 mb-3">Derechos, alfabetización y ética social</h3>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-gray-100">Derechos fundamentales</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              En justicia, salud, credito o servicios publicos, la IA puede introducir sesgos o afectar privacidad si carece de evaluaciones de impacto y explicabilidad.
+              En justicia, salud, crédito o servicios públicos, la IA puede introducir sesgos o afectar privacidad si carece de evaluaciones de impacto y explicabilidad.
             </CardContent>
           </Card>
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
             <CardHeader>
-              <CardTitle className="text-gray-100">Alfabetizacion digital y etica</CardTitle>
+              <CardTitle className="text-gray-100">Alfabetización digital y ética</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              Toda la sociedad necesita competencias para comprender limites, sesgos y buenas practicas de IA. Se requieren formacion docente, politicas institucionales y proteccion de datos.
+              Toda la sociedad necesita competencias para comprender límites, sesgos y buenas prácticas de IA. Se requieren formación docente, políticas institucionales y protección de datos.
             </CardContent>
           </Card>
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
             <CardHeader>
-              <CardTitle className="text-gray-100">Etica participativa</CardTitle>
+              <CardTitle className="text-gray-100">Ética participativa</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              La IA debe evaluarse con participacion de comunidades afectadas y equipos diversos, con rendicion de cuentas.
+              La IA debe evaluarse con participación de comunidades afectadas y equipos diversos, con rendición de cuentas.
             </CardContent>
           </Card>
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
@@ -100,21 +94,21 @@ export default function ImpactosSocialesSection() {
               <CardTitle className="text-gray-100">Ejemplo CTS</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              Automatizacion y desigualdad: sin politicas de transicion (formacion, movilidad laboral, proteccion social), la IA puede concentrar beneficios y ampliar brechas salariales.
+              Automatización y desigualdad: sin políticas de transición (formación, movilidad laboral, protección social), la IA puede concentrar beneficios y ampliar brechas salariales.
             </CardContent>
           </Card>
         </div>
 
-        {/* Seccion: Interacciones CTS */}
-        <h2 className="mt-10 text-2xl font-semibold text-gray-200 mb-4">Interacciones CTS (Ciencia-Tecnologia-Sociedad)</h2>
+        {/* Sección: Interacciones CTS */}
+        <h2 className="mt-10 text-2xl font-semibold text-gray-200 mb-4">Interacciones CTS (Ciencia-Tecnología-Sociedad)</h2>
         {/* Segunda fila: Bloques CTS */}
         <div className="mt-8 grid md:grid-cols-3 gap-6">
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
             <CardHeader>
-              <CardTitle className="text-gray-100">Orientacion humana y politica</CardTitle>
+              <CardTitle className="text-gray-100">Orientación humana y política</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              La eleccion de problemas, datos y metricas refleja valores e incentivos. Marcos regulatorios y de gestion de riesgos encauzan el desarrollo hacia usos responsables basados en riesgo.
+              La elección de problemas, datos y métricas refleja valores e incentivos. Marcos regulatorios y de gestión de riesgos encauzan el desarrollo hacia usos responsables basados en riesgo.
             </CardContent>
           </Card>
 
@@ -123,33 +117,32 @@ export default function ImpactosSocialesSection() {
               <CardTitle className="text-gray-100">Enfoque interdisciplinario</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              Los dilemas eticos requieren integrar ingenieria, ciencias sociales, filosofia, derecho, comunicacion, economia y diseno. Es clave para garantizar seguridad, explicabilidad, equidad y buena gobernanza de datos.
+              Los dilemas éticos requieren integrar ingeniería, ciencias sociales, filosofía, derecho, comunicación, economía y diseño. Es clave para garantizar seguridad, explicabilidad, equidad y buena gobernanza de datos.
             </CardContent>
           </Card>
 
           <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
             <CardHeader>
-              <CardTitle className="text-gray-100">Innovacion con responsabilidad</CardTitle>
+              <CardTitle className="text-gray-100">Innovación con responsabilidad</CardTitle>
             </CardHeader>
             <CardContent className="text-gray-300">
-              Lo que la IA puede hacer no siempre es lo que la sociedad debe permitir. Aplicar proporcionalidad, precaucion, evaluacion de impacto y supervision humana; ensayar en dominios criticos y documentar modelos y datos.
+              Lo que la IA puede hacer no siempre es lo que la sociedad debe permitir. Aplicar proporcionalidad, precaución, evaluación de impacto y supervisión humana; ensayar en dominios críticos y documentar modelos y datos.
             </CardContent>
           </Card>
         </div>
 
-        {/* Reflexion final (CTS) */}
+        {/* Reflexión final (CTS) */}
         <div className="mt-8 p-6 bg-gray-900/60 border border-gray-700 rounded-xl text-gray-200">
           <p className="leading-relaxed">
-            <span className="font-semibold">Reflexion final:</span> equilibrar innovacion con responsabilidad requiere participacion publica y mecanismos de rendicion de cuentas. Auditorias de sesgo, comites de etica, tableros de riesgo y consulta a comunidades afectadas fortalecen legitimidad y reducen danos.
+            <span className="font-semibold">Reflexión final:</span> equilibrar innovación con responsabilidad requiere participación pública y mecanismos de rendición de cuentas.
+            Auditorías de sesgo, comités de ética, tableros de riesgo y consulta a comunidades afectadas fortalecen legitimidad y reducen daños.
           </p>
         </div>
 
         {/* Fuentes clave (Sociedad) */}
         <div className="mt-10 text-sm text-gray-400">
           <p className="font-semibold text-gray-300">Fuentes clave</p>
-          <p>
-            UNESCO (2021, 2023); OCDE (2019, 2023); NIST (2023); OMS (2023); UIT (2023); WEF (2023-2024); OIT (2023).
-          </p>
+          <p>UNESCO (2021, 2023); OCDE (2019, 2023); NIST (2023); OMS (2023); UIT (2023); WEF (2023-2024); OIT (2023).</p>
         </div>
       </div>
     </section>

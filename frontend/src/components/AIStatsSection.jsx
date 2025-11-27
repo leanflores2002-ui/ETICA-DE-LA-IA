@@ -26,14 +26,14 @@ function MarketGrowthChart() {
   const margin = { top: 24, right: 28, bottom: 56, left: 64 };
   const innerW = svgW - margin.left - margin.right;
   const innerH = svgH - margin.top - margin.bottom;
-  const maxVal = Math.max(...data.map(d => d.value)) * 1.1; // pequeño headroom
+  const maxVal = Math.max(...data.map((d) => d.value)) * 1.1; // pequeño margen superior
 
   const xStep = innerW / data.length;
   const barW = Math.min(34, xStep * 0.62);
   const xCenter = (i) => margin.left + i * xStep + xStep / 2;
   const yScale = (v) => margin.top + innerH * (1 - v / maxVal);
 
-  // ticks a intervalos fijos para la rejilla
+  // Ticks a intervalos fijos para la rejilla
   const tickStep = 250;
   const ticks = [];
   for (let v = 0; v <= Math.ceil(maxVal / tickStep) * tickStep; v += tickStep) ticks.push(v);
@@ -60,14 +60,18 @@ function MarketGrowthChart() {
 
         {/* Rejilla horizontal */}
         {ticks.map((t, i) => (
-          <g key={`g-${i}`}> 
+          <g key={`g-${i}`}>
             <line x1={margin.left} x2={margin.left + innerW} y1={yScale(t)} y2={yScale(t)} stroke="#e2e8f0" strokeWidth="1" opacity={t === 0 ? 1 : 0.6} />
-            <text x={margin.left - 10} y={yScale(t)} textAnchor="end" alignmentBaseline="middle" fontSize="11" fill="#475569">{t}</text>
+            <text x={margin.left - 10} y={yScale(t)} textAnchor="end" alignmentBaseline="middle" fontSize="11" fill="#475569">
+              {t}
+            </text>
           </g>
         ))}
 
-        {/* Eje Y label */}
-        <text x={16} y={margin.top} transform={`rotate(-90 16 ${margin.top})`} textAnchor="end" fontSize="12" fill="#334155">En miles de millones, USD</text>
+        {/* Etiqueta eje Y */}
+        <text x={16} y={margin.top} transform={`rotate(-90 16 ${margin.top})`} textAnchor="end" fontSize="12" fill="#334155">
+          En miles de millones, USD
+        </text>
 
         {/* Barras */}
         {data.map((d, i) => {
@@ -79,9 +83,14 @@ function MarketGrowthChart() {
           return (
             <g key={d.year}>
               <rect x={x} y={y} width={barW} height={h} fill={fill} opacity={opacity} rx="6" />
-              <text x={x + barW / 2} y={y - 6} textAnchor="middle" fontSize="11" fill="#334155">{d.value}</text>
-              <text x={x + barW / 2} y={margin.top + innerH + 18} textAnchor="middle" fontSize="11" fill="#475569">{d.year}{d.projected ? '*' : ''}</text>
-          </g>
+              <text x={x + barW / 2} y={y - 6} textAnchor="middle" fontSize="11" fill="#334155">
+                {d.value}
+              </text>
+              <text x={x + barW / 2} y={margin.top + innerH + 18} textAnchor="middle" fontSize="11" fill="#475569">
+                {d.year}
+                {d.projected ? '*' : ''}
+              </text>
+            </g>
           );
         })}
 
@@ -96,7 +105,9 @@ function MarketGrowthChart() {
           return (
             <g>
               <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#6d28d9" strokeWidth="3" markerEnd="url(#arrowhead)" opacity="0.9" />
-              <text x={xm} y={ym} textAnchor="middle" fontSize="18" fill="#6d28d9" fontWeight="600">{cagrLabel}</text>
+              <text x={xm} y={ym} textAnchor="middle" fontSize="18" fill="#6d28d9" fontWeight="600">
+                {cagrLabel}
+              </text>
             </g>
           );
         })()}
@@ -140,7 +151,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                WEF (Future of Jobs 2023): ~83M puestos desplazados y ~69M creados a 2027; ~44% de habilidades afectadas. Evidencia experimental (MIT, 2023) muestra ≈14% de mejora promedio en tareas de redacción con IA generativa, mayor para perfiles menos experimentados. OIT (2023): alta exposición en tareas administrativas.
+                WEF (Future of Jobs 2023): ~83M puestos desplazados y ~69M creados a 2027; ~44% de habilidades afectadas. Evidencia experimental (MIT, 2023) muestra ~14% de mejora promedio en tareas de redacción con IA generativa, mayor para perfiles menos experimentados. OIT (2023): alta exposición en tareas administrativas.
               </p>
               <p className="text-sm text-slate-500">Fuentes: WEF 2023; Noy & Zhang (MIT, 2023); OIT 2023.</p>
             </CardContent>
@@ -176,7 +187,7 @@ const AIStatsSection = () => {
             </CardHeader>
             <CardContent className="text-slate-700 space-y-2">
               <p>
-                La UIT (2023) estima ~67% de la población mundial conectada y 2.6 mil millones de personas sin conexión, limitando la participación equitativa en beneficios de la IA.
+                La UIT (2023) estima ~67% de la población mundial conectada y 2,6 mil millones de personas sin conexión, lo que limita la participación equitativa en los beneficios de la IA.
               </p>
               <p className="text-sm text-slate-500">Fuente: UIT 2023.</p>
             </CardContent>
@@ -209,7 +220,7 @@ const AIStatsSection = () => {
 
         <div className="mt-14">
           <h3 className="text-2xl font-serif font-semibold text-slate-900 mb-6" data-reveal>
-            Cifras clave (cards comparativas)
+            Cifras clave (tarjetas comparativas)
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" data-stagger>
             <Card data-reveal className="reveal reveal-up">
@@ -230,7 +241,7 @@ const AIStatsSection = () => {
                 <CardTitle className="text-sm text-slate-500">Personas sin conexión (UIT 2023)</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-slate-900">≈ 2.6 mil millones</div>
+                <div className="text-3xl font-bold text-slate-900">~ 2.6 mil millones</div>
                 <p className="text-slate-600">Personas sin acceso a Internet</p>
                 <div className="mt-3">
                   <Progress value={33} aria-label="Población sin conexión (aprox.)" />
@@ -256,11 +267,15 @@ const AIStatsSection = () => {
                 <div className="mt-3 space-y-2">
                   <div className="flex items-center gap-2">
                     <span className="text-xs w-16 text-slate-600">Despl.</span>
-                    <div className="flex-1"><Progress value={100} aria-label="83 millones desplazados (escala comparativa)" /></div>
+                    <div className="flex-1">
+                      <Progress value={100} aria-label="83 millones desplazados (escala comparativa)" />
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-xs w-16 text-slate-600">Cread.</span>
-                    <div className="flex-1"><Progress value={Math.round((69/83)*100)} aria-label="69 millones creados (comparado con 83M)" /></div>
+                    <div className="flex-1">
+                      <Progress value={Math.round((69 / 83) * 100)} aria-label="69 millones creados (comparado con 83M)" />
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -317,35 +332,35 @@ const AIStatsSection = () => {
                   <TableRow>
                     <TableCell>Brecha</TableCell>
                     <TableCell>Personas sin conexión</TableCell>
-                    <TableCell>≈ 2.6 mil millones</TableCell>
+                    <TableCell>~ 2.6 mil millones</TableCell>
                     <TableCell>UIT</TableCell>
                     <TableCell>2023</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>Empleo</TableCell>
                     <TableCell>Desplazados (2023–2027)</TableCell>
-                    <TableCell>≈ 83M</TableCell>
+                    <TableCell>~ 83M</TableCell>
                     <TableCell>WEF</TableCell>
                     <TableCell>2023</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>Empleo</TableCell>
                     <TableCell>Creados (2023–2027)</TableCell>
-                    <TableCell>≈ 69M</TableCell>
+                    <TableCell>~ 69M</TableCell>
                     <TableCell>WEF</TableCell>
                     <TableCell>2023</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>Habilidades</TableCell>
                     <TableCell>Habilidades afectadas</TableCell>
-                    <TableCell>≈ 44%</TableCell>
+                    <TableCell>~ 44%</TableCell>
                     <TableCell>WEF</TableCell>
                     <TableCell>2023</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>Productividad</TableCell>
                     <TableCell>Mejora promedio (redacción)</TableCell>
-                    <TableCell>≈ 14%</TableCell>
+                    <TableCell>~ 14%</TableCell>
                     <TableCell>MIT (Noy & Zhang)</TableCell>
                     <TableCell>2023</TableCell>
                   </TableRow>
