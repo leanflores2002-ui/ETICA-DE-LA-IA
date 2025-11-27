@@ -1,23 +1,23 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+﻿import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 // Stopwords en ES para evitar coincidencias triviales
 const SW = new Set([
-  'el','la','los','las','un','una','lo','de','del','al','y','o','en','con','por','para','a','que','como','se','es','son','no','si','ya','su','sus','mas','m\u00e1s','tambien','tambi\u00e9n','muy','esto','esta','estos','estas'
+  'el','la','los','las','un','una','lo','de','del','al','y','o','en','con','por','para','a','que','como','se','es','son','no','si','ya','su','sus','mas','más','tambien','también','muy','esto','esta','estos','estas'
 ]);
 
-// Peque\u00f1o diccionario de alias/sin\u00f3nimos
+// Pequeño diccionario de alias/sinónimos
 const ALIAS = {
   empleo: ['empleos','trabajo','laboral'],
   sociedad: ['social','comunidad'],
-  sesgo: ['equidad','justicia','discriminacion','discriminaci\u00f3n','discriminar'],
+  sesgo: ['equidad','justicia','discriminacion','discriminación','discriminar'],
   privacidad: ['datos','personales','dato','privado'],
   transparencia: ['explicabilidad','explicable','explicar'],
-  vigilancia: ['control','facial','camaras','c\u00e1maras'],
-  desinformacion: ['deepfakes','sintetico','sint\u00e9tico','falso','fake']
+  vigilancia: ['control','facial','camaras','cámaras'],
+  desinformacion: ['deepfakes','sintetico','sintético','falso','fake']
 };
 
-const normalize = (t) => (t ?
-  t.toLowerCase()
+const normalize = (t) => (t ? t
+  .toLowerCase()
   .normalize('NFD')
   .replace(/\p{Diacritic}+/gu, '')
   .replace(/\s+/g, ' ')
@@ -31,23 +31,6 @@ const splitSentences = (t) => t
   .split(/(?<=[\.!\?])\s+|\n+/g)
   .map((s) => s.trim())
   .filter(Boolean);
-
-function buildSectionFromText(heading, text) {
-  const sentences = splitSentences(text).map((s) => ({ original: s, tokens: tokenize(s) }));
-  return { heading, text, sen: sentences };
-}
-
-const STATIC_SECTIONS = [
-  buildSectionFromText('Inicio', 'Introducci\u00f3n a la \u00e9tica de la IA, importancia de principios y responsabilidad en el desarrollo.'),
-  buildSectionFromText('Temas Claves', 'Principios \u00e9ticos, sesgos, privacidad, transparencia, rendici\u00f3n de cuentas y regulaci\u00f3n.'),
-  buildSectionFromText('Casos de Estudio', 'Ejemplos pr\u00e1cticos de uso de IA, impactos reales y lecciones aprendidas.'),
-  buildSectionFromText('Recursos', 'Herramientas, documentos, organizaciones y materiales para profundizar en \u00e9tica de IA.'),
-  buildSectionFromText('Impactos Sociales', 'Impactos en sociedad, empleo, vigilancia, derechos digitales y consecuencias sociales.'),
-  buildSectionFromText('Opiniones y Reflexiones', 'Espacio para compartir ideas, comentarios y reflexiones sobre la \u00e9tica de la IA.'),
-  buildSectionFromText('Herramientas', 'Colecci\u00f3n de utilidades y soluciones relacionadas con IA responsable.'),
-  buildSectionFromText('Cursos', 'Formaci\u00f3n y capacitaci\u00f3n sobre IA y aspectos \u00e9ticos.'),
-  buildSectionFromText('Estad\u00edsticas', 'M\u00e9tricas y datos sobre adopci\u00f3n de IA, regulaci\u00f3n y efectos.'),
-];
 
 function expandTerms(tokens) {
   const e = new Set(tokens);
@@ -103,36 +86,27 @@ function useDomIndex(exRef) {
 }
 
 function bestAnswer(query, sections) {
-  const qRaw = expandTerms(tokenize(query));
+  const qRaw = tokenize(query);
   if (!qRaw.length) return null;
-  const qset = new Set(qRaw);
+  const qset = new Set(expandTerms(qRaw));
   let best = null;
-  let bestHeading = null;
-
   for (let si = 0; si < sections.length; si++) {
     const s = sections[si];
-    const headingTokens = tokenize(s.heading || '');
-    const headingOverlap = headingTokens.reduce((acc, t) => acc + (qset.has(t) ? 1 : 0), 0);
-    const headingWeight = headingOverlap > 0 ? 0.8 + headingOverlap * 0.6 : 0;
-
     for (let i = 0; i < s.sen.length; i++) {
       const sent = s.sen[i];
       if (!sent.tokens?.length) continue;
       let overlap = 0;
       for (const t of sent.tokens) if (qset.has(t)) overlap++;
-      const scored = overlap + headingWeight + (headingOverlap > 0 ? 0.2 : 0) + Math.min(sent.tokens.length, 24) / 120;
-      if (overlap === 0 && headingOverlap === 0) continue;
-      if (!best || scored > best.score) best = { score: scored, heading: s.heading, sent: sent.original, sidx: si, idx: i };
-    }
-
-    const headingScore = headingOverlap + (s.sen?.length ? 0.15 : 0);
-    if (headingScore > 0 && (!bestHeading || headingScore > bestHeading.score)) {
-      const fallbackSent = s.sen?.[0]?.original || s.text || 'Secci\u00f3n relacionada.';
-      bestHeading = { score: headingScore, heading: s.heading, sent: fallbackSent, sidx: si, idx: 0, fallback: true };
+      if (overlap > 0) {
+        let hOver = 0;
+        const hset = new Set(tokenize(s.heading || ''));
+        for (const t of qset) if (hset.has(t)) hOver++;
+        const score = overlap + hOver * 0.75 + Math.min(sent.tokens.length, 30) / 120;
+        if (!best || score > best.score) best = { score, heading: s.heading, sent: sent.original, sidx: si, idx: i };
+      }
     }
   }
-
-  return best || bestHeading;
+  return best;
 }
 
 function isGreeting(q) {
@@ -155,27 +129,12 @@ function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 function buildFallback(sections) {
   const headings = [...new Set(sections.map((s) => s.heading).filter(Boolean))].slice(0, 4);
   const base = pick([
-    'Puedo ayudarte con lo que aparece en esta p\u00e1gina.',
-    'Respondo usando el contenido visible aqu\u00ed.',
-    'Estoy enfocado en esta p\u00e1gina para darte respuestas precisas.'
+    'Puedo ayudarte con lo que aparece en esta página.',
+    'Respondo usando el contenido visible aquí.',
+    'Estoy enfocado en esta página para darte respuestas precisas.'
   ]);
-  const prompt = headings.length ? ` Decime una palabra clave o eleg\u00ed una secci\u00f3n: ${headings.join(' \u0007 ')}.` : ' Decime una palabra clave o secci\u00f3n.';
+  const prompt = headings.length ? ` Decime una palabra clave o elegí una sección: ${headings.join(' • ')}.` : ' Decime una palabra clave o sección.';
   return base + prompt;
-}
-
-function nearestHeadings(query, sections, limit = 3) {
-  const qset = new Set(expandTerms(tokenize(query)));
-  const scored = sections
-    .map((s) => {
-      const hTokens = tokenize(s.heading || '');
-      const overlap = hTokens.reduce((acc, t) => acc + (qset.has(t) ? 1 : 0), 0);
-      const textTokens = s.sen?.[0]?.tokens || [];
-      const textOverlap = textTokens.reduce((acc, t) => acc + (qset.has(t) ? 1 : 0), 0);
-      return { heading: s.heading, score: overlap * 1.4 + textOverlap * 0.4 };
-    })
-    .filter((x) => x.score > 0)
-    .sort((a, b) => b.score - a.score);
-  return scored.slice(0, limit).map((x) => x.heading).filter(Boolean);
 }
 
 function nextFromContext(ctx, sections, count = 2) {
@@ -195,7 +154,7 @@ export default function FloatingChatWidget() {
   const [msgs, setMsgs] = useState([
     {
       role: 'bot',
-      text: '\u00a1Hola! Soy tu asistente de \u00e9tica de la IA. Puedo ayudarte a explorar lo que aparece en esta p\u00e1gina. \u00bfSobre qu\u00e9 tema quer\u00e9s saber?'
+      text: '¡Hola! Soy tu asistente de Ética de la IA. Puedo ayudarte a explorar lo que aparece en esta página. ¿Sobre qué tema querés saber?'
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
@@ -203,13 +162,7 @@ export default function FloatingChatWidget() {
   const ctxRef = useRef(null); // { sidx, idx }
 
   const rootRef = useRef(null);
-  const domSections = useDomIndex(rootRef);
-  const mergedSections = useMemo(() => {
-    const map = new Map();
-    STATIC_SECTIONS.forEach((s) => map.set(s.heading, s));
-    domSections.forEach((s) => { if (s?.heading) map.set(s.heading, s); });
-    return [...map.values()];
-  }, [domSections]);
+  const sections = useDomIndex(rootRef);
   const listRef = useRef(null);
   const prefsRef = useRef({ headings: Object.create(null) });
 
@@ -222,12 +175,12 @@ export default function FloatingChatWidget() {
     const uniqueHeads = [...new Set(allHeads)].filter(Boolean);
     const otherHeads = uniqueHeads.filter((h) => h !== currentHeading);
     const ranked = [...otherHeads].sort((a, b) => (prefsRef.current.headings[b] || 0) - (prefsRef.current.headings[a] || 0));
+    const next = ranked[0] || otherHeads[0];
     const out = [];
-    if (currentHeading) out.push(`M\u00e1s sobre ${currentHeading}`);
-    if (ranked[0]) out.push(`Otro tema: ${ranked[0]}`);
-    if (ranked[1]) out.push(`Otro tema: ${ranked[1]}`);
+    if (currentHeading) out.push(`Más sobre ${currentHeading}`);
+    if (next) out.push(`Otro tema: ${next}`);
     out.push('Mostrar secciones');
-    if (out.length < 4) out.push('Buscar otra cosa');
+    out.push('Buscar otra cosa');
     return out.slice(0, 4);
   };
 
@@ -238,11 +191,12 @@ export default function FloatingChatWidget() {
 
   // Sugerencias iniciales basadas en secciones y preferencias
   useEffect(() => {
-    const headings = [...new Set(mergedSections.map((s) => s.heading))].filter(Boolean);
-    setSuggestions(personalize(null, headings));
-  }, [mergedSections.length]);
+    const headings = [...new Set(sections.map((s) => s.heading))].filter(Boolean);
+    const ranked = [...headings].sort((a, b) => (prefsRef.current.headings[b] || 0) - (prefsRef.current.headings[a] || 0));
+    setSuggestions(ranked.slice(0, 4));
+  }, [sections.length]);
 
-  // Mensaje inicial adicional m\u00e1s expl\u00edcito
+  // Mensaje inicial adicional más explícito
   useEffect(() => {
     setMsgs((prev) => {
       if (!prev.some((m) => m._intro2)) {
@@ -251,7 +205,7 @@ export default function FloatingChatWidget() {
           {
             role: 'bot',
             text:
-              'Puedo responder tus dudas sobre cualquiera de las secciones del sitio. Preguntame lo que quieras sobre la \u00e9tica de la inteligencia artificial.',
+              'Puedo responder tus dudas sobre cualquiera de las secciones del sitio. Preguntame lo que quieras sobre la ética de la inteligencia artificial.',
             _intro2: true,
           },
         ];
@@ -263,7 +217,7 @@ export default function FloatingChatWidget() {
 
   const handleQuick = (label) => {
     // registrar preferencia si corresponde
-    const mMas = label.match(/^M\u00e1s sobre\s+(.+)/i);
+    const mMas = label.match(/^Más sobre\s+(.+)/i);
     const mOtro = label.match(/^Otro tema:\s+(.+)/i);
     if (mMas) bump(prefsRef.current.headings, mMas[1], 2);
     if (mOtro) bump(prefsRef.current.headings, mOtro[1], 1);
@@ -310,63 +264,61 @@ export default function FloatingChatWidget() {
 
       // Peticiones especiales
       if (isGreeting(qn)) {
-        const heads = [...new Set(mergedSections.map((s) => s.heading))].slice(0, 4);
+        const heads = [...new Set(sections.map((s) => s.heading))].slice(0, 4);
         setMsgs((p) => [
           ...p,
-          { role: 'bot', text: `\u00a1Hola! \u00bfQu\u00e9 te interesa? Puedo contarte sobre: ${heads.join(' \u0007 ')}` }
+          { role: 'bot', text: `¡Hola! ¿Qué te interesa? Puedo contarte sobre: ${heads.join(' • ')}` }
         ]);
         setIsTyping(false);
         return;
       }
 
       if (isIndexRequest(qn)) {
-        const heads = [...new Set(mergedSections.map((s) => s.heading))];
-        const txt = heads.length ? `Secciones disponibles: ${heads.join(' \u0007 ')}` : 'No pude detectar secciones en esta p\u00e1gina.';
+        const heads = [...new Set(sections.map((s) => s.heading))];
+        const txt = heads.length ? `Secciones disponibles: ${heads.join(' • ')}` : 'No pude detectar secciones en esta página.';
         setMsgs((p) => [...p, { role: 'bot', text: txt }]);
         setIsTyping(false);
         return;
       }
 
       if (isMoreRequest(qn)) {
-        const more = nextFromContext(ctxRef.current, mergedSections, 2);
+        const more = nextFromContext(ctxRef.current, sections, 2);
         if (more) {
           ctxRef.current = { sidx: ctxRef.current.sidx, idx: more.nextIdx };
-          setMsgs((p) => [...p, { role: 'bot', text: `${more.text} \u00bfQuer\u00e9s que siga?` }]);
+          setMsgs((p) => [...p, { role: 'bot', text: `${more.text} ¿Querés que siga?` }]);
         } else {
-          setMsgs((p) => [...p, { role: 'bot', text: '\u00bfDe qu\u00e9 secci\u00f3n quer\u00e9s saber m\u00e1s?' }]);
+          setMsgs((p) => [...p, { role: 'bot', text: '¿De qué sección querés saber más?' }]);
         }
         setIsTyping(false);
         return;
       }
 
-      // B\u00fasqueda por solapamiento ampliada y global
-      const b = bestAnswer(q, mergedSections);
+      // Búsqueda por solapamiento
+      const b = bestAnswer(q, sections);
       if (!b) {
-        const close = nearestHeadings(q, mergedSections, 3);
-        if (close.length) {
-          const txt = `No encontr\u00e9 una frase exacta sobre eso, pero estas secciones pueden ayudarte: ${close.join(' \u0007 ')}. \u00bfQuer\u00e9s que te cuente m\u00e1s sobre alguna?`;
-          setMsgs((p) => [...p, { role: 'bot', text: txt, jumpHeading: close[0] }]);
-          setSuggestions(personalize(close[0], mergedSections.map((s) => s.heading)));
-        } else {
-          setMsgs((p) => [...p, { role: 'bot', text: buildFallback(mergedSections) }]);
-        }
+        const heads = [...new Set(sections.map((s) => s.heading))];
+        const suggest = heads[0];
+        const txt = heads.length
+          ? `No encontré información precisa sobre eso. ¿Querés explorar la sección más relacionada? ${suggest}`
+          : buildFallback(sections);
+        setMsgs((p) => [...p, { role: 'bot', text: txt, jumpHeading: suggest }]);
         setIsTyping(false);
         return;
       }
 
-      const sn = b.sent.length > 280 ? `${b.sent.slice(0, 277)}.` : b.sent;
-      const hl = b.heading && b.heading !== 'Contenido' ? `En la secci\u00f3n "${b.heading}" se menciona: ` : 'En esta p\u00e1gina se menciona: ';
+      const sn = b.sent.length > 280 ? `${b.sent.slice(0, 277)}…` : b.sent;
+      const hl = b.heading && b.heading !== 'Contenido' ? `En la sección "${b.heading}" se menciona: ` : 'En esta página se menciona: ';
       const variants = [
-        `${hl}${sn} \u00bfQuer\u00e9s que ampl\u00ede?`,
-        `${hl}${sn} \u00bfTe cuento m\u00e1s sobre "${b.heading}"?`,
-        `${hl}${sn} Puedo ampliar o buscar otra secci\u00f3n.`
+        `${hl}${sn} ¿Querés que amplíe?`,
+        `${hl}${sn} ¿Te cuento más sobre "${b.heading}"?`,
+        `${hl}${sn} Puedo ampliar o buscar otra sección.`
       ];
       const ans = pick(variants);
 
       ctxRef.current = { sidx: b.sidx, idx: b.idx };
       setMsgs((p) => [...p, { role: 'bot', text: ans, jumpHeading: b.heading }]);
       bump(prefsRef.current.headings, b.heading, 2);
-      const heads = mergedSections.map((s) => s.heading).filter(Boolean);
+      const heads = sections.map((s) => s.heading).filter(Boolean);
       setSuggestions(personalize(b.heading, heads));
       setIsTyping(false);
     }, 90);
@@ -387,7 +339,7 @@ export default function FloatingChatWidget() {
           className="h-14 w-14 rounded-full bg-slate-800 text-white shadow-xl hover:scale-105 active:scale-95 transition-transform grid place-items-center border border-slate-700"
           aria-label="Abrir chat"
         >
-          <span className="text-xl" role="img" aria-label="chat">??</span>
+          <span className="text-xl" role="img" aria-label="chat">💬</span>
         </button>
       )}
 
@@ -398,8 +350,8 @@ export default function FloatingChatWidget() {
         >
           <div className="bg-slate-800/95 text-white px-4 py-3 flex items-center justify-between">
             <div>
-              <h3 className="font-serif font-semibold">Asistente \u00c9tica de IA</h3>
-              <p className="text-xs text-slate-300">Respondo con base en esta p\u00e1gina</p>
+              <h3 className="font-serif font-semibold">Asistente Ética de IA</h3>
+              <p className="text-xs text-slate-300">Respondo con base en esta página</p>
             </div>
             <button
               type="button"
@@ -407,7 +359,7 @@ export default function FloatingChatWidget() {
               className="px-2 py-1 text-slate-200 hover:text-white rounded-md hover:bg-slate-700 transition-colors"
               aria-label="Cerrar chat"
             >
-              \u00d7
+              ×
             </button>
           </div>
 
@@ -428,7 +380,7 @@ export default function FloatingChatWidget() {
                         className="text-xs px-2.5 py-1.5 rounded-full border border-slate-600 text-slate-200 hover:bg-slate-700/60"
                         title={`Ir a ${m.jumpHeading}`}
                       >
-                        Ir a "{m.jumpHeading}"
+                        Ir a “{m.jumpHeading}”
                       </button>
                     </div>
                   )}
@@ -438,7 +390,7 @@ export default function FloatingChatWidget() {
             {isTyping && (
               <div className="flex justify-start">
                 <div className="px-3 py-2 rounded-2xl text-sm leading-relaxed shadow bg-slate-800 text-slate-100 rounded-bl-sm">
-                  Escribiendo.
+                  Escribiendo…
                 </div>
               </div>
             )}
@@ -465,7 +417,7 @@ export default function FloatingChatWidget() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKey}
-              placeholder="Escrib\u00ed tu pregunta."
+              placeholder="Escribí tu pregunta…"
               className="flex-1 bg-slate-800 text-slate-100 placeholder-slate-400 text-sm px-3 py-2 rounded-xl outline-none focus:ring-2 focus:ring-slate-600 focus:bg-slate-800/90 border border-slate-700 min-h-[42px]"
               aria-label="Ingresar pregunta"
             />
@@ -481,4 +433,5 @@ export default function FloatingChatWidget() {
     </div>
   );
 }
+
 
