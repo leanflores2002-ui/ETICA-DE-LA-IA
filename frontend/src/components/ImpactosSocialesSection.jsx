@@ -89,53 +89,6 @@ export default function ImpactosSocialesSection() {
               La evaluación de IA debe incluir a comunidades afectadas, equipos diversos y mecanismos de rendición de cuentas que documenten decisiones y modelos.
             </CardContent>
           </Card>
-          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-gray-100">Ejemplo CTS</CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-300">
-              Automatización en servicios públicos: aplicar evaluaciones de impacto en derechos, supervisión humana y participación ciudadana para evitar concentración de beneficios y discriminación.
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Sección: Interacciones CTS */}
-        <h2 className="mt-10 text-2xl font-semibold text-gray-200 mb-4">Interacciones CTS (Ciencia-Tecnología-Sociedad)</h2>
-        {/* Segunda fila: Bloques CTS */}
-        <div className="mt-8 grid md:grid-cols-3 gap-6">
-          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-gray-100">Orientación humana y política</CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-300">
-              Este marco actúa como norma de soft law que guía políticas y estándares técnicos hacia usos seguros y proporcionales al riesgo.
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-gray-100">Enfoque interdisciplinario</CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-300">
-              Ingeniería, ciencias sociales, derecho, filosofía y diseño deben dialogar para lograr seguridad, explicabilidad y gobernanza de datos alineada con derechos humanos.
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gray-900/60 border border-gray-700 rounded-xl transition-all hover:shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-gray-100">Innovación con responsabilidad</CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-300">
-              Lo técnicamente posible debe pasar por pruebas piloto supervisadas, principios de precaución y documentación pública de riesgos, salvaguardas y mejoras continuas.
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Reflexión final (CTS) */}
-        <div className="mt-8 p-6 bg-gray-900/60 border border-gray-700 rounded-xl text-gray-200">
-          <p className="leading-relaxed">
-            <span className="font-semibold">Reflexión final:</span> Equilibrar innovación con responsabilidad implica centrar los derechos humanos, establecer rendición de cuentas y monitorear impactos de forma continua. Auditorías de sesgo, comités de ética, tableros de riesgo y consulta a las comunidades refuerzan legitimidad y reducen daños.
-          </p>
         </div>
 
         {/* Fuentes clave (Sociedad) */}
